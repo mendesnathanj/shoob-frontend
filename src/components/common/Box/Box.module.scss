@@ -2,17 +2,14 @@
   box-sizing: border-box;
 }
 
-.padded {
+$spacer: 0.5rem;
+
+.p {
   background-color: salmon;
-  &-8 {
-    padding: 8px;
-  }
 
-  &-16 {
-    padding: 16px;
-  }
-
-  &-24 {
-    padding: 24px;
+  @for $i from 1 through 12 {
+    &-#{$i} {
+      padding: $i * $spacer;
+    }
   }
 }

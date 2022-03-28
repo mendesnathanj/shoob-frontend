@@ -1,5 +1,6 @@
 import '~themes/customer.scss';
+import Box from '../components/common/Box';
 
 export default function Customer() {
-  return <h2>Customer Page</h2>;
+  return <Box as="p" p={1}>Customer Page</Box>;
 }
