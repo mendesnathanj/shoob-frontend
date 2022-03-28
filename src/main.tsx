@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import Customer from './entries/Customer';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Customer />
   </React.StrictMode>,
   document.getElementById('root')
 )
