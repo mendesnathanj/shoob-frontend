@@ -1,6 +1,6 @@
 import '~themes/admin.scss';
-import Box from '../components/common/Box';
+import Button from 'react-bootstrap/Button';
 
 export default function Admin() {
-  return <Box padded={3}>I am the admin page</Box>;
+  return <Button variant="primary" size="sm">Button</Button>;
 }
