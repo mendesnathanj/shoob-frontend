@@ -1,5 +1,5 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
 import Customer from './entries/Customer';
 
 ReactDOM.render(
@@ -7,4 +7,4 @@ ReactDOM.render(
     <Customer />
   </React.StrictMode>,
   document.getElementById('root')
-)
+);

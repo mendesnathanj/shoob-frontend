@@ -1,7 +1,8 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import path from 'path';
+import eslintPlugin from 'vite-plugin-eslint';
+const path = require('path');
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -19,5 +20,5 @@ export default defineConfig({
       '~variables': path.resolve(__dirname, './src/stylesheets/_variables.scss'),
     },
   },
-  plugins: [react()]
+  plugins: [react(), eslintPlugin({ cache: false, throwOnWarning: false })]
 })
