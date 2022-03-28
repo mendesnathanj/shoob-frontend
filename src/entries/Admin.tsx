@@ -1,3 +1,4 @@
+import '~themes/admin.scss';
 import Box from '../components/common/Box';
 
 export default function Admin() {
