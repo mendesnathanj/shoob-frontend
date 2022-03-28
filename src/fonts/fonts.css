@@ -1,0 +1,138 @@
+/*
+Pro-BoldCn
+Pro-DemiCn
+Pro-MediumCn
+ */
+
+/* Avenir-Regular */
+@font-face {
+    font-family: Avenir;
+    src: url(AvenirNextLTPro-Regular.otf) format('opentype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Avenir;
+    src: url(AvenirNextLTPro-RegularIt.otf) format('opentype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Avenir;
+    src: url(AvenirNextLTPro-RegularCn.otf) format('opentype');
+    font-weight: normal;
+    font-stretch: condensed;
+}
+
+/* Avenir-500 */
+@font-face {
+    font-family: Avenir;
+    src: url(AvenirNextLTPro-Medium.otf) format('opentype');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Avenir;
+    src: url(AvenirNextLTPro-MediumIt.otf) format('opentype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Avenir;
+    src: url(AvenirNextLTPro-MediumCn.otf) format('opentype');
+    font-weight: 500;
+    font-stretch: condensed;
+}
+
+/* Avenir-600 */
+@font-face {
+    font-family: Avenir;
+    src: url(AvenirNextLTPro-Demi.otf) format('opentype');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Avenir;
+    src: url(AvenirNextLTPro-DemiIt.otf) format('opentype');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Avenir;
+    src: url(AvenirNextLTPro-DemiCn.otf) format('opentype');
+    font-weight: 600;
+    font-stretch: condensed;
+}
+
+/* Avenir-Bold */
+@font-face {
+    font-family: Avenir;
+    src: url(AvenirNextLTPro-Bold.otf) format('opentype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Avenir;
+    src: url(AvenirNextLTPro-BoldIt.otf) format('opentype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Avenir;
+    src: url(AvenirNextLTPro-BoldCn.otf) format('opentype');
+    font-weight: bold;
+    font-stretch: condensed;
+}
+
+/* Myriad-Regular */
+@font-face {
+    font-family: Myriad;
+    src: url(Myriad-Regular.woff) format('woff');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Myriad;
+    src: url(Myriad-RegularCn.woff) format('woff');
+    font-weight: normal;
+    font-stretch: condensed;
+}
+
+/* Myriad-Light */
+@font-face {
+    font-family: Myriad;
+    src: url(Myriad-Light.woff) format('woff');
+    font-weight: 300;
+}
+
+/* Myriad-500 */
+@font-face {
+    font-family: Myriad;
+    src: url(Myriad-Semibold.woff) format('woff');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Myriad;
+    src: url(Myriad-SemiboldCn.woff) format('woff');
+    font-weight: 600;
+    font-stretch: condensed;
+}
+
+/* Myriad-Bold */
+@font-face {
+    font-family: Myriad;
+    src: url(Myriad-Bold.woff) format('woff');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Myriad;
+    src: url(Myriad-BoldCn.woff) format('woff');
+    font-weight: bold;
+    font-stretch: condensed;
+}
