@@ -5,11 +5,17 @@
 $spacer: 0.5rem;
 
 .p {
-  background-color: salmon;
-
   @for $i from 1 through 12 {
     &-#{$i} {
       padding: $i * $spacer;
+    }
+  }
+}
+
+.m {
+  @for $i from 1 through 12 {
+    &-#{$i} {
+      margin: $i * $spacer;
     }
   }
 }
