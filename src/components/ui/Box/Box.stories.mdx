@@ -1,4 +1,4 @@
-import { ArgsTable, Canvas, Meta, Preview, Story, Props } from '@storybook/addon-docs';
+import { ArgsTable, Canvas, Meta, PRIMARY_STORY, Story } from '@storybook/addon-docs';
 import Box from './Box';
 
 <Meta
@@ -7,7 +7,7 @@ import Box from './Box';
   argTypes={{
     as: {
       name: 'as',
-      description: 'The amount of margin',
+      description: 'The component / node to render as',
       control: {
         type: 'text',
       },
@@ -17,7 +17,7 @@ import Box from './Box';
         defaultValue: {
           summary: 'div',
         },
-      }
+      },
     },
     m: {
       name: 'm (Margin)',
@@ -27,15 +27,27 @@ import Box from './Box';
       },
       defaultValue: '',
       options: [ '', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ],
+      table: {
+        type: { summary: 'Range' },
+        defaultValue: {
+          summary: 'undefined',
+        },
+      },
     },
     p: {
-      name: 'p (padding)',
+      name: 'p (Padding)',
       description: 'The amount of padding',
       control: {
         type: 'select',
       },
       defaultValue: '',
       options: [ '', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ],
+      table: {
+        type: { summary: 'Range' },
+        defaultValue: {
+          summary: 'undefined',
+        },
+      },
     }
   }}
 />
@@ -46,18 +58,17 @@ export const Template = (args) => <Box {...args}>Box Component</Box>
 
 A `Box` is a basic UI component designed to make basic spacing and direction easier
 
-<Preview>
+<Canvas>
   <Story name="Basic">
     {Template.bind({})}
   </Story>
-</Preview>
+</Canvas>
 
-<ArgsTable story="Basic" />
+<ArgsTable story={PRIMARY_STORY} />
 
 ## Padding
 
-You can adjust the padding on a `Box` from a range of 1 through 12 in `rem` units.
-Padding can increase from `0rem` to `6rem`.
+You can adjust the padding on a `Box` from a range of 1 through 12 in `rem` units in increments of `.25rem`
 <Canvas>
   <Story name="Padding" args={{ p: 4, style: { border: '1px dashed #ccc' } }}>
     {Template.bind({})}
@@ -66,8 +77,7 @@ Padding can increase from `0rem` to `6rem`.
 
 ## Margin
 
-You can adjust the margin on a `Box` from a range of 1 through 12 in `rem` units.
-Margin can increase from `0rem` to `6rem`.
+You can adjust the margin on a `Box` from a range of 1 through 12 in `rem` units in increments of `.25rem`
 <Canvas>
   <Story name="Margin" args={{ m: 4, style: { border: '1px dashed #ccc' } }}>
     {Template.bind({})}
