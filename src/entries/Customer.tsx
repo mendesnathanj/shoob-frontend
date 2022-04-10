@@ -1,3 +1,9 @@
+import Button from '../components/ui/Button';
+
 export default function Customer() {
-  return <h1 className="font-display text-6xl">Customer Page</h1>;
+  return (
+    <div className="flex justify-center items-center min-h-screen">
+      <Button submit>Submit</Button>
+    </div>
+  );
 }
