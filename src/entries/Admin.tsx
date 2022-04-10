@@ -1,3 +1,3 @@
 export default function Admin() {
-  return <h1 className="text-3xl font-bold underline">Admin Page</h1>;
+  return <h1 className="font-display text-6xl">Admin Page</h1>;
 }

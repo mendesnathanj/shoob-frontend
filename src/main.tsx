@@ -1,11 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import Customer from './entries/Customer';
 import './index.css';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Customer />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+ReactDOM
+  .createRoot(document.getElementById('root') as HTMLDivElement)
+  .render(
+    <React.StrictMode>
+      <Customer />
+    </React.StrictMode>
+  );

@@ -1,8 +1,3 @@
 export default function Customer() {
-  return (
-    <>
-      <h1 className="text-blue-500">Customer Page</h1>
-      <input type="text" className="pt-50" />
-    </>
-  );
+  return <h1 className="font-display text-6xl">Customer Page</h1>;
 }
