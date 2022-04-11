@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-export type Colors = 'blue' | 'gray' | 'green' | 'rose' | 'purple' | 'red' | 'yellow';
+type Colors = 'blue' | 'gray' | 'green' | 'rose' | 'purple' | 'red' | 'yellow';
 
 type SpinnerProps = {
   color?: Colors;
