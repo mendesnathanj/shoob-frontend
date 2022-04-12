@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-type Colors = 'blue' | 'gray' | 'green' | 'rose' | 'purple' | 'red' | 'yellow';
+type Colors = 'blue' | 'gray' | 'green' | 'inherit' | 'purple' | 'red' | 'rose' | 'yellow';
 
 type SpinnerProps = {
   color?: Colors;
@@ -10,6 +10,7 @@ const colorClasses = {
   blue: 'text-gray-300 fill-blue-500',
   gray: 'text-gray-300 fill-gray-500',
   green: 'text-gray-300 fill-green-500',
+  inherit: 'text-gray-100 fill-inherit',
   purple: 'text-gray-300 fill-purple-500',
   red: 'text-gray-300 fill-red-500',
   rose: 'text-gray-300 fill-rose-500',
