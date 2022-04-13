@@ -13,6 +13,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        'shoob-300': '#6ca5d3',
         'shoob-400': '#488fc9',
         'shoob-500': '#3883c0',
         'shoob-600': '#2f6fa3',

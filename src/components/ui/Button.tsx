@@ -1,29 +1,30 @@
 import cn from 'classnames';
+import { forwardRef } from 'react';
 import Spinner from './Spinner';
 
-export type Variants = 'base' | 'danger' | 'primary' | 'success' | 'warning';
-type fullWidthProp = boolean | { xs?: boolean, sm?: boolean, md?: boolean, lg?: boolean };
+type IconProps = |
+  { startIcon?: JSX.Element, endIcon?: never } |
+  { startIcon?: never, endIcon?: JSX.Element };
+
 type BaseProps = {
-  fullWidth?: fullWidthProp;
+  fullWidth?: boolean | { xs?: boolean, sm?: boolean, md?: boolean, lg?: boolean };
   loading?: boolean;
   outlined?: boolean;
-  startIcon?: JSX.Element;
   submit?: boolean;
-  variant?: Variants;
-};
+  variant?: 'base' | 'danger' | 'primary' | 'success' | 'warning';
+} & IconProps;
 
 type ButtonProps = BaseProps & React.HTMLProps<HTMLButtonElement>;
 
-const baseClasses = `inline-flex items-center justify-center leading-[3.8rem]
-whitespace-nowrap tracking-wide font-bold pt-1 appearance-none
-min-w-[128px] min-h-[40px] px-4 rounded-lg shadow-sm transition-all duration-200 disabled:cursor-not-allowed
-disabled:transition-none disaabled:opacity-75 disabled:text-inherit shadow
+const baseClasses = `inline-flex items-center justify-center leading-[3.8rem] whitespace-nowrap tracking-wide
+font-bold pt-1 appearance-none min-w-[128px] min-h-[40px] px-4 rounded-lg shadow-sm transition-all duration-200
+disabled:cursor-not-allowed disabled:transition-none disaabled:opacity-75 disabled:text-inherit shadow
 `;
 
 const variantClasses = {
-  base: 'bg-gray-300 hover:bg-gray-400 hover:text-gray-100 fill-gray-600 disabled:bg-gray-300',
+  base: 'bg-gray-300 hover:bg-gray-400 hover:text-gray-100 fill-gray-600 disabled:bg-gray-200',
   danger: 'bg-red-500 hover:bg-red-600 text-white fill-red-700 disabled:text-white disabled:bg-red-400',
-  primary: 'bg-shoob-500 hover:bg-shoob-600 text-white fill-shoob-700 disabled:text-white disabled:bg-shoob-400',
+  primary: 'bg-shoob-500 hover:bg-shoob-600 text-white fill-shoob-700 disabled:text-white disabled:bg-shoob-300',
   success: 'bg-green-600 hover:bg-green-700 text-white fill-green-700 disabled:text-white disabled:bg-green-500',
   warning: 'bg-amber-400 hover:bg-yellow-500 text-black fill-amber-700 disabled:bg-amber-300',
 };
@@ -33,7 +34,7 @@ const baseOutline = 'bg-transparent shadow-none border border-solid hover:text-w
 const outlineClasses = {
   base: cn(
     baseOutline,
-    'border-gray-500 text-gray-500 hover:bg-gray-500 disabled:text-gray-400'
+    'border-gray-400 text-gray-600 hover:bg-gray-400 disabled:text-gray-400 disabled:border-gray-200'
   ),
   danger: cn(
     baseOutline,
@@ -66,9 +67,10 @@ const fullWidthClasses = (fullWidth: fullWidthProp) => {
   return '';
 };
 
-export default function Button({
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   children,
   disabled = false,
+  endIcon,
   fullWidth = false,
   loading = false,
   outlined = false,
@@ -76,21 +78,23 @@ export default function Button({
   submit = false,
   variant = 'base',
   ...rest
-}: ButtonProps) {
-  return (
-    <button
-      className={cn(
-        baseClasses,
-        fullWidthClasses(fullWidth),
-        variantClasses[variant],
-        outlined && outlineClasses[variant],
-      )}
-      {...rest}
-      type={submit ? 'submit' : 'button'}
-      disabled={disabled || loading}
-    >
-      {startIcon && <span className="mr-2">{startIcon}</span>}
-      {loading ? <Spinner color="inherit" size="sm" /> : children}
-    </button>
-  );
-}
+}, ref) => (
+  <button
+    ref={ref}
+    className={cn(
+      baseClasses,
+      fullWidthClasses(fullWidth),
+      variantClasses[variant],
+      outlined && outlineClasses[variant],
+    )}
+    {...rest}
+    type={submit ? 'submit' : 'button'}
+    disabled={disabled || loading}
+  >
+    {startIcon && <span className="mr-2">{startIcon}</span>}
+    {loading ? <Spinner color="inherit" size="sm" /> : children}
+    {endIcon && <span className="ml-2">{endIcon}</span>}
+  </button>
+));
+
+export default Button;
