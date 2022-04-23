@@ -18,12 +18,18 @@ type ItemProps = {
   onClick: () => void;
 }
 
+const itemClasses = `
+  block text-left min-w-full px-6 py-2 text-gray-700
+  hover:bg-gray-100 transition-colors duration-150
+  disabled:cursor-not-allowed disabled:bg-gray-200 disaabled:opacity-75 disabled:text-gray-500
+`;
+
 export function Item({ children, closeWhenClicked = true, disabled = false, onClick }: ItemProps) {
   const { toggle } = useContext(DropdownButtonContext);
 
   return (
     <button
-      className="text-left min-w-full px-6 py-2 disabled:cursor-not-allowed disabled:bg-gray-200 disaabled:opacity-75"
+      className={itemClasses}
       disabled={disabled}
       onClick={() => {
         onClick();
@@ -44,7 +50,7 @@ type LinkProps = {
 
 export function Link({ children, to }: LinkProps) {
   return (
-    <a className="block min-w-full px-6 py-2" href={to}>
+    <a className={itemClasses} href={to}>
       {children}
     </a>
   );
