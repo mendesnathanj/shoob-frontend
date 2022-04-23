@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import { FloatingPortal } from '@floating-ui/react-dom-interactions';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -70,20 +71,26 @@ export default function DropdownButton({ content, children }: DropdownButtonProp
       </Button>
       <FloatingPortal>
         {open && (
-          <div
-            className="box-border bg-white rounded overflow-hidden"
-            {...getFloatingProps({
-              ref: floating,
-              style: {
-                left: x ?? '',
-                minWidth,
-                position: strategy,
-                top: y ?? '',
-              }
-            })}
-          >
-            {children}
-          </div>
+          <AnimatePresence>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.1, ease: 'easeInOut' }}
+              className="box-border bg-white rounded overflow-hidden"
+              {...getFloatingProps({
+                ref: floating,
+                style: {
+                  left: x ?? '',
+                  minWidth,
+                  position: strategy,
+                  top: y ?? '',
+                }
+              })}
+            >
+              {children}
+            </motion.div>
+          </AnimatePresence>
         )}
       </FloatingPortal>
     </>
