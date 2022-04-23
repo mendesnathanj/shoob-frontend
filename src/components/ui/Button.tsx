@@ -6,8 +6,10 @@ type IconProps = |
   { startIcon?: JSX.Element, endIcon?: never } |
   { startIcon?: never, endIcon?: JSX.Element };
 
+type FullWidth = boolean | { xs?: boolean, sm?: boolean, md?: boolean, lg?: boolean }
+
 type BaseProps = {
-  fullWidth?: boolean | { xs?: boolean, sm?: boolean, md?: boolean, lg?: boolean };
+  fullWidth?: FullWidth;
   loading?: boolean;
   outlined?: boolean;
   submit?: boolean;
@@ -54,7 +56,7 @@ const outlineClasses = {
   ),
 };
 
-const fullWidthClasses = (fullWidth: fullWidthProp) => {
+const fullWidthClasses = (fullWidth: FullWidth) => {
   if (!fullWidth) return '';
 
   const base = 'min-w-full';

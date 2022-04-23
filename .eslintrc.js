@@ -39,6 +39,7 @@ module.exports = {
     'no-restricted-globals': 'off',
     'no-undef': 'off',
     'no-underscore-dangle': 'off',
+    'no-unused-vars': 'off',
     'no-use-before-define': 'off',
     'object-curly-newline': 'off',
     'object-shorthand': 'off',

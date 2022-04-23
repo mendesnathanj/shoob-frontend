@@ -1,4 +1,4 @@
-import Button, { Variants } from '../components/ui/Button';
+import Button from '../components/ui/Button';
 import DropdownButton from '../components/ui/DropdownButton';
 
 export default function Customer() {
@@ -6,7 +6,14 @@ export default function Customer() {
 
   return (
     <div className="flex justify-center items-center min-h-screen flex-col gap-4">
-      <DropdownButton content="Actions" />
+      <DropdownButton content="Actions">
+        <DropdownButton.Item onClick={() => console.log('Woohoo!')}>
+          Click me!
+        </DropdownButton.Item>
+        <DropdownButton.Link to="/admin/">
+          Click this
+        </DropdownButton.Link>
+      </DropdownButton>
       <div className="flex gap-4">
         {variants.map((variant) => (
           <Button key={variant} variant={variant.toLowerCase() as Variants}>{variant}</Button>
