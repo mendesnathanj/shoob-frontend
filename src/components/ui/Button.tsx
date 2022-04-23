@@ -31,7 +31,7 @@ const variantClasses = {
   warning: 'bg-amber-400 hover:bg-yellow-500 text-black fill-amber-700 disabled:bg-amber-300',
 };
 
-const baseOutline = 'bg-transparent shadow-none border border-solid hover:text-white disabled:bg-transparent';
+const baseOutline = 'bg-white shadow-none border border-solid hover:text-white disabled:bg-transparent';
 
 const outlineClasses = {
   base: cn(
