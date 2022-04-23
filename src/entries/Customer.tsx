@@ -1,5 +1,9 @@
+import Page from '../components/ui/Page';
+
 export default function Customer() {
   return (
-    <div className="bg-zinc-50" />
+    <Page>
+      woohoo!
+    </Page>
   );
 }
