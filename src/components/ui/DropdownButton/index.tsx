@@ -1,3 +1,18 @@
-import DropdownButtonWrapper from './DropdownButtonWrapper';
+// eslint-disable-next-line import/no-named-default
+import Component, { DropdownButtonProps, Item, Link } from './Component';
+import { DropdownButtonContextProvider } from './DropdownButtonContext';
 
-export default DropdownButtonWrapper;
+function DropdownButton({ content = 'Actions', children }: DropdownButtonProps) {
+  return (
+    <DropdownButtonContextProvider>
+      <Component content={content}>
+        {children}
+      </Component>
+    </DropdownButtonContextProvider>
+  );
+}
+
+DropdownButton.Item = Item;
+DropdownButton.Link = Link;
+
+export default DropdownButton;

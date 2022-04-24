@@ -56,7 +56,7 @@ export function Link({ children, to }: LinkProps) {
   );
 }
 
-export default function DropdownButton({ content, children }: DropdownButtonProps) {
+export default function Component({ content, children }: DropdownButtonProps) {
   const { open, setOpen } = useContext(DropdownButtonContext);
   const {
     floating, getFloatingProps, getReferenceProps, reference, refs, strategy, x, y
@@ -83,7 +83,7 @@ export default function DropdownButton({ content, children }: DropdownButtonProp
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.1, ease: 'easeInOut' }}
-              className="box-border bg-white rounded overflow-hidden"
+              className="box-border bg-white border-slate-100 shadow-md rounded overflow-hidden"
               {...getFloatingProps({
                 ref: floating,
                 style: {
