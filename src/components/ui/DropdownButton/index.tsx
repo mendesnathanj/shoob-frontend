@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-named-default
 import Component, { DropdownButtonProps, Item, Link } from './Component';
 import { DropdownButtonContextProvider } from './DropdownButtonContext';
 
