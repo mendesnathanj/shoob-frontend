@@ -15,7 +15,7 @@ export default defineConfig({
       }
     },
   },
-  plugins: [react(), eslintPlugin({ cache: false, throwOnError: true, throwOnWarning: true })],
+  plugins: [react(), eslintPlugin({ cache: false })],
   resolve: {
     alias: {
       '~themes': path.resolve(__dirname, './src/stylesheets/themes'),
