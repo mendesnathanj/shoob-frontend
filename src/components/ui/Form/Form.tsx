@@ -1,6 +1,6 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { ChildrenProps } from '../../../types';
-import FieldArray from './utils/FieldArray';
+import NestedFields from './utils/NestedFields';
 
 export type FormProps = {
   defaultValues?: object;
@@ -19,6 +19,6 @@ function Form({ children, defaultValues = {}, onSubmit }: FormProps) {
   );
 }
 
-Form.FieldArray = FieldArray;
+Form.NestedFields = NestedFields;
 
 export default Form;

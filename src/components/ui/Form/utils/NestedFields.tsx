@@ -4,12 +4,13 @@ import { ChildrenProps } from '../../../../types';
 import Button from '../../Button';
 import { NestedContextProvider, useNestedName } from '../NestedContext';
 
-type FieldArrayProps = {
+type NestedFieldsProps = {
+  addText?: string;
   newItemDefaults: object;
   scope: string;
 } & ChildrenProps;
 
-export default function FieldArray({ children, newItemDefaults, scope }: FieldArrayProps) {
+export default function NestedFields({ addText = 'Add Item', children, newItemDefaults, scope }: NestedFieldsProps) {
   const { control } = useFormContext();
   const computedScope = useNestedName({ name: scope });
   const { fields, append } = useFieldArray({ control, name: computedScope });
@@ -23,7 +24,7 @@ export default function FieldArray({ children, newItemDefaults, scope }: FieldAr
           </NestedContextProvider>
         </React.Fragment>
       ))}
-      <Button variant="primary" onClick={() => append(newItemDefaults)}>Add Element</Button>
+      <Button onClick={() => append(newItemDefaults)}>{addText}</Button>
     </div>
   );
 }

@@ -10,35 +10,38 @@ export default function Customer() {
         onSubmit={(values) => console.log(values)}
         defaultValues={{
           options: [
-            { name: 'Option A', imageTypes: [{ name: 'Image Type 1' }] },
+            { imageTypes: [{ name: 'Image Type 1' }], name: 'Option A' },
             { imageTypes: [{ name: 'Image Type 2', printTemplate: 1 }] },
           ],
           packageName: 'Package 1',
         }}
       >
-        <Input name="packageName" />
-        <Form.FieldArray
+        <Input label="Package Name" name="packageName" />
+        <Form.NestedFields
+          addText="Add Option"
           scope="options"
           newItemDefaults={{
             name: 'Option A'
           }}
         >
           <div>
-            <Input name="name" />
+            <Input label="Name" name="name" />
           </div>
-          <Form.FieldArray
+          <Form.NestedFields
+            addText="Add Image Type"
             scope="imageTypes"
             newItemDefaults={{
               name: 'Image Type'
             }}
           >
             <div>
-              <Input name="name" />
-              <Input name="printTemplate" />
+              <Input label="Name" name="name" />
+              <Input label="Print Template" name="printTemplate" />
+              <Input label="Remove?" name="isMarkedForDestruction" type="checkbox" />
             </div>
-          </Form.FieldArray>
-        </Form.FieldArray>
-        <Button submit>Submit</Button>
+          </Form.NestedFields>
+        </Form.NestedFields>
+        <Button submit variant="primary">Submit</Button>
       </Form>
     </Page>
   );
