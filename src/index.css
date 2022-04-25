@@ -35,3 +35,8 @@ select {
     height: 1.6rem;
     width: 1.6rem;
 }
+
+input[id^='react-select']:focus {
+    box-shadow: none;
+    outline: none;
+}

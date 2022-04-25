@@ -2,7 +2,7 @@ import React from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { ChildrenProps } from '../../../../types';
 import Button from '../../Button';
-import { NestedContextProvider, useNestedName } from '../NestedContext';
+import { NestedContextProvider, useNestedName } from './NestedContext';
 
 type NestedFieldsProps = {
   addText?: string;

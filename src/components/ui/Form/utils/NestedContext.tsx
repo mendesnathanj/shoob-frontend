@@ -1,5 +1,5 @@
 import { createContext, useContext, useMemo } from 'react';
-import { ChildrenProps } from '../../../types';
+import { ChildrenProps } from '../../../../types';
 
 type NestedContextType = {
   index: number;

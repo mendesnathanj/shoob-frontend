@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import { useFormContext } from 'react-hook-form';
-import { useNestedName } from '../NestedContext';
+import { useNestedName } from '../utils/NestedContext';
+import Select from './Select';
 
 type OmitRegisterProps = Omit<React.HTMLProps<HTMLInputElement>, 'name' | 'onBlur' | 'onChange' | 'ref'>;
 
@@ -10,7 +11,7 @@ type InputProps = {
   shouldShowLabel?: boolean;
 } & OmitRegisterProps;
 
-export default function Input({ label, name, shouldShowLabel = true, type = 'text', ...rest }: InputProps) {
+function Input({ label, name, shouldShowLabel = true, type = 'text', ...rest }: InputProps) {
   const { register } = useFormContext();
   const computedName = useNestedName({ name });
 
@@ -27,3 +28,7 @@ export default function Input({ label, name, shouldShowLabel = true, type = 'tex
     </label>
   );
 }
+
+Input.Select = Select;
+
+export default Input;
