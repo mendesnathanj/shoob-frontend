@@ -1,12 +1,13 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { ChildrenProps } from '../../../types';
+import FieldArray from './utils/FieldArray';
 
 export type FormProps = {
   defaultValues?: object;
   onSubmit: (values: object) => any;
 } & ChildrenProps;
 
-export default function Form({ children, defaultValues = {}, onSubmit }: FormProps) {
+function Form({ children, defaultValues = {}, onSubmit }: FormProps) {
   const methods = useForm({ defaultValues });
 
   return (
@@ -17,3 +18,7 @@ export default function Form({ children, defaultValues = {}, onSubmit }: FormPro
     </FormProvider>
   );
 }
+
+Form.FieldArray = FieldArray;
+
+export default Form;

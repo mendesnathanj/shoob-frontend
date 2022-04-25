@@ -1,6 +1,5 @@
 import Button from '../components/ui/Button';
 import Form from '../components/ui/Form';
-import FieldArray from '../components/ui/Form/FieldArray';
 import Input from '../components/ui/Form/Inputs/Input';
 import Page from '../components/ui/Page';
 
@@ -18,7 +17,7 @@ export default function Customer() {
         }}
       >
         <Input name="packageName" />
-        <FieldArray
+        <Form.FieldArray
           scope="options"
           newItemDefaults={{
             name: 'Option A'
@@ -27,7 +26,7 @@ export default function Customer() {
           <div>
             <Input name="name" />
           </div>
-          <FieldArray
+          <Form.FieldArray
             scope="imageTypes"
             newItemDefaults={{
               name: 'Image Type'
@@ -37,8 +36,8 @@ export default function Customer() {
               <Input name="name" />
               <Input name="printTemplate" />
             </div>
-          </FieldArray>
-        </FieldArray>
+          </Form.FieldArray>
+        </Form.FieldArray>
         <Button submit>Submit</Button>
       </Form>
     </Page>
