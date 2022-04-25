@@ -15,11 +15,7 @@ type useNestedNameProps = {
 export const useNestedName = ({ name }: useNestedNameProps) => {
   const { index, scope } = useContext(NestedContext);
 
-  const computedName = useMemo(() => (
-    `${scope || ''}${index !== undefined ? `.${index}.` : ''}${name}`
-  ), [name, scope, index]);
-
-  return computedName;
+  return `${scope || ''}${index !== undefined ? `.${index}.` : ''}${name}`;
 };
 
 type NestedContextProviderProps = NestedContextType & ChildrenProps;
