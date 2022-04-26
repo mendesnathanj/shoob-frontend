@@ -12,6 +12,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@duetds/date-picker": "^1.4.0",
     "@floating-ui/react-dom": "^0.6.2",
     "@floating-ui/react-dom-interactions": "^0.2.0",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
