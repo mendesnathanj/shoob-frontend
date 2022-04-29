@@ -1,40 +1,6 @@
 @tailwind base;
-
-@layer base {
-    html {
-        font-size: 62.5%;
-    }
-
-    body {
-        font-size: 1.6rem;
-    }
-}
-
 @tailwind components;
 @tailwind utilities;
-
-[type="text"],
-[type="email"],
-[type="url"],
-[type="password"],
-[type="number"],
-[type="date"],
-[type="datetime-local"],
-[type="month"],
-[type="search"],
-[type="tel"],
-[type="time"],
-[type="week"],
-[multiple],
-textarea,
-select {
-    font-size: inherit;
-}
-
-[type="checkbox"] {
-    height: 1.6rem;
-    width: 1.6rem;
-}
 
 input[id^='react-select']:focus {
     box-shadow: none;

@@ -76,13 +76,13 @@ export default function Component({ content, children }: DropdownButtonProps) {
         {content}
       </Button>
       <FloatingPortal>
-        {open && (
-          <AnimatePresence>
+        <AnimatePresence>
+          {open && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.1, ease: 'easeInOut' }}
+              initial={{ marginTop: 0, opacity: 0 }}
+              animate={{ marginTop: 10, opacity: 1 }}
+              exit={{ marginTop: 0, opacity: 0 }}
+              transition={{ duration: 0.25 }}
               className="box-border bg-white border-slate-100 shadow-md rounded overflow-hidden"
               {...getFloatingProps({
                 ref: floating,
@@ -96,8 +96,8 @@ export default function Component({ content, children }: DropdownButtonProps) {
             >
               {children}
             </motion.div>
-          </AnimatePresence>
-        )}
+          )}
+        </AnimatePresence>
       </FloatingPortal>
     </>
   );

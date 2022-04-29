@@ -18,8 +18,8 @@ type BaseProps = {
 
 type ButtonProps = BaseProps & React.HTMLProps<HTMLButtonElement>;
 
-const baseClasses = `inline-flex items-center justify-center leading-[3.8rem] whitespace-nowrap tracking-wide
-font-bold pt-1 appearance-none min-w-[128px] min-h-[40px] px-4 rounded-lg shadow-sm transition-all duration-200
+const baseClasses = `inline-flex items-center justify-center py-1 px-2 whitespace-nowrap tracking-wide
+font-bold appearance-none min-w-[120px] min-h-[40px] rounded shadow-sm transition-all duration-200
 disabled:cursor-not-allowed disabled:transition-none disaabled:opacity-75 disabled:text-inherit shadow
 `;
 

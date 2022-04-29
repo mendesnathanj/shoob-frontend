@@ -18,7 +18,6 @@ type usePositioningProps = Omit<DropdownButtonContextType, 'toggle'>;
 export const usePositioning = ({ open, setOpen }: usePositioningProps) => {
   const { x, y, reference, floating, strategy, update, refs, context } = useFloating({
     middleware: [
-      offset(4),
       flip(),
       shift(),
     ],

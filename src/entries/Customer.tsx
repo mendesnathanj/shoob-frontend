@@ -2,6 +2,7 @@ import Button from '../components/ui/Button';
 import Form from '../components/ui/Form';
 import Input from '../components/ui/Form/Inputs/Input';
 import Page from '../components/ui/Page';
+import DropdownButton from '../components/ui/DropdownButton';
 
 export default function Customer() {
   return (
@@ -43,6 +44,9 @@ export default function Customer() {
         </Form.NestedFields>
         <Button submit variant="primary">Submit</Button>
       </Form>
+      <DropdownButton content="Actions">
+        bloop
+      </DropdownButton>
     </Page>
   );
 }

@@ -1,4 +1,4 @@
-import { createContext, useMemo, useState } from 'react';
+import React, { createContext, useMemo, useState } from 'react';
 
 export type DropdownButtonContextType = {
   open: boolean;
@@ -8,11 +8,7 @@ export type DropdownButtonContextType = {
 
 export const DropdownButtonContext = createContext<DropdownButtonContextType>({} as DropdownButtonContextType);
 
-type ContextProviderProps = {
-  children: React.ReactNode
-};
-
-export function DropdownButtonContextProvider({ children }: ContextProviderProps) {
+export function DropdownButtonContextProvider({ children }: React.PropsWithChildren<{}>) {
   const [open, setOpen] = useState(false);
 
   const toggle = () => setOpen(!open);

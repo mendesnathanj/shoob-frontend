@@ -24,6 +24,7 @@ module.exports = {
     'brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
     camelcase: ['error', { ignoreDestructuring: true, properties: 'never' }],
     'comma-dangle': 'off',
+    'consistent-return': 'off',
     'import/extensions': 'off',
     'import/no-amd': 'warn',
     'import/no-unresolved': 'off',

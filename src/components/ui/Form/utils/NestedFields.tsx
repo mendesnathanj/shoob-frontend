@@ -24,7 +24,7 @@ export default function NestedFields({ addText = 'Add Item', children, newItemDe
           </NestedContextProvider>
         </React.Fragment>
       ))}
-      <Button onClick={() => append(newItemDefaults)}>{addText}</Button>
+      <Button onClick={() => append(newItemDefaults)}>a</Button>
     </div>
   );
 }
