@@ -34,16 +34,32 @@ import {
 } from '@floating-ui/react-dom-interactions';
 import cn from 'classnames';
 import mergeRefs from 'react-merge-refs';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import FloatingContent from '../utils/FloatingContent';
+import Button from './Button';
+
+type LinkProps = {
+  to: string;
+  disabled?: boolean;
+} & React.HTMLProps<HTMLAnchorElement>;
+
+const Link = forwardRef<HTMLAnchorElement, LinkProps>(({ children, label, disabled, to, ...props }, ref) => {
+  return (
+    <a href={to} ref={ref} {...props}>
+      {children}
+    </a>
+  );
+});
 
 type ItemProps = {
-  label: string;
   disabled?: boolean;
 } & React.HTMLProps<HTMLButtonElement>;
 
-export const MenuItem = forwardRef<HTMLButtonElement, ItemProps>(({ label, disabled, ...props }, ref) => {
+const Item = forwardRef<HTMLButtonElement, ItemProps>(({ children, disabled, ...props }, ref) => {
   return (
     <button {...props} ref={ref} role="menuitem" disabled={disabled} type="button">
-      {label}
+      {children}
     </button>
   );
 });
@@ -53,6 +69,8 @@ interface Props {
   nested?: boolean;
   children?: React.ReactNode;
 }
+
+const itemClass = 'inline-block min-w-full py-1 px-2 text-left hover:bg-gray-100 focus:bg-gray-100';
 
 export const MenuComponent = forwardRef<
   any,
@@ -90,7 +108,7 @@ export const MenuComponent = forwardRef<
     nodeId,
     onOpenChange: setOpen,
     open,
-    placement: nested ? 'right-start' : 'bottom-start',
+    placement: nested ? 'right-start' : 'bottom-end',
   });
 
   const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
@@ -201,15 +219,15 @@ export const MenuComponent = forwardRef<
 
   return (
     <FloatingNode id={nodeId}>
-      <button
-        type="button"
-        {...getReferenceProps({
-          ...props,
-          onClick: ({ currentTarget }) => (currentTarget as HTMLButtonElement).focus(),
-          ref: mergedReferenceRef,
-          ...(nested ?
-            {
-              className: cn('MenuItem', { open }),
+      {nested ? (
+        <button
+          type="button"
+          {...getReferenceProps({
+            ...props,
+            onClick: ({ currentTarget }) => (currentTarget as HTMLButtonElement).focus(),
+            ref: mergedReferenceRef,
+            ...{
+              className: cn(itemClass, { open }),
               onKeyDown(event) {
                 // Prevent more than one menu from being open.
                 if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
@@ -217,12 +235,24 @@ export const MenuComponent = forwardRef<
                 }
               },
               role: 'menuitem',
-            } :
-            { className: cn('RootMenu', { open }) })
-        })}
-      >
-        {label} {nested && <span style={{ marginLeft: 10 }}>➔</span>}
-      </button>
+            }
+          })}
+        >
+          {label} {nested && <span style={{ marginLeft: 10 }}>➔</span>}
+        </button>
+      ) : (
+        <Button
+          {...getReferenceProps({
+            ...props,
+            onClick: ({ currentTarget }) => (currentTarget as HTMLButtonElement).focus(),
+            ref: mergedReferenceRef,
+          })}
+          endIcon={<FontAwesomeIcon icon={faCaretDown} />}
+          variant="primary"
+        >
+          {label}
+        </Button>
+      )}
       <FloatingPortal>
         {open && (
           <FloatingFocusManager
@@ -230,9 +260,10 @@ export const MenuComponent = forwardRef<
             preventTabbing
             modal={!nested}
           >
-            <div
+            <FloatingContent
+              open
               {...getFloatingProps({
-                className: 'Menu',
+                className: 'shadow rounded border',
                 ref: floating,
                 style: {
                   left: x ?? '',
@@ -247,7 +278,7 @@ export const MenuComponent = forwardRef<
                   cloneElement(
                     child,
                     getItemProps({
-                      className: 'MenuItem',
+                      className: itemClass,
                       // By default `focusItemOnHover` uses `pointermove` sync,
                       // but when a menu closes we want this to sync it on
                       // `enter` even if the cursor didn't move.
@@ -264,7 +295,7 @@ export const MenuComponent = forwardRef<
                     })
                   )
               )}
-            </div>
+            </FloatingContent>
           </FloatingFocusManager>
         )}
       </FloatingPortal>
@@ -272,7 +303,12 @@ export const MenuComponent = forwardRef<
   );
 });
 
-export const Menu: React.FC<Props> = forwardRef((props, ref) => {
+interface IDropdownButton extends React.ForwardRefExoticComponent<Props & React.RefAttributes<HTMLDivElement>> {
+  Link: typeof Link;
+  Item: typeof Item;
+}
+
+const DropdownButton = forwardRef((props, ref) => {
   const parentId = useFloatingParentNodeId();
 
   if (parentId == null) {
@@ -284,4 +320,9 @@ export const Menu: React.FC<Props> = forwardRef((props, ref) => {
   }
 
   return <MenuComponent {...props} ref={ref} />;
-});
+}) as IDropdownButton;
+
+DropdownButton.Link = Link;
+DropdownButton.Item = Item;
+
+export default DropdownButton;
