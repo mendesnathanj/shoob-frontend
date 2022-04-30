@@ -1,20 +1,14 @@
-import DropdownButton from '../components/ui/DropdownButton';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Home } from '../components/pages/Admin';
 
 export default function Admin() {
   return (
-    <div style={{ margin: 400 }}>
-      <DropdownButton label="Actions">
-        <DropdownButton.Item onClick={() => console.log('bloop')}>
-          Item 1
-        </DropdownButton.Item>
-        <DropdownButton.Link to="#">
-          Item 2
-        </DropdownButton.Link>
-        <DropdownButton label="Beep">
-
-          <DropdownButton.Item onClick={() => console.log('coopa')}>Subitem 1</DropdownButton.Item>
-        </DropdownButton>
-      </DropdownButton>
-    </div>
+    <Router basename="admin">
+      <Routes>
+        <Route path="/">
+          <Route index element={<Home />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }

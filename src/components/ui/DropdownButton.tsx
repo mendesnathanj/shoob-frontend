@@ -30,25 +30,39 @@ import {
   useFloatingParentNodeId,
   FloatingNode,
   FloatingTree,
-  FloatingFocusManager
+  FloatingFocusManager,
+  ReferenceType
 } from '@floating-ui/react-dom-interactions';
 import cn from 'classnames';
 import mergeRefs from 'react-merge-refs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 import FloatingContent from '../utils/FloatingContent';
 import Button from './Button';
 
 type LinkProps = {
   to: string;
   disabled?: boolean;
-} & React.HTMLProps<HTMLAnchorElement>;
+  external?: boolean;
+} & RouterLinkProps;
 
-const Link = forwardRef<HTMLAnchorElement, LinkProps>(({ children, label, disabled, to, ...props }, ref) => {
+const Link = forwardRef<HTMLAnchorElement, LinkProps>((
+  {
+    children,
+    disabled,
+    external = false,
+    to,
+    ...props
+  },
+  ref
+) => {
+  if (external) return <a href={to} ref={ref} {...props}>{children}</a>;
+
   return (
-    <a href={to} ref={ref} {...props}>
+    <RouterLink to={to} ref={ref} {...props}>
       {children}
-    </a>
+    </RouterLink>
   );
 });
 
@@ -56,13 +70,28 @@ type ItemProps = {
   disabled?: boolean;
 } & React.HTMLProps<HTMLButtonElement>;
 
-const Item = forwardRef<HTMLButtonElement, ItemProps>(({ children, disabled, ...props }, ref) => {
-  return (
-    <button {...props} ref={ref} role="menuitem" disabled={disabled} type="button">
-      {children}
-    </button>
-  );
-});
+const Item = forwardRef<HTMLButtonElement, ItemProps>(({ children, disabled, ...props }, ref) => (
+  <button {...props} ref={ref} role="menuitem" disabled={disabled} type="button">
+    {console.log(props)}
+    {children}
+  </button>
+));
+
+type useMinWidthProps = {
+  ref: React.MutableRefObject<ReferenceType | null>;
+}
+
+const useMinWidth = ({ ref }: useMinWidthProps) => {
+  const [minWidth, setMinWidth] = useState(0);
+
+  useEffect(() => {
+    if (!ref.current) return;
+
+    setMinWidth((ref.current as HTMLButtonElement).offsetWidth * 1.25);
+  }, [ref]);
+
+  return minWidth;
+};
 
 interface Props {
   label?: string;
@@ -110,6 +139,10 @@ export const MenuComponent = forwardRef<
     open,
     placement: nested ? 'right-start' : 'bottom-end',
   });
+
+  const minWidth = useMinWidth({ ref: refs.reference });
+
+  console.log(minWidth);
 
   const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
     [
@@ -263,7 +296,7 @@ export const MenuComponent = forwardRef<
             <FloatingContent
               open
               {...getFloatingProps({
-                className: 'shadow rounded border',
+                className: 'shadow rounded border flex flex-col',
                 ref: floating,
                 style: {
                   left: x ?? '',
@@ -292,6 +325,7 @@ export const MenuComponent = forwardRef<
                         listItemsRef.current[index] = node;
                       },
                       role: 'menuitem',
+                      style: { minWidth },
                     })
                   )
               )}
