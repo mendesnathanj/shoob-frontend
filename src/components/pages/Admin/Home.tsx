@@ -1,3 +1,4 @@
+import routes from '../../routes';
 import DropdownButton from '../../ui/DropdownButton';
 
 export default function Home() {
@@ -7,7 +8,7 @@ export default function Home() {
         <DropdownButton.Item onClick={() => console.log('bloop')}>
           Item 1
         </DropdownButton.Item>
-        <DropdownButton.Link external to="/customer">
+        <DropdownButton.Link external to={routes.customer.home()}>
           Item 2
         </DropdownButton.Link>
         <DropdownButton label="Beep">

@@ -3,6 +3,7 @@ import Form from '../components/ui/Form';
 import Input from '../components/ui/Form/Inputs/Input';
 import Page from '../components/ui/Page';
 import DropdownButton from '../components/ui/DropdownButton';
+import routes from '../components/routes';
 
 export default function Customer() {
   return (
@@ -48,7 +49,7 @@ export default function Customer() {
         <DropdownButton.Item onClick={() => console.log('bloop')}>
           Item 1
         </DropdownButton.Item>
-        <DropdownButton.Link external to="/customer">
+        <DropdownButton.Link external to={routes.admin.home()}>
           Item 2
         </DropdownButton.Link>
       </DropdownButton>
