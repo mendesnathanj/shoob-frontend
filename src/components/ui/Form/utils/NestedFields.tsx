@@ -2,6 +2,7 @@ import React from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { ChildrenProps } from '../../../../types';
 import Button from '../../Button';
+import Section from '../Section';
 import { NestedContextProvider, useNestedName } from './NestedContext';
 
 type NestedFieldsProps = {
@@ -16,7 +17,7 @@ export default function NestedFields({ addText = 'Add Item', children, newItemDe
   const { fields, append } = useFieldArray({ control, name: computedScope });
 
   return (
-    <div>
+    <>
       {fields.map((item, i) => (
         <React.Fragment key={item.id}>
           <NestedContextProvider index={i} scope={computedScope}>
@@ -25,6 +26,6 @@ export default function NestedFields({ addText = 'Add Item', children, newItemDe
         </React.Fragment>
       ))}
       <Button onClick={() => append(newItemDefaults)}>a</Button>
-    </div>
+    </>
   );
 }

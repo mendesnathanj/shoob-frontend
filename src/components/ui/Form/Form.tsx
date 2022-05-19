@@ -1,5 +1,6 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { ChildrenProps } from '../../../types';
+import Section from './Section';
 import NestedFields from './utils/NestedFields';
 
 export type FormProps = {
@@ -12,7 +13,7 @@ function Form({ children, defaultValues = {}, onSubmit }: FormProps) {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)}>
+      <form className="grid gap-4" onSubmit={methods.handleSubmit(onSubmit)}>
         {children}
       </form>
     </FormProvider>
@@ -20,5 +21,6 @@ function Form({ children, defaultValues = {}, onSubmit }: FormProps) {
 }
 
 Form.NestedFields = NestedFields;
+Form.Section = Section;
 
 export default Form;

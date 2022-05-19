@@ -13,7 +13,6 @@ export default function Customer() {
         defaultValues={{
           options: [
             { imageTypes: [{ name: 'Image Type 1' }], name: 'Option A' },
-            { imageTypes: [{ name: 'Image Type 2', printTemplate: 1 }] },
           ],
           packageName: 'Package 1',
         }}
@@ -26,9 +25,9 @@ export default function Customer() {
             name: 'Option A'
           }}
         >
-          <div>
+          <Form.Section>
             <Input label="Name" name="name" />
-          </div>
+          </Form.Section>
           <Form.NestedFields
             addText="Add Image Type"
             scope="imageTypes"
@@ -36,23 +35,15 @@ export default function Customer() {
               name: 'Image Type'
             }}
           >
-            <div>
+            <Form.Section inline>
               <Input label="Name" name="name" />
               <Input label="Print Template" name="printTemplate" />
               <Input label="Remove?" name="isMarkedForDestruction" type="checkbox" />
-            </div>
+            </Form.Section>
           </Form.NestedFields>
         </Form.NestedFields>
         <Button submit variant="primary">Submit</Button>
       </Form>
-      <DropdownButton label="Actions">
-        <DropdownButton.Item onClick={() => console.log('bloop')}>
-          Item 1
-        </DropdownButton.Item>
-        <DropdownButton.Link external to={routes.admin.home()}>
-          Item 2
-        </DropdownButton.Link>
-      </DropdownButton>
     </Page>
   );
 }
