@@ -1,15 +1,79 @@
+import React, { useEffect, useRef, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown, faCaretLeft } from '@fortawesome/free-solid-svg-icons';
+import cn from 'classnames';
+import Collapsible, { CollapsibleProps } from 'react-collapsible';
+
+type ignoredProps =
+  'easing' |
+  'trigger' |
+  'triggerDisabled' |
+  'open' |
+  'openedClassName' |
+  'triggerClassName' |
+  'triggerOpenedClassName' |
+  'transitionTime';
 type BaseProps = {
-  inline?: boolean;
-};
+  title: string | React.ReactElement;
+  collapsible?: boolean;
+} & Omit<CollapsibleProps, ignoredProps>;
+
+const triggerClass = 'flex justify-between text-xl pr-4 border-b-gray-300 border-b mb-4';
 
 type SectionProps = React.PropsWithChildren<BaseProps>;
 
-export default function Section({ children, inline = false }: SectionProps) {
-  const gridType = inline ? 'inline-grid' : 'grid';
+type TriggerProps = {
+  collapsible: boolean;
+  isOpen: boolean;
+  text: string;
+};
+
+function Trigger({ collapsible, isOpen, text }: TriggerProps) {
+  const iconStyle = isOpen ? {} : { transform: 'rotate(90deg)' };
 
   return (
-    <div className="flex">
+    <>
+      {text}
+      {collapsible && (
+        <FontAwesomeIcon className="transition-all text-gray-600" style={iconStyle} icon={faCaretDown} />
+      )}
+    </>
+  );
+}
+
+export default function Section({
+  children,
+  className,
+  collapsible = false,
+  onClosing,
+  onOpening,
+  title,
+  ...rest
+}: SectionProps) {
+  const [isOpen, setIsOpen] = useState(true);
+
+  return (
+    <Collapsible
+      className={className}
+      onClosing={() => {
+        if (onClosing) onClosing();
+        setIsOpen(false);
+      }}
+      onOpening={() => {
+        if (onOpening) onOpening();
+        setIsOpen(true);
+      }}
+      open
+      openedClassName={className}
+      transitionTime={300}
+      trigger={<Trigger collapsible={collapsible} isOpen={isOpen} text={title} />}
+      triggerClassName={`${triggerClass} ${!collapsible ? 'cursor-auto' : 'cursor-pointer'}`}
+      triggerOpenedClassName={`${triggerClass} ${!collapsible ? 'cursor-auto' : 'cursor-pointer'}`}
+      triggerDisabled={!collapsible}
+      {...rest}
+      contentOuterClassName={isOpen ? '!overflow-visible' : ''}
+    >
       {children}
-    </div>
+    </Collapsible>
   );
 }

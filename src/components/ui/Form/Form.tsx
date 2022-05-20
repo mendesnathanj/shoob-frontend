@@ -6,14 +6,14 @@ import NestedFields from './utils/NestedFields';
 export type FormProps = {
   defaultValues?: object;
   onSubmit: (values: object) => any;
-} & ChildrenProps;
+} & ChildrenProps & React.HTMLProps<HTMLFormElement>;
 
-function Form({ children, defaultValues = {}, onSubmit }: FormProps) {
+function Form({ children, defaultValues = {}, onSubmit, ...rest }: FormProps) {
   const methods = useForm({ defaultValues });
 
   return (
     <FormProvider {...methods}>
-      <form className="grid gap-4" onSubmit={methods.handleSubmit(onSubmit)}>
+      <form onSubmit={methods.handleSubmit(onSubmit)} {...rest}>
         {children}
       </form>
     </FormProvider>
