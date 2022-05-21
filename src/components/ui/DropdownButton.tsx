@@ -37,34 +37,9 @@ import cn from 'classnames';
 import mergeRefs from 'react-merge-refs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
-import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 import FloatingContent from '../utils/FloatingContent';
 import Button from './Button';
-
-type LinkProps = {
-  to: string;
-  disabled?: boolean;
-  external?: boolean;
-} & RouterLinkProps;
-
-const Link = forwardRef<HTMLAnchorElement, LinkProps>((
-  {
-    children,
-    disabled,
-    external = false,
-    to,
-    ...props
-  },
-  ref
-) => {
-  if (external) return <a href={to} ref={ref} {...props}>{children}</a>;
-
-  return (
-    <RouterLink to={to} ref={ref} {...props}>
-      {children}
-    </RouterLink>
-  );
-});
+import Link from './Link';
 
 type ItemProps = {
   disabled?: boolean;
@@ -72,7 +47,6 @@ type ItemProps = {
 
 const Item = forwardRef<HTMLButtonElement, ItemProps>(({ children, disabled, ...props }, ref) => (
   <button {...props} ref={ref} role="menuitem" disabled={disabled} type="button">
-    {console.log(props)}
     {children}
   </button>
 ));

@@ -1,11 +1,14 @@
+import routes from '../../routes';
 import Button from '../../ui/Button';
 import Form from '../../ui/Form';
 import Input from '../../ui/Form/Inputs';
+import Link from '../../ui/Link';
 import Page from '../../ui/Page';
 
 export default function YearbookJobs() {
   return (
     <Page>
+      <Link to={routes.admin.root()}>Admin Page</Link>
       <Form
         className="grid grid-cols-12"
         onSubmit={(values) => console.log(values)}
