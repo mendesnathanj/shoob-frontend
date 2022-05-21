@@ -19,6 +19,7 @@ import FloatingContent from '../utils/FloatingContent';
 interface Props {
   animated?: boolean;
   render: (data: {
+    open: () => void;
     close: () => void;
     labelId: string;
     descriptionId: string;
@@ -91,11 +92,10 @@ export function Popover({ animated = true, children, render, placement = 'top' }
               })}
             >
               {render({
-                close: () => {
-                  setOpen(false);
-                },
+                close: () => setOpen(false),
                 descriptionId,
                 labelId,
+                open: () => setOpen(true),
               })}
             </FloatingContent>
           </FloatingFocusManager>

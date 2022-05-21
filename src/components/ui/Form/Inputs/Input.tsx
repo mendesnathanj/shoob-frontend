@@ -2,20 +2,14 @@ import cn from 'classnames';
 import { useFormContext } from 'react-hook-form';
 import { useNestedName } from '../utils/NestedContext';
 import Select from './Select';
-
-type OmitRegisterProps = Omit<React.HTMLProps<HTMLInputElement>, 'name' | 'onBlur' | 'onChange' | 'ref'>;
-
-type InputProps = {
-  containerProps?: React.HTMLProps<HTMLDivElement>;
-  name: string;
-  label: string;
-  labelProps?: React.HTMLProps<HTMLLabelElement>;
-  showLabel?: boolean;
-} & OmitRegisterProps;
+import { InputProps } from './types';
 
 function Input({
   className,
+  endIcon,
+  endIconProps = {},
   containerProps = {},
+  inline,
   label,
   labelProps = {},
   name,
@@ -26,8 +20,10 @@ function Input({
   const { register } = useFormContext();
   const computedName = useNestedName({ name });
 
+  const containerClass = inline ? 'flex gap-3 items-center' : '';
+
   return (
-    <div {...containerProps}>
+    <div {...containerProps} className={cn(containerClass, containerProps.className)}>
       <label
         htmlFor={computedName}
         {...labelProps}
@@ -35,23 +31,39 @@ function Input({
           { hidden: !showLabel },
           'inline-block',
           'mb-1',
+          'min-w-min',
           labelProps.className,
         )}
       >
         {label}
       </label>
-      <input
-        {...rest}
-        className={cn(
-          `block min-w-full rounded border-gray-400 text-gray-600
-           placeholder:opacity-70 placeholder:italic
-         focus:border-shoob-300 focus:ring-shoob-300`,
-          className,
+      <div className="relative">
+        <input
+          {...rest}
+          className={cn(
+            inline ? 'flex-1' : 'min-w-full',
+            `inline-block rounded border-gray-400 text-gray-600
+            placeholder:opacity-70 placeholder:italic
+          focus:border-shoob-300 focus:ring-shoob-300`,
+            className,
+          )}
+          id={computedName}
+          {...register(computedName)}
+          type={type}
+        />
+        {endIcon && (
+          <button
+            className={cn(
+              'absolute right-3 top-1/2 -translate-y-1/2',
+              endIconProps.className,
+            )}
+            {...endIconProps}
+            type="button"
+          >
+            {endIcon}
+          </button>
         )}
-        id={computedName}
-        {...register(computedName)}
-        type={type}
-      />
+      </div>
     </div>
   );
 }

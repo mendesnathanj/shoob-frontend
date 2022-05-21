@@ -1,10 +1,8 @@
-import { useLayoutEffect, useState } from 'react';
-import { differenceInYears, isEqual, isSameDay, isSameMonth, isValid, startOfMonth } from 'date-fns';
+import { forwardRef, useLayoutEffect, useState } from 'react';
+import { isSameMonth, startOfMonth } from 'date-fns';
 import cn from 'classnames';
 import Header from './helpers/Header';
 import CalendarTable from './helpers/CalendarTable';
-
-const SIZES = ['small', 'medium'] as const;
 
 const sizeClasses = {
   medium: '',
@@ -14,13 +12,7 @@ const sizeClasses = {
 type CalendarProps = {
   onChange: (date: Date) => void;
   value: Date;
-  size?: typeof SIZES[number];
-};
-
-const isSelectedValid = (selected: Date, today: Date) => {
-  if (!isValid(selected)) return false;
-
-  if (differenceInYears(selected, today) > 10) return false;
+  size?: keyof typeof sizeClasses;
 };
 
 function useCalendar(initialValue: Date) {
@@ -30,11 +22,11 @@ function useCalendar(initialValue: Date) {
   return { firstDayOfMonth, selectedDate, setFirstDayOfMonth, setSelectedDate };
 }
 
-export default function Calendar({
-  onChange = () => {},
-  value = new Date(),
-  size = 'small',
-}: CalendarProps) {
+const Calendar = forwardRef<HTMLDivElement, CalendarProps>(({
+  onChange,
+  value,
+  size = 'sm',
+}, ref) => {
   const { firstDayOfMonth, selectedDate, setFirstDayOfMonth, setSelectedDate } = useCalendar(value);
 
   useLayoutEffect(() => {
@@ -49,9 +41,11 @@ export default function Calendar({
   };
 
   return (
-    <div className={cn(sizeClasses[size], 'p-2 rounded-md')}>
+    <div ref={ref} className={cn(sizeClasses[size as keyof typeof sizeClasses], 'p-2 rounded-md')}>
       <Header firstDayOfMonth={firstDayOfMonth} setFirstDayOfMonth={setFirstDayOfMonth} />
       <CalendarTable firstDayOfMonth={firstDayOfMonth} selectedDate={selectedDate} onChange={changeHandler} />
     </div>
   );
-}
+});
+
+export default Calendar;
