@@ -1,4 +1,4 @@
 export default {
   home: () => '/admin/',
-  yearbookJobs: () => '/yearbook_jobs',
+  yearbookJobs: () => '/yearbook-jobs',
 };

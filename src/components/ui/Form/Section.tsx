@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown, faCaretLeft } from '@fortawesome/free-solid-svg-icons';
-import cn from 'classnames';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import Collapsible, { CollapsibleProps } from 'react-collapsible';
 
 type ignoredProps =
@@ -14,11 +13,12 @@ type ignoredProps =
   'triggerOpenedClassName' |
   'transitionTime';
 type BaseProps = {
+  containerClassName?: string;
   title: string | React.ReactElement;
   collapsible?: boolean;
 } & Omit<CollapsibleProps, ignoredProps>;
 
-const triggerClass = 'flex justify-between text-xl pr-4 border-b-gray-300 border-b mb-4';
+const triggerClass = 'flex justify-between text-xl pr-4 border-b-gray-300 border-b py-1 mb-4';
 
 type SectionProps = React.PropsWithChildren<BaseProps>;
 
@@ -35,7 +35,9 @@ function Trigger({ collapsible, isOpen, text }: TriggerProps) {
     <>
       {text}
       {collapsible && (
-        <FontAwesomeIcon className="transition-all text-gray-600" style={iconStyle} icon={faCaretDown} />
+        <button className="w-6 h-6" type="button">
+          <FontAwesomeIcon className="transition-all text-gray-600" style={iconStyle} icon={faCaretDown} />
+        </button>
       )}
     </>
   );
@@ -44,6 +46,7 @@ function Trigger({ collapsible, isOpen, text }: TriggerProps) {
 export default function Section({
   children,
   className,
+  containerClassName = '',
   collapsible = false,
   onClosing,
   onOpening,
@@ -55,6 +58,7 @@ export default function Section({
   return (
     <Collapsible
       className={className}
+      openedClassName={className}
       onClosing={() => {
         if (onClosing) onClosing();
         setIsOpen(false);
@@ -64,7 +68,6 @@ export default function Section({
         setIsOpen(true);
       }}
       open
-      openedClassName={className}
       transitionTime={300}
       trigger={<Trigger collapsible={collapsible} isOpen={isOpen} text={title} />}
       triggerClassName={`${triggerClass} ${!collapsible ? 'cursor-auto' : 'cursor-pointer'}`}

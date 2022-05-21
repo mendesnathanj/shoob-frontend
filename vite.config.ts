@@ -22,4 +22,7 @@ export default defineConfig({
       '~variables': path.resolve(__dirname, './src/stylesheets/_variables.scss'),
     },
   },
+  server: {
+    port: 4000
+  }
 });
