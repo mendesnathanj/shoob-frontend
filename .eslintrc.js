@@ -30,7 +30,16 @@ module.exports = {
     'import/no-unresolved': 'off',
     'import/prefer-default-export': 'off',
     'jsx-a11y/anchor-is-valid': 'warn',
-    'jsx-a11y/label-has-for': [2, { required: { some: ['nesting', 'id'] } }],
+    'jsx-a11y/label-has-associated-control': ['error', {
+      required: {
+        some: ['nesting', 'id']
+      },
+    }],
+    'jsx-a11y/label-has-for': ['error', {
+      required: {
+        some: ['nesting', 'id']
+      },
+    }],
     'lines-between-class-members': 'error',
     'max-len': ['warn', { code: 120 }],
     'no-console': 'warn',

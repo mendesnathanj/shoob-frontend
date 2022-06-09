@@ -18,8 +18,8 @@ type BaseProps = {
 
 type ButtonProps = BaseProps & React.HTMLProps<HTMLButtonElement>;
 
-const baseClasses = `inline-flex items-center justify-center py-1 px-2 whitespace-nowrap tracking-wide
-font-bold appearance-none min-w-[120px] min-h-[40px] rounded shadow-sm transition-all duration-200
+const baseClasses = `inline-flex items-center justify-center py-0.5 px-2 whitespace-nowrap tracking-wide
+appearance-none min-w-[100px] min-h-[36px] rounded shadow-sm transition-all duration-200
 disabled:cursor-not-allowed disabled:transition-none disaabled:opacity-75 disabled:text-inherit shadow
 `;
 
@@ -71,6 +71,7 @@ const fullWidthClasses = (fullWidth: FullWidth) => {
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   children,
+  className,
   disabled = false,
   endIcon,
   fullWidth = false,
@@ -88,6 +89,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
       fullWidthClasses(fullWidth),
       variantClasses[variant],
       outlined && outlineClasses[variant],
+      className,
     )}
     {...rest}
     type={submit ? 'submit' : 'button'}

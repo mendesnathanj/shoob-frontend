@@ -116,8 +116,6 @@ export const MenuComponent = forwardRef<
 
   const minWidth = useMinWidth({ ref: refs.reference });
 
-  console.log(minWidth);
-
   const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
     [
       useHover(context, {

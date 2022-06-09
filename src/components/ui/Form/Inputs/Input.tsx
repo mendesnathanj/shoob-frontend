@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import { useFormContext } from 'react-hook-form';
 import { useNestedName } from '../utils/NestedContext';
+import DateInput from './DateInput';
 import Select from './Select';
 import { InputProps } from './types';
 
@@ -52,22 +53,16 @@ function Input({
           type={type}
         />
         {endIcon && (
-          <button
-            className={cn(
-              'absolute right-3 top-1/2 -translate-y-1/2',
-              endIconProps.className,
-            )}
-            {...endIconProps}
-            type="button"
-          >
+          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600">
             {endIcon}
-          </button>
+          </span>
         )}
       </div>
     </div>
   );
 }
 
+Input.Date = DateInput;
 Input.Select = Select;
 
 export default Input;

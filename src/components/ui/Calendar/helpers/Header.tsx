@@ -19,7 +19,11 @@ const MONTHS = [
 
 function HeaderButton({ children, onClick }: React.HTMLProps<HTMLButtonElement>) {
   return (
-    <button className="rounded-full inline-flex justify-center items-center h-9 w-9" onClick={onClick} type="button">
+    <button
+      className="rounded-full inline-flex justify-center items-center h-9 w-9 hover:bg-gray-200"
+      onClick={onClick}
+      type="button"
+    >
       {children}
     </button>
   );
