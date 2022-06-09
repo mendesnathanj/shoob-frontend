@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, RegisterOptions } from 'react-hook-form';
 import { useNestedName } from '../utils/NestedContext';
 import Checkbox from './Checkboxes/Checkbox';
 import Checkboxes from './Checkboxes/Checkboxes';
@@ -19,17 +19,18 @@ function Input({
   name,
   showLabel = true,
   type = 'text',
+  registerOptions = {},
   ...rest
 }: InputProps) {
   const { register } = useFormContext();
-  const computedName = useNestedName({ name });
+  const nestedName = useNestedName({ name });
 
   const containerClass = inline ? 'flex gap-3 items-center' : '';
 
   return (
     <div {...containerProps} className={cn(containerClass, containerProps.className)}>
       <label
-        htmlFor={computedName}
+        htmlFor={nestedName}
         {...labelProps}
         className={cn(
           { hidden: !showLabel },
@@ -51,8 +52,8 @@ function Input({
           focus:border-shoob-300 focus:ring-shoob-300`,
             className,
           )}
-          id={computedName}
-          {...register(computedName)}
+          id={nestedName}
+          {...register(nestedName, registerOptions)}
           type={type}
         />
         {endIcon && (

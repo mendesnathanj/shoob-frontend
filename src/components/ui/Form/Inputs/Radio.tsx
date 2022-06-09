@@ -2,7 +2,7 @@ import { useFormContext } from 'react-hook-form';
 import { useNestedName } from '../utils/NestedContext';
 import { InputProps } from './types';
 
-export default function Radio({ label, name, ...rest }: InputProps) {
+export default function Radio({ label, name, registerOptions = {}, ...rest }: InputProps) {
   const { register } = useFormContext();
   const nestedName = useNestedName({ name });
 
@@ -12,7 +12,7 @@ export default function Radio({ label, name, ...rest }: InputProps) {
         className="inline-block rounded-full border-gray-400 text-shoob-600
                    placeholder:opacity-70 placeholder:italic top-0.5 relative
                  focus:border-shoob-300 focus:ring-shoob-300"
-        {...register(nestedName)}
+        {...register(nestedName, registerOptions)}
         {...rest}
         type="radio"
       />
