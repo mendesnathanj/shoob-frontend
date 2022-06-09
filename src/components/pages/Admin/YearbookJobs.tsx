@@ -11,6 +11,9 @@ export default function YearbookJobs() {
       <Link to={routes.admin.root()}>Admin Page</Link>
       <Form
         className="grid grid-cols-12 gap-y-5"
+        defaultValues={{
+          schoolId: 49,
+        }}
         onSubmit={(values) => console.log(values)}
       >
         <Form.Section
@@ -22,7 +25,6 @@ export default function YearbookJobs() {
           <Input.Select
             label="School"
             name="schoolId"
-            defaultValue={{ label: 'Enochs', value: 49 }}
             options={[
               { label: 'Enochs', value: 49 },
               { label: 'Gregory', value: 42 },
