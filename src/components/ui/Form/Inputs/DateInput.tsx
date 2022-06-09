@@ -101,7 +101,7 @@ export default function DateInput(props: InputProps) {
             })}
             animate={open ? 'open' : 'closed'}
             initial={{ marginTop: -8, opacity: 0, visibility: 'hidden' }}
-            onTransitionEnd={{ visibility: 'hidden' }}
+            transitionEnd={{ visibility: 'hidden' }}
             variants={variants}
           >
             <Calendar
