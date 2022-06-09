@@ -1,7 +1,10 @@
 import cn from 'classnames';
 import { useFormContext } from 'react-hook-form';
 import { useNestedName } from '../utils/NestedContext';
+import Checkbox from './Checkboxes/Checkbox';
+import Checkboxes from './Checkboxes/Checkboxes';
 import DateInput from './DateInput';
+import Radio from './Radio';
 import Select from './Select';
 import { InputProps } from './types';
 
@@ -62,7 +65,10 @@ function Input({
   );
 }
 
+Input.Checkboxes = Checkboxes;
+Input.Checkbox = Checkbox;
 Input.Date = DateInput;
+Input.Radio = Radio;
 Input.Select = Select;
 
 export default Input;

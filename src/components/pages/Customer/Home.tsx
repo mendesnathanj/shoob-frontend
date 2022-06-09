@@ -1,9 +1,7 @@
 import routes from '../../routes';
 import Button from '../../ui/Button';
 import Form from '../../ui/Form';
-import Checkbox from '../../ui/Form/Inputs/Checkboxes/Checkbox';
-import Checkboxes from '../../ui/Form/Inputs/Checkboxes/Checkboxes';
-import Radio from '../../ui/Form/Inputs/Radio';
+import Input from '../../ui/Form/Inputs';
 import Page from '../../ui/Page';
 
 export default function Home() {
@@ -19,7 +17,7 @@ export default function Home() {
         onSubmit={(e) => console.log(e)}
       >
         <div className="grid col-span-2">
-          <Checkboxes
+          <Input.Checkboxes
             canSelectAll
             name="favoriteAnimals"
             options={[
@@ -27,8 +25,8 @@ export default function Home() {
               { label: 'Cat', value: 'Cat' },
             ]}
           />
-          <Radio label="Activate" name="active" value="true" />
-          <Radio label="Deactivate" name="active" value="false" />
+          <Input.Radio label="Activate" name="active" value="true" />
+          <Input.Radio label="Deactivate" name="active" value="false" />
         </div>
 
         <Button className="col-span-2" submit variant="primary">Submit</Button>
