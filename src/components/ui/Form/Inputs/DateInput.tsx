@@ -21,8 +21,7 @@ import Calendar from '../../Calendar/Calendar';
 import { useNestedName } from '../utils/NestedContext';
 import Input from './Input';
 import { InputProps } from './types';
-
-const DATE_FORMAT = 'MM-dd-yyyy';
+import { USER_DATE_FORMAT } from '../../../../utils/constants';
 
 const variants: Variants = {
   closed: { marginTop: -8, opacity: 0, },
@@ -71,7 +70,7 @@ export default function DateInput(props: InputProps) {
       <Input
         containerProps={{ ...getReferenceProps({ ref: reference }) }}
         {...props}
-        defaultValue={format(new Date(), DATE_FORMAT)}
+        defaultValue={format(new Date(), USER_DATE_FORMAT)}
         endIcon={(
           <button
             className={`
@@ -105,9 +104,9 @@ export default function DateInput(props: InputProps) {
             variants={variants}
           >
             <Calendar
-              value={parse(watchDate, DATE_FORMAT, new Date())}
+              value={parse(watchDate, USER_DATE_FORMAT, new Date())}
               onChange={(newDate) => {
-                setValue(nestedName, format(newDate, DATE_FORMAT));
+                setValue(nestedName, format(newDate, USER_DATE_FORMAT));
                 toggle();
               }}
             />

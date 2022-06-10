@@ -1,3 +1,4 @@
+import { formatISO, parse } from 'date-fns';
 import routes from '../../routes';
 import Button from '../../ui/Button';
 import Form from '../../ui/Form';
@@ -6,6 +7,7 @@ import Link from '../../ui/Link';
 import Page from '../../ui/Page';
 
 export default function YearbookJobs() {
+  console.log(formatISO(parse('06-09-2022', 'MM-dd-yyyy', new Date())));
   return (
     <Page>
       <Link to={routes.admin.root()}>Admin Page</Link>
@@ -22,6 +24,10 @@ export default function YearbookJobs() {
           contentInnerClassName="grid grid-cols-2 gap-x-8 gap-y-4"
           title="Contact Information"
         >
+          <Input.Date
+            label="Promise Date"
+            name="promiseDate"
+          />
           <Input.Select
             label="School"
             name="schoolId"
