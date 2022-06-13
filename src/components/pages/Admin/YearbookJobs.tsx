@@ -7,7 +7,7 @@ import Link from '../../ui/Link';
 import Page from '../../ui/Page';
 
 export default function YearbookJobs() {
-  console.log(formatISO(parse('06-09-2022', 'MM-dd-yyyy', new Date())));
+  // console.log(formatISO(parse('06-09-2022', 'MM-dd-yyyy', new Date())));
   return (
     <Page>
       <Link to={routes.admin.root()}>Admin Page</Link>
@@ -24,6 +24,11 @@ export default function YearbookJobs() {
           contentInnerClassName="grid grid-cols-2 gap-x-8 gap-y-4"
           title="Contact Information"
         >
+          <Input.Textarea
+            label="Fill in details"
+            name="details"
+            placeholder="Gabba goo"
+          />
           <Input.Date
             label="Promise Date"
             name="promiseDate"

@@ -82,7 +82,6 @@ export default function DateInput(props: InputProps) {
             <FontAwesomeIcon icon={faCalendar} />
           </button>
         )}
-
       />
       <FloatingPortal>
         <FloatingFocusManager context={context}>

@@ -1,32 +1,28 @@
+import React from 'react';
+import { useFormContext } from 'react-hook-form';
 import cn from 'classnames';
-import { useFormContext, RegisterOptions } from 'react-hook-form';
 import { useNestedName } from '../utils/NestedContext';
-import Checkbox from './Checkboxes/Checkbox';
-import Checkboxes from './Checkboxes/Checkboxes';
-import DateInput from './DateInput';
-import Radio from './Radio';
-import Select from './Select';
-import Textarea from './Textarea';
 import { InputProps } from './types';
 
-function Input({
-  className,
-  endIcon,
-  endIconProps = {},
+type TextareaProps = React.HTMLProps<HTMLTextAreaElement> & InputProps;
+
+export default function Textarea({
+  className = '',
+  cols,
   containerProps = {},
   inline = false,
   label,
   labelProps = {},
   name,
-  showLabel = true,
-  type = 'text',
   registerOptions = {},
+  rows,
+  showLabel = true,
   ...rest
-}: InputProps) {
+}: TextareaProps) {
   const { register } = useFormContext();
   const nestedName = useNestedName({ name });
 
-  const containerClass = inline ? 'flex gap-3 items-center' : '';
+  const containerClass = inline ? 'flex gap-3' : '';
 
   return (
     <div {...containerProps} className={cn(containerClass, containerProps.className)}>
@@ -44,7 +40,7 @@ function Input({
         {label}
       </label>
       <div className="relative">
-        <input
+        <textarea
           {...rest}
           className={cn(
             inline ? 'flex-1' : 'min-w-full',
@@ -55,23 +51,8 @@ function Input({
           )}
           id={nestedName}
           {...register(nestedName, registerOptions)}
-          type={type}
         />
-        {endIcon && (
-          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600">
-            {endIcon}
-          </span>
-        )}
       </div>
     </div>
   );
 }
-
-Input.Checkboxes = Checkboxes;
-Input.Checkbox = Checkbox;
-Input.Date = DateInput;
-Input.Radio = Radio;
-Input.Select = Select;
-Input.Textarea = Textarea;
-
-export default Input;
