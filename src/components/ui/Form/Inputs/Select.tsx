@@ -61,7 +61,7 @@ export default function Select({
             )}
             isMulti={isMulti}
             onBlur={onBlur}
-            onChange={(opt) => {
+            onChange={(opt: unknown): void => {
               if (opt === null) return;
 
               if (isMulti) {

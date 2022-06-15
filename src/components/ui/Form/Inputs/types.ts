@@ -2,7 +2,7 @@ import { RegisterOptions } from 'react-hook-form';
 
 type OmitRegisterProps = Omit<React.HTMLProps<HTMLInputElement>, 'name' | 'onBlur' | 'onChange' | 'ref'>;
 
-export type InputProps = {
+export type BaseInputProps = {
   containerProps?: React.HTMLProps<HTMLDivElement>;
   endIcon?: React.ReactElement;
   endIconProps?: React.HTMLProps<HTMLButtonElement>;
@@ -11,5 +11,8 @@ export type InputProps = {
   label: string;
   labelProps?: React.HTMLProps<HTMLLabelElement>;
   showLabel?: boolean;
+} & React.HTMLProps<HTMLInputElement>;
+
+export type InputProps = {
   registerOptions?: RegisterOptions;
-} & OmitRegisterProps;
+} & BaseInputProps & OmitRegisterProps;

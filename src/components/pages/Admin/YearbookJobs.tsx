@@ -21,7 +21,7 @@ export default function YearbookJobs() {
         <Form.Section
           className="col-span-12"
           collapsible
-          contentInnerClassName="grid grid-cols-2 gap-x-8 gap-y-4"
+          contentClass="grid grid-cols-2 gap-x-8 gap-y-4"
           title="Contact Information"
         >
           <Input.Textarea
@@ -50,7 +50,7 @@ export default function YearbookJobs() {
         <Form.Section
           className="col-span-12"
           collapsible
-          contentInnerClassName="grid grid-cols-2 gap-x-8 gap-y-4"
+          contentClass="grid grid-cols-2 gap-x-8 gap-y-4"
           title="Yearbook Contract Details"
         >
           <Input.Select

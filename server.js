@@ -4,6 +4,14 @@ const express = require('express');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
+function getPort() {
+  const portArg = process.argv.find((arg) => arg === '-p');
+
+  if (portArg) return parseInt(process.argv[process.argv.indexOf(portArg) + 1], 10);
+
+  return parseInt('3000', 10);
+}
+
 async function createServer() {
   const app = express();
   /**
@@ -60,7 +68,9 @@ async function createServer() {
 }
 
 createServer().then((app) => {
-  app.listen(3000, () => {
-    console.log('HTTP server is running at http://localhost:3000');
+  const port = getPort();
+
+  app.listen(port, () => {
+    console.log(`HTTP server is running at http://localhost:${port}`);
   });
 });

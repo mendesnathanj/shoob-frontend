@@ -11,6 +11,8 @@ import {
   useInteractions,
   useRole,
 } from '@floating-ui/react-dom-interactions';
+import cn from 'classnames';
+import InputMask from 'react-input-mask';
 import { motion, Variants } from 'framer-motion';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,9 +21,9 @@ import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import Calendar from '../../Calendar/Calendar';
 import { useNestedName } from '../utils/NestedContext';
-import Input from './Input';
 import { InputProps } from './types';
 import { USER_DATE_FORMAT } from '../../../../utils/constants';
+import BaseInput from './BaseInput';
 
 const variants: Variants = {
   closed: { marginTop: -8, opacity: 0, },
@@ -29,7 +31,7 @@ const variants: Variants = {
 };
 
 export default function DateInput(props: InputProps) {
-  const { watch, setValue } = useFormContext();
+  const { watch, setValue, register } = useFormContext();
   const nestedName = useNestedName({ name: props.name });
   const [open, setOpen] = useState(false);
 
@@ -48,7 +50,7 @@ export default function DateInput(props: InputProps) {
     context
   } = useFloating({
     middleware: [offset(5), flip(), shift({ padding: 8 })],
-    onOpenChange: () => {},
+    onOpenChange: setOpen,
     open,
     placement: 'bottom-end',
   });
@@ -65,52 +67,80 @@ export default function DateInput(props: InputProps) {
     }
   }, [open, update, refs.reference, refs.floating]);
 
+  const registerDate = register(nestedName);
+
   return (
     <>
-      <Input
-        containerProps={{ ...getReferenceProps({ ref: reference }) }}
-        {...props}
-        defaultValue={format(new Date(), USER_DATE_FORMAT)}
-        endIcon={(
-          <button
-            className={`
-              flex items-center justify-center w-8 h-8 rounded-full
-              transition-colors duration-200 hover:bg-gray-200`}
-            onClick={toggle}
-            type="button"
-          >
-            <FontAwesomeIcon icon={faCalendar} />
-          </button>
-        )}
-      />
+      <div>
+        <label
+          htmlFor={nestedName}
+          {...props.labelProps}
+          className={cn(
+            { hidden: !props.showLabel },
+            'inline-block',
+            'mb-1',
+            'min-w-min',
+            props.labelProps?.className,
+          )}
+        >
+          {props.label}
+        </label>
+        <InputMask
+          alwaysShowMask
+          mask="99/99/9999"
+          maskPlaceholder="dd/mm/yyyy"
+          onBlur={registerDate.onBlur}
+          onChange={registerDate.onChange}
+
+        >
+          <BaseInput
+            label="Date"
+            {...registerDate}
+            endIcon={(
+              <button
+                className={`
+                  flex items-center justify-center w-8 h-8 rounded-full
+                  transition-colors duration-200 hover:bg-gray-200`}
+                onClick={toggle}
+                type="button"
+                {...getReferenceProps({ ref: reference })}
+              >
+                <FontAwesomeIcon icon={faCalendar} />
+              </button>
+            )}
+          />
+        </InputMask>
+      </div>
       <FloatingPortal>
-        <FloatingFocusManager context={context}>
-          <motion.div
-            {...getFloatingProps({
-              'aria-describedby': 'description',
-              'aria-labelledby': 'label',
-              className: 'shadow p-2 rounded border bg-white',
-              ref: floating,
-              style: {
-                left: x ?? '',
-                position: strategy,
-                top: y ?? '',
-              },
-            })}
-            animate={open ? 'open' : 'closed'}
-            initial={{ marginTop: -8, opacity: 0, visibility: 'hidden' }}
-            transitionEnd={{ visibility: 'hidden' }}
-            variants={variants}
-          >
-            <Calendar
-              value={parse(watchDate, USER_DATE_FORMAT, new Date())}
-              onChange={(newDate) => {
-                setValue(nestedName, format(newDate, USER_DATE_FORMAT));
-                toggle();
-              }}
-            />
-          </motion.div>
-        </FloatingFocusManager>
+        {open && (
+          <FloatingFocusManager context={context}>
+            <motion.div
+              {...getFloatingProps({
+                'aria-describedby': 'description',
+                'aria-labelledby': 'label',
+                className: 'shadow p-2 rounded border bg-white',
+                ref: floating,
+                style: {
+                  left: x ?? '',
+                  position: strategy,
+                  top: y ?? '',
+                },
+              })}
+              animate={open ? 'open' : 'closed'}
+              initial={{ marginTop: -8, opacity: 0, visibility: 'hidden' }}
+              transitionEnd={{ visibility: 'hidden' }}
+              variants={variants}
+            >
+              <Calendar
+                value={parse(watchDate, USER_DATE_FORMAT, new Date())}
+                onChange={(newDate) => {
+                  setValue(nestedName, format(newDate, USER_DATE_FORMAT));
+                  toggle();
+                }}
+              />
+            </motion.div>
+          </FloatingFocusManager>
+        )}
       </FloatingPortal>
     </>
   );
