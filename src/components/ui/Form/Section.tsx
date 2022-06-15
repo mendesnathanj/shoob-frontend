@@ -76,7 +76,7 @@ export default function Section({
         />
       </div>
       <motion.div
-        initial="collapsed"
+        initial="open"
         animate={isOpen ? 'open' : 'collapsed'}
         exit="collapsed"
         variants={{
