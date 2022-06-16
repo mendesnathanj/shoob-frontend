@@ -40,7 +40,7 @@ module.exports = {
         some: ['nesting', 'id']
       },
     }],
-    'lines-between-class-members': 'error',
+    'lines-between-class-members': ['error', 'never'],
     'max-len': ['warn', { code: 120 }],
     'no-console': 'warn',
     'no-mixed-operators': 'warn',
