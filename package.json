@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
+    "start": "cross-env NODE_ENV=development node server.js -p 4000",
     "dev": "cross-env NODE_ENV=development node server.js -p 4000",
     "debug": "node --inspect-brk server.js",
     "build": "vite build",
@@ -20,6 +21,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
+    "@rollup/plugin-inject": "^4.0.4",
     "@tailwindcss/forms": "^0.5.0",
     "@types/react": "^18.0.12",
     "@types/react-color": "^3.0.6",
@@ -48,6 +50,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
+    "@mdx-js/react": "^2.1.1",
     "@storybook/addon-a11y": "^6.4.19",
     "@storybook/addon-actions": "^6.4.19",
     "@storybook/addon-docs": "^6.4.19",

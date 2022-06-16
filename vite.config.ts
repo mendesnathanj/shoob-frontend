@@ -2,8 +2,13 @@ import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import eslintPlugin from 'vite-plugin-eslint';
+import inject from '@rollup/plugin-inject';
+import * as models from './src/models/v2';
 
-const path = require('path');
+const modelInjects = Object.keys(models).reduce((acc, modelName) => ({
+  ...acc,
+  [modelName]: resolve(`src/models/${modelName}`),
+}), {});
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -15,13 +20,13 @@ export default defineConfig({
       }
     },
   },
-  plugins: [react(), eslintPlugin({ cache: false })],
-  resolve: {
-    alias: {
-      '~themes': path.resolve(__dirname, './src/stylesheets/themes'),
-      '~variables': path.resolve(__dirname, './src/stylesheets/_variables.scss'),
-    },
-  },
+  plugins: [
+    react(),
+    inject({
+      ...modelInjects,
+    }),
+    eslintPlugin({ cache: false }),
+  ],
   server: {
     port: 4000
   }
