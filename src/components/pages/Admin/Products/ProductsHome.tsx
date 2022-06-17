@@ -2,7 +2,6 @@ import currency from 'currency.js';
 import { useQuery } from 'react-query';
 import { DProduct } from '../../../../models/v2';
 import { clientFormattedDate } from '../../../../utils/functions';
-import PageSpinner from '../../../common/PageSpinner';
 import routes from '../../../routes';
 import Button from '../../../ui/Button';
 import DropdownButton from '../../../ui/DropdownButton';
@@ -17,18 +16,15 @@ export default function ProductsHome() {
       .then((res) => res.data)
   ));
 
-  if (isLoading) return <PageSpinner />;
-  if (error) return <p>Something has gone wrong.</p>;
-
   return (
-    <Page>
+    <Page isLoading={isLoading} hasError={error as boolean}>
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-3xl font-display font-medium text-gray-700">Products</h1>
-        <Button variant="primary">
-          <Link to={routes.admin.products.new()}>
+        <Link to={routes.admin.products.new()}>
+          <Button variant="primary">
             Add New
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       </div>
       <table className="min-w-full rounded border overflow-hidden">
         <thead>

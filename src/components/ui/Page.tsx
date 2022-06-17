@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import PageSpinner from '../common/PageSpinner';
 
 /* eslint-disable sort-keys */
 const widths = {
@@ -11,10 +12,20 @@ const widths = {
 
 type PageProps = {
   children: React.ReactNode;
+  isLoading?: boolean;
+  hasError?: boolean | unknown;
   maxWidth?: keyof typeof widths;
 }
 
-export default function Page({ children, maxWidth = 'lg' }: PageProps) {
+export default function Page({
+  children,
+  isLoading = false,
+  hasError = false,
+  maxWidth = 'lg'
+}: PageProps) {
+  if (isLoading) return <PageSpinner />;
+  if (hasError) return <p>Something has gone wrong.</p>;
+
   return (
     <div className={cn(widths[maxWidth], 'mx-auto p-8')}>
       {children}
