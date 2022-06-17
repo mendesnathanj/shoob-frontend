@@ -73,7 +73,7 @@ interface Props {
   children?: React.ReactNode;
 }
 
-const itemClass = 'inline-block min-w-full py-1 px-2 text-left hover:bg-gray-100 focus:bg-gray-100';
+const itemClass = 'inline-block min-w-full py-1 px-2 text-left bg-white hover:bg-gray-100 focus:bg-gray-100';
 
 export const MenuComponent = forwardRef<
   any,
