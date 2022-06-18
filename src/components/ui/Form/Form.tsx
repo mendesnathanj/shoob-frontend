@@ -14,10 +14,9 @@ export type FormProps = {
 function Form({ autoSave = false, children, defaultValues = {}, onSubmit, ...rest }: FormProps) {
   const methods = useForm({ defaultValues });
 
-  useEffect(() => {
-    console.log('i am resetting...');
-    methods.reset(defaultValues);
-  }, [JSON.stringify(defaultValues)]);
+  useEffect(() => methods.reset(defaultValues), [JSON.stringify(defaultValues)]);
+
+  console.log(methods.getValues());
 
   return (
     <FormProvider {...methods}>

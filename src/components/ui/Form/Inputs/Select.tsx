@@ -16,6 +16,7 @@ type OptionType = {
 
 type SelectProps = {
   options: OptionType[];
+  reactSelectProps?: object;
 } & InputProps & Omit<StateManagerProps, 'onChange' | 'onBlur' | 'value' | 'ref'>
 
 export default function Select({
@@ -27,6 +28,7 @@ export default function Select({
   labelProps = {},
   name,
   options,
+  reactSelectProps = {},
   showLabel = true,
   ...rest
 }: SelectProps) {
@@ -41,6 +43,7 @@ export default function Select({
       name={nestedName}
       render={({ field: { onChange, onBlur, value, ref } }) => (
         <div {...containerProps} className={cn(containerClass, containerProps.className)}>
+          {console.log(value)}
           <label
             htmlFor={nestedName}
             {...labelProps}
@@ -75,6 +78,7 @@ export default function Select({
             value={options.find((opt) => opt.value === value)}
             styles={customStyles}
             ref={ref}
+            {...reactSelectProps}
             {...rest}
           />
         </div>

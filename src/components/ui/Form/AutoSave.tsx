@@ -13,7 +13,6 @@ export default function AutoSave({ onSubmit }: AutoSaveProps) {
   useEffect(() => {
     if (!formState.isDirty) return;
 
-    console.log('Form is dirty...');
     handleSubmit(onSubmit)();
   }, [JSON.stringify(formData)]);
 

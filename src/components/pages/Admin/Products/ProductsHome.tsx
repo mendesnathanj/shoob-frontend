@@ -18,30 +18,40 @@ export default function ProductsHome() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  const { isLoading, error, data } = useQuery('productsData', () => (
+  const { error, data } = useQuery(['productsData', searchParams.get('category')], () => (
     DProduct
       .order({ createdAt: 'desc' })
+      .where({ category: searchParams.get('category') })
       .all()
       .then((res) => res.data)
   ));
 
-  const onSubmit = (formData) => {
+  const onSubmit = (formData: { category: string }) => {
     navigate({
       pathname: routes.admin.products.home(),
-      search: qs.stringify(formData),
+      search: qs.stringify(formData, { skipEmptyString: true }),
     });
   };
 
   return (
-    <Page isLoading={isLoading} hasError={error as boolean}>
+    <Page hasError={error as boolean}>
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-3xl font-display font-medium text-gray-700">Products</h1>
         <div className="flex items-center gap-12">
-          <Form defaultValues={{ category: searchParams.get('category') || undefined }} autoSave onSubmit={onSubmit}>
+          <Form
+            autoSave
+            defaultValues={{ category: searchParams.get('category') || '' }}
+            onSubmit={onSubmit as () => any}
+          >
             <Input.Select
+              reactSelectProps={{
+                styles: {
+                  control: (provided: object) => ({ ...provided, height: 44, minWidth: '200px', }),
+                }
+              }}
               label="Category Filter"
               name="category"
-              options={[{ label: 'Select Category', value: undefined }, ...CATEGORIES]}
+              options={[{ label: 'Select Category', value: '' }, ...CATEGORIES]}
               showLabel={false}
             />
           </Form>
