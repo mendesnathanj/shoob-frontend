@@ -45,7 +45,7 @@ export default function Textarea({
           className={cn(
             inline ? 'flex-1' : 'min-w-full',
             `inline-block rounded border-gray-400 text-gray-600
-            placeholder:opacity-70 placeholder:italic
+            placeholder:opacity-70 placeholder:italic caret-shoob-300
           focus:border-shoob-300 focus:ring-shoob-300`,
             className,
           )}

@@ -32,7 +32,7 @@ function Trigger({ collapsible, isOpen, onClick, text }: TriggerProps) {
     <>
       {text}
       {collapsible && (
-        <button className="w-10 h-10" type="button" onClick={onClick}>
+        <button className="w-10 h-10 -mr-2" type="button" onClick={onClick}>
           <FontAwesomeIcon className="transition-all text-gray-600" style={iconStyle} icon={faCaretDown} />
         </button>
       )}

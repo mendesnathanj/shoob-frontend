@@ -1,7 +1,9 @@
 import { format, parse } from 'date-fns';
 import { SERVER_DATE_FORMAT, USER_DATE_FORMAT } from './constants';
 
-export const clientFormattedDate = (date: string | Date) => {
+export const clientFormattedDate = (date?: string | Date): string => {
+  if (!date) return '';
+
   if (typeof date === 'string') {
     return format(parse(date, SERVER_DATE_FORMAT, new Date()), USER_DATE_FORMAT);
   }

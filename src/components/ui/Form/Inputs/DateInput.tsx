@@ -11,19 +11,19 @@ import {
   useInteractions,
   useRole,
 } from '@floating-ui/react-dom-interactions';
-import cn from 'classnames';
 import InputMask from 'react-input-mask';
 import { motion, Variants } from 'framer-motion';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { format, parse } from 'date-fns';
+import { format, isMatch, parse } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import Calendar from '../../Calendar/Calendar';
 import { useNestedName } from '../utils/NestedContext';
 import { InputProps } from './types';
-import { USER_DATE_FORMAT } from '../../../../utils/constants';
+import { SERVER_DATE_FORMAT, USER_DATE_FORMAT } from '../../../../utils/constants';
 import BaseInput from './BaseInput';
+import { clientFormattedDate } from '../../../../utils/functions';
 
 const variants: Variants = {
   closed: { marginTop: -8, opacity: 0, },
@@ -38,6 +38,12 @@ export default function DateInput(props: InputProps) {
   const toggle = () => setOpen((prev) => !prev);
 
   const watchDate = watch(nestedName);
+
+  useEffect(() => {
+    if (isMatch(watchDate, SERVER_DATE_FORMAT)) {
+      setValue(nestedName, clientFormattedDate(watchDate));
+    }
+  }, [watchDate]);
 
   const {
     x,
@@ -71,46 +77,30 @@ export default function DateInput(props: InputProps) {
 
   return (
     <>
-      <div>
-        <label
-          htmlFor={nestedName}
-          {...props.labelProps}
-          className={cn(
-            { hidden: !props.showLabel },
-            'inline-block',
-            'mb-1',
-            'min-w-min',
-            props.labelProps?.className,
+      <InputMask
+        alwaysShowMask
+        mask="99/99/9999"
+        maskPlaceholder="dd/mm/yyyy"
+        onBlur={registerDate.onBlur}
+        onChange={registerDate.onChange}
+      >
+        <BaseInput
+          label={props.label}
+          {...registerDate}
+          endIcon={(
+            <button
+              className={`
+                flex items-center justify-center w-8 h-8 rounded-full
+                transition-colors duration-200 hover:bg-gray-200`}
+              onClick={toggle}
+              type="button"
+              {...getReferenceProps({ ref: reference })}
+            >
+              <FontAwesomeIcon icon={faCalendar} />
+            </button>
           )}
-        >
-          {props.label}
-        </label>
-        <InputMask
-          alwaysShowMask
-          mask="99/99/9999"
-          maskPlaceholder="dd/mm/yyyy"
-          onBlur={registerDate.onBlur}
-          onChange={registerDate.onChange}
-
-        >
-          <BaseInput
-            label="Date"
-            {...registerDate}
-            endIcon={(
-              <button
-                className={`
-                  flex items-center justify-center w-8 h-8 rounded-full
-                  transition-colors duration-200 hover:bg-gray-200`}
-                onClick={toggle}
-                type="button"
-                {...getReferenceProps({ ref: reference })}
-              >
-                <FontAwesomeIcon icon={faCalendar} />
-              </button>
-            )}
-          />
-        </InputMask>
-      </div>
+        />
+      </InputMask>
       <FloatingPortal>
         {open && (
           <FloatingFocusManager context={context}>

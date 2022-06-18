@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { ChildrenProps } from '../../../types';
 import Section from './Section';
@@ -10,6 +11,8 @@ export type FormProps = {
 
 function Form({ children, defaultValues = {}, onSubmit, ...rest }: FormProps) {
   const methods = useForm({ defaultValues });
+
+  useEffect(() => methods.reset(defaultValues), [defaultValues]);
 
   return (
     <FormProvider {...methods}>
