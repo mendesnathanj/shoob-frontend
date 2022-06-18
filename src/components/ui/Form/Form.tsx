@@ -16,8 +16,6 @@ function Form({ autoSave = false, children, defaultValues = {}, onSubmit, ...res
 
   useEffect(() => methods.reset(defaultValues), [JSON.stringify(defaultValues)]);
 
-  console.log(methods.getValues());
-
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)} {...rest}>

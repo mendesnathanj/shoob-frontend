@@ -43,7 +43,6 @@ export default function Select({
       name={nestedName}
       render={({ field: { onChange, onBlur, value, ref } }) => (
         <div {...containerProps} className={cn(containerClass, containerProps.className)}>
-          {console.log(value)}
           <label
             htmlFor={nestedName}
             {...labelProps}
