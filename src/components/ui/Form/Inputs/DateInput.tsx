@@ -23,7 +23,7 @@ import { useNestedName } from '../utils/NestedContext';
 import { InputProps } from './types';
 import { SERVER_DATE_FORMAT, USER_DATE_FORMAT } from '../../../../utils/constants';
 import BaseInput from './BaseInput';
-import { clientFormattedDate } from '../../../../utils/functions';
+import { formattedDate } from '../../../../utils/functions';
 
 const variants: Variants = {
   closed: { marginTop: -8, opacity: 0, },
@@ -41,7 +41,7 @@ export default function DateInput(props: InputProps) {
 
   useEffect(() => {
     if (isMatch(watchDate, SERVER_DATE_FORMAT)) {
-      setValue(nestedName, clientFormattedDate(watchDate));
+      setValue(nestedName, formattedDate(watchDate, 'client'));
     }
   }, [watchDate]);
 
@@ -78,7 +78,6 @@ export default function DateInput(props: InputProps) {
   return (
     <>
       <InputMask
-        alwaysShowMask
         mask="99/99/9999"
         maskPlaceholder="dd/mm/yyyy"
         onBlur={registerDate.onBlur}

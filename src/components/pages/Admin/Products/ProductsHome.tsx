@@ -1,7 +1,8 @@
 import currency from 'currency.js';
 import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
 import { DProduct } from '../../../../models/v2';
-import { clientFormattedDate } from '../../../../utils/functions';
+import { capitalize, formattedDate } from '../../../../utils/functions';
 import routes from '../../../routes';
 import Button from '../../../ui/Button';
 import DropdownButton from '../../../ui/DropdownButton';
@@ -53,16 +54,16 @@ export default function ProductsHome() {
                 {description}
               </td>
               <td className="text-center p-2 border">
-                {currency(price).format()}
+                {price ? currency(price).format() : ''}
               </td>
               <td className="text-center p-2 border">
-                {category}
+                {category.split('_').map((substring) => capitalize(substring)).join(' ')}
               </td>
               <td className="text-center p-2 border">
-                {destination}
+                {destination.split('_').map((substring) => capitalize(substring)).join(' ')}
               </td>
               <td className="text-center p-2 border">
-                {clientFormattedDate(shipDate)}
+                {formattedDate(shipDate, 'client')}
               </td>
               <td className="text-center p-2 border">
                 <DropdownButton label="Actions">
