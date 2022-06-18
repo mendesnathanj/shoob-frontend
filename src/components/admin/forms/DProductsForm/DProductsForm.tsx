@@ -40,6 +40,7 @@ export default function DProductsForm({ id }: DProductsFormProps) {
   const onSubmit = async (formData: FormData) => {
     const formattedValues = {
       jobDate: formattedDate(formData.jobDate, 'server') || null,
+      jobId: parseInt(formData.jobId.toString(), 10),
       price: formData.price || null,
       shipDate: formattedDate(formData.shipDate, 'server') || null,
       shippedBy: formattedDate(formData.shippedBy, 'server') || null,
