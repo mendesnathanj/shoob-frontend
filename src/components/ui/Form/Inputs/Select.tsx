@@ -11,7 +11,7 @@ const customStyles = {
 
 type OptionType = {
   label: string;
-  value: string | number;
+  value?: string | number;
 }
 
 type SelectProps = {

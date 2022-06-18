@@ -7,7 +7,6 @@ import Link from '../../ui/Link';
 import Page from '../../ui/Page';
 
 export default function YearbookJobs() {
-  // console.log(formatISO(parse('06-09-2022', 'MM-dd-yyyy', new Date())));
   return (
     <Page>
       <Link to={routes.admin.root()}>Admin Page</Link>

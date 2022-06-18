@@ -1,15 +1,23 @@
 import currency from 'currency.js';
 import { useQuery } from 'react-query';
-import { toast } from 'react-toastify';
+import qs from 'query-string';
+import { useNavigate } from 'react-router';
+import { useSearchParams } from 'react-router-dom';
 import { DProduct } from '../../../../models/v2';
 import { capitalize, formattedDate } from '../../../../utils/functions';
+import { CATEGORIES } from '../../../admin/forms/DProductsForm/utils';
 import routes from '../../../routes';
 import Button from '../../../ui/Button';
 import DropdownButton from '../../../ui/DropdownButton';
+import Form from '../../../ui/Form';
+import Input from '../../../ui/Form/Inputs';
 import Link from '../../../ui/Link';
 import Page from '../../../ui/Page';
 
 export default function ProductsHome() {
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+
   const { isLoading, error, data } = useQuery('productsData', () => (
     DProduct
       .order({ createdAt: 'desc' })
@@ -17,15 +25,32 @@ export default function ProductsHome() {
       .then((res) => res.data)
   ));
 
+  const onSubmit = (formData) => {
+    navigate({
+      pathname: routes.admin.products.home(),
+      search: qs.stringify(formData),
+    });
+  };
+
   return (
     <Page isLoading={isLoading} hasError={error as boolean}>
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-3xl font-display font-medium text-gray-700">Products</h1>
-        <Link to={routes.admin.products.new()}>
-          <Button variant="primary">
-            Add New
-          </Button>
-        </Link>
+        <div className="flex items-center gap-12">
+          <Form defaultValues={{ category: searchParams.get('category') || undefined }} autoSave onSubmit={onSubmit}>
+            <Input.Select
+              label="Category Filter"
+              name="category"
+              options={[{ label: 'Select Category', value: undefined }, ...CATEGORIES]}
+              showLabel={false}
+            />
+          </Form>
+          <Link to={routes.admin.products.new()}>
+            <Button variant="primary">
+              Add New
+            </Button>
+          </Link>
+        </div>
       </div>
       <table className="min-w-full rounded border overflow-hidden">
         <thead>

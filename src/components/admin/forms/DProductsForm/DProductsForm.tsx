@@ -1,25 +1,14 @@
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
-import { DProduct } from '../../../models/v2';
-import { ONE_DAY } from '../../../utils/constants';
-import { formattedDate } from '../../../utils/functions';
-import routes from '../../routes';
-import Button from '../../ui/Button';
-import Form from '../../ui/Form';
-import Input from '../../ui/Form/Inputs';
-
-const CATEGORIES = [
-  { label: 'Initial Setup', value: 'initial_setup' },
-  { label: 'Prep', value: 'prep' },
-  { label: 'Shoot', value: 'shoot' },
-  { label: 'Image Prep', value: 'image_prep' },
-];
-
-const DESTINATIONS = [
-  { label: 'Printer', value: 'printer' },
-  { label: 'School Portal', value: 'school_portal' },
-];
+import { DProduct } from '../../../../models/v2';
+import { ONE_DAY } from '../../../../utils/constants';
+import { formattedDate } from '../../../../utils/functions';
+import routes from '../../../routes';
+import Button from '../../../ui/Button';
+import Form from '../../../ui/Form';
+import Input from '../../../ui/Form/Inputs';
+import { CATEGORIES, DESTINATIONS } from './utils';
 
 type FormData = {
   category: string;
