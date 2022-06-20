@@ -15,7 +15,7 @@ type OptionType = {
 }
 
 type SelectProps = {
-  options: OptionType[];
+  options?: OptionType[];
   reactSelectProps?: object;
 } & InputProps & Omit<StateManagerProps, 'onChange' | 'onBlur' | 'value' | 'ref'>
 
@@ -27,7 +27,7 @@ export default function Select({
   label,
   labelProps = {},
   name,
-  options,
+  options = [],
   reactSelectProps = {},
   showLabel = true,
   ...rest

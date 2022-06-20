@@ -2,6 +2,7 @@ import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import { DProduct } from '../../../../models/v2';
+import DjobType from '../../../../models/v2/DjobType';
 import { ONE_DAY } from '../../../../utils/constants';
 import { formattedDate } from '../../../../utils/functions';
 import routes from '../../../routes';
@@ -15,8 +16,8 @@ type FormData = {
   description: string;
   destination: string;
   jobDate: string;
-  jobId: number;
-  jobType: string;
+  djobId: number;
+  djobTypeId: string;
   name: string;
   price: number;
   shipDate: string;
@@ -37,10 +38,14 @@ export default function DProductsForm({ id }: DProductsFormProps) {
     return DProduct.find(id).then((res) => res.data.dup());
   }, { cacheTime: 0, enabled: !!id, staleTime: ONE_DAY });
 
+  const { data: djobTypes } = useQuery('djobTypesForForm', () => (
+    DjobType.per(100).order('jobType').all().then((res) => res.data)
+  ));
+
   const onSubmit = async (formData: FormData) => {
     const formattedValues = {
+      djobId: parseInt(formData.djobId.toString(), 10),
       jobDate: formattedDate(formData.jobDate, 'server') || null,
-      jobId: parseInt(formData.jobId.toString(), 10),
       price: formData.price || null,
       shipDate: formattedDate(formData.shipDate, 'server') || null,
       shippedBy: formattedDate(formData.shippedBy, 'server') || null,
@@ -51,8 +56,8 @@ export default function DProductsForm({ id }: DProductsFormProps) {
     const success = await dProduct.save();
 
     if (success) {
-      toast('Successfully saved.', { type: 'success' });
-      navigate(routes.admin.products.home());
+      toast('Successfully saved.', { autoClose: 500, type: 'success' });
+      setTimeout(() => navigate(routes.admin.products.home()), 1000);
     }
     else {
       console.log(dProduct.errors);
@@ -66,8 +71,8 @@ export default function DProductsForm({ id }: DProductsFormProps) {
     description,
     destination,
     jobDate,
-    jobId,
-    jobType,
+    djobId,
+    djobTypeId,
     name,
     price,
     shipDate,
@@ -82,9 +87,9 @@ export default function DProductsForm({ id }: DProductsFormProps) {
         category,
         description,
         destination,
+        djobId,
+        djobTypeId,
         jobDate,
-        jobId,
-        jobType,
         name,
         price,
         shipDate,
@@ -98,8 +103,14 @@ export default function DProductsForm({ id }: DProductsFormProps) {
         collapsible
         title="Job Information"
       >
-        <Input label="Job ID" name="jobId" type="number" />
-        <Input label="Job Type" name="jobType" />
+        <Input label="Job ID" name="djobId" type="number" />
+        <Input.Select
+          label="Job Type"
+          name="djobTypeId"
+          options={djobTypes?.map((djobType) => ({
+            label: djobType.jobType, value: djobType.id
+          }))}
+        />
         <Input.Date label="Job Date" name="jobDate" />
       </Form.Section>
       <Form.Section

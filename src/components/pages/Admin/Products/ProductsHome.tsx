@@ -20,6 +20,7 @@ export default function ProductsHome() {
 
   const { error, data } = useQuery(['productsData', searchParams.get('category')], () => (
     DProduct
+      .includes('djobType')
       .order({ createdAt: 'desc' })
       .where({ category: searchParams.get('category') })
       .all()
@@ -70,6 +71,7 @@ export default function ProductsHome() {
             <th className="border border-gray-200 p-2">Description</th>
             <th className="border border-gray-200 p-2">Price</th>
             <th className="border border-gray-200 p-2">Category</th>
+            <th className="border border-gray-200 p-2">Job Type</th>
             <th className="border border-gray-200 p-2">Destination</th>
             <th className="border border-gray-200 p-2">Ship Date</th>
             {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
@@ -77,10 +79,10 @@ export default function ProductsHome() {
           </tr>
         </thead>
         <tbody>
-          {data?.map(({ id, jobId, name, description, price, category, destination, shipDate }) => (
+          {data?.map(({ id, djobId, djobType, name, description, price, category, destination, shipDate }) => (
             <tr key={id}>
               <td className="text-center p-2 border">
-                {jobId}
+                {djobId}
               </td>
               <td className="text-center p-2 border">
                 {name}
@@ -93,6 +95,9 @@ export default function ProductsHome() {
               </td>
               <td className="text-center p-2 border">
                 {category.split('_').map((substring) => capitalize(substring)).join(' ')}
+              </td>
+              <td className="text-center p-2 border">
+                {djobType.jobType}
               </td>
               <td className="text-center p-2 border">
                 {destination.split('_').map((substring) => capitalize(substring)).join(' ')}
