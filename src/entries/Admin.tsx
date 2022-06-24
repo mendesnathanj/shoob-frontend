@@ -13,10 +13,13 @@ import routes from '../components/routes';
 const queryClient = new QueryClient();
 
 export default function Admin() {
+  const isAdminSubdomain = window.location.hostname.split('.').includes('admin');
+  const basename = isAdminSubdomain ? '' : 'admin';
+
   return (
     <QueryClientProvider client={queryClient}>
       <ToastContainer theme="light" />
-      <Router basename="admin">
+      <Router basename={basename}>
         <Routes>
           <Route path="/">
             <Route index element={<Home />} />
