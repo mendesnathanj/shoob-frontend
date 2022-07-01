@@ -43,13 +43,7 @@ export default function DProductsForm({ id }: DProductsFormProps) {
   ));
 
   const onSubmit = async (formData: FormData) => {
-    const formattedValues = {
-      djobId: parseInt(formData.djobId.toString(), 10),
-      jobDate: formattedDate(formData.jobDate, 'server') || null,
-      price: formData.price || null,
-      shipDate: formattedDate(formData.shipDate, 'server') || null,
-      shippedBy: formattedDate(formData.shippedBy, 'server') || null,
-    };
+    const formattedValues = { price: formData.price || null };
 
     Object.assign(dProduct.attributes, formData, formattedValues);
 
@@ -70,14 +64,9 @@ export default function DProductsForm({ id }: DProductsFormProps) {
     category,
     description,
     destination,
-    jobDate,
-    djobId,
     djobTypeId,
     name,
     price,
-    shipDate,
-    shippedBy,
-    shippedVia,
   } = dProduct;
 
   return (
@@ -87,14 +76,9 @@ export default function DProductsForm({ id }: DProductsFormProps) {
         category,
         description,
         destination,
-        djobId,
         djobTypeId,
-        jobDate,
         name,
         price,
-        shipDate,
-        shippedBy,
-        shippedVia,
       }}
       onSubmit={(onSubmit as () => any)}
     >
@@ -103,7 +87,6 @@ export default function DProductsForm({ id }: DProductsFormProps) {
         collapsible
         title="Job Information"
       >
-        <Input label="Job ID" name="djobId" type="number" />
         <Input.Select
           label="Job Type"
           name="djobTypeId"
@@ -111,7 +94,6 @@ export default function DProductsForm({ id }: DProductsFormProps) {
             label: djobType.jobType, value: djobType.id
           }))}
         />
-        <Input.Date label="Job Date" name="jobDate" />
       </Form.Section>
       <Form.Section
         collapsible
@@ -137,15 +119,6 @@ export default function DProductsForm({ id }: DProductsFormProps) {
           label="Description"
           name="description"
         />
-      </Form.Section>
-      <Form.Section
-        collapsible
-        contentClass="grid grid-cols-2 gap-3"
-        title="Shipping Information"
-      >
-        <Input.Date label="Shipped By" name="shippedBy" />
-        <Input.Date label="Ship Date" name="shipDate" />
-        <Input label="Shipped Via" name="shippedVia" />
       </Form.Section>
       <div className="flex justify-end">
         <Button fullWidth={{ sm: true }} submit variant="primary">
