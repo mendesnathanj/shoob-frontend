@@ -21,6 +21,7 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
+    '@typescript-eslint/no-unused-vars': 2,
     'brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
     camelcase: ['error', { ignoreDestructuring: true, properties: 'never' }],
     'comma-dangle': 'off',

@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 import { DProduct } from '../../../../models/v2';
 import DjobType from '../../../../models/v2/DjobType';
 import { ONE_DAY } from '../../../../utils/constants';
-import { formattedDate } from '../../../../utils/functions';
 import routes from '../../../routes';
 import Button from '../../../ui/Button';
 import Form from '../../../ui/Form';

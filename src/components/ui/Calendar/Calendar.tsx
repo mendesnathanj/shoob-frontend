@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useLayoutEffect, useState } from 'react';
+import { forwardRef, useLayoutEffect, useState } from 'react';
 import { differenceInYears, isSameMonth, isValid, startOfMonth } from 'date-fns';
 import cn from 'classnames';
 import Header from './helpers/Header';

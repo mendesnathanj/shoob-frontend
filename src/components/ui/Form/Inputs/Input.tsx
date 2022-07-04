@@ -1,5 +1,4 @@
-import cn from 'classnames';
-import { useFormContext, RegisterOptions } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import { useNestedName } from '../utils/NestedContext';
 import Checkbox from './Checkboxes/Checkbox';
 import Checkboxes from './Checkboxes/Checkboxes';
@@ -18,7 +17,7 @@ function Input({
   const { register } = useFormContext();
   const nestedName = useNestedName({ name });
 
-  return <BaseInput {...rest} {...register(nestedName)} />;
+  return <BaseInput {...rest} {...register(nestedName, registerOptions)} />;
 }
 
 Input.Checkboxes = Checkboxes;

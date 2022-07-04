@@ -5,7 +5,6 @@ import { BaseInputProps } from './types';
 const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(({
   className,
   endIcon,
-  endIconProps = {},
   containerProps = {},
   inline = false,
   label,

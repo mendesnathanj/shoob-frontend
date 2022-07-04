@@ -8,14 +8,12 @@ type TextareaProps = React.HTMLProps<HTMLTextAreaElement> & InputProps;
 
 export default function Textarea({
   className = '',
-  cols,
   containerProps = {},
   inline = false,
   label,
   labelProps = {},
   name,
   registerOptions = {},
-  rows,
   showLabel = true,
   ...rest
 }: TextareaProps) {
