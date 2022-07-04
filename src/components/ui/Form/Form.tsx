@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { FormProvider, useForm, useWatch } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { ChildrenProps } from '../../../types';
 import AutoSave from './AutoSave';
 import Section from './Section';

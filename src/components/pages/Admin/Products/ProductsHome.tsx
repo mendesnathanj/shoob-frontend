@@ -4,7 +4,7 @@ import qs from 'query-string';
 import { useNavigate } from 'react-router';
 import { useSearchParams } from 'react-router-dom';
 import { DProduct } from '../../../../models/v2';
-import { capitalize, formattedDate } from '../../../../utils/functions';
+import { capitalize } from '../../../../utils/functions';
 import { CATEGORIES } from '../../../admin/forms/DProductsForm/utils';
 import routes from '../../../routes';
 import Button from '../../../ui/Button';

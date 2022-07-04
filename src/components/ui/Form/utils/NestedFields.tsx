@@ -2,7 +2,6 @@ import React from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { ChildrenProps } from '../../../../types';
 import Button from '../../Button';
-import Section from '../Section';
 import { NestedContextProvider, useNestedName } from './NestedContext';
 
 type NestedFieldsProps = {
@@ -25,7 +24,7 @@ export default function NestedFields({ addText = 'Add Item', children, newItemDe
           </NestedContextProvider>
         </React.Fragment>
       ))}
-      <Button onClick={() => append(newItemDefaults)}>a</Button>
+      <Button onClick={() => append(newItemDefaults)}>{addText}</Button>
     </>
   );
 }
