@@ -10,7 +10,6 @@ type LinkProps = {
 const Link = forwardRef<HTMLAnchorElement, LinkProps>((
   {
     children,
-    disabled,
     external = false,
     to,
     ...props
