@@ -1,5 +1,11 @@
+import ContactInformation from './ContactInformation';
+import DjobType from './DjobType';
 import DProduct from './DProduct';
+import YearbookAdminJob from './YearbookAdminJob';
 
 export {
-  DProduct
+  ContactInformation,
+  DProduct,
+  DjobType,
+  YearbookAdminJob,
 };
