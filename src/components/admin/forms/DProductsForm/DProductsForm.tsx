@@ -9,7 +9,7 @@ import routes from '../../../routes';
 import Button from '../../../ui/Button';
 import Form from '../../../ui/Form';
 import Input from '../../../ui/Form/Inputs';
-import { CATEGORIES, DESTINATIONS } from './utils';
+import { CATEGORIES, DESTINATIONS, SCHEMA } from './utils';
 
 type FormData = {
   category: string;
@@ -43,19 +43,22 @@ export default function DProductsForm({ id }: DProductsFormProps) {
   ));
 
   const onSubmit = async (formData: FormData) => {
+    console.log({ formData });
+    console.log(SCHEMA.cast(formData));
     const formattedValues = { price: formData.price || null };
 
     Object.assign(dProduct.attributes, formData, formattedValues);
 
-    const success = await dProduct.save();
+    // return;
+    // const success = await dProduct.save();
 
-    if (success) {
-      toast('Successfully saved.', { autoClose: 500, type: 'success' });
-      setTimeout(() => navigate(routes.admin.products.home()), 1000);
-    }
-    else {
-      console.log(dProduct.errors);
-    }
+    // if (success) {
+    //   toast('Successfully saved.', { autoClose: 500, type: 'success' });
+    //   setTimeout(() => navigate(routes.admin.products.home()), 1000);
+    // }
+    // else {
+    //   console.log(dProduct.errors);
+    // }
   };
 
   const dProduct = data || new DProduct();
@@ -81,6 +84,7 @@ export default function DProductsForm({ id }: DProductsFormProps) {
         price,
       }}
       onSubmit={(onSubmit as () => any)}
+      schema={SCHEMA}
     >
       <Form.Section
         contentClass="grid grid-cols-2 gap-3"
@@ -101,7 +105,7 @@ export default function DProductsForm({ id }: DProductsFormProps) {
         title="Product Information"
       >
         <Input label="Name" name="name" />
-        <Input label="Price" name="price" step="0.01" min="0.01" type="number" />
+        <Input label="Price" name="price" step="0.01" min="0" type="number" />
         <Input.Select
           label="Category"
           name="category"

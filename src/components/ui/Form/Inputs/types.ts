@@ -6,6 +6,7 @@ export type BaseInputProps = {
   containerProps?: React.HTMLProps<HTMLDivElement>;
   endIcon?: React.ReactElement;
   endIconProps?: React.HTMLProps<HTMLButtonElement>;
+  errors?: string;
   inline?: boolean;
   name: string;
   label: string;

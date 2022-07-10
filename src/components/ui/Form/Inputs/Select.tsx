@@ -32,7 +32,7 @@ export default function Select({
   showLabel = true,
   ...rest
 }: SelectProps) {
-  const { control } = useFormContext();
+  const { control, formState: { errors } } = useFormContext();
   const nestedName = useNestedName({ name });
 
   const containerClass = inline ? 'flex gap-3 items-center' : '';
@@ -80,6 +80,7 @@ export default function Select({
             {...reactSelectProps}
             {...rest}
           />
+          {errors && <span>{errors[nestedName]?.message}</span>}
         </div>
       )}
     />

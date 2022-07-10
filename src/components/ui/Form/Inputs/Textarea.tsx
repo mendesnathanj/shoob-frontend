@@ -19,7 +19,7 @@ export default function Textarea({
   showLabel = true,
   ...rest
 }: TextareaProps) {
-  const { register } = useFormContext();
+  const { register, formState: { errors } } = useFormContext();
   const nestedName = useNestedName({ name });
 
   const containerClass = inline ? 'flex gap-3' : '';
@@ -53,6 +53,7 @@ export default function Textarea({
           {...register(nestedName, registerOptions)}
         />
       </div>
+      {errors && <span>{errors[nestedName]?.message}</span>}
     </div>
   );
 }

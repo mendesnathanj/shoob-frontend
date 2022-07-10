@@ -6,6 +6,7 @@ const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(({
   className,
   endIcon,
   endIconProps = {},
+  errors,
   containerProps = {},
   inline = false,
   label,
@@ -53,6 +54,7 @@ const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(({
           </span>
         )}
       </div>
+      {errors && <span>{errors}</span>}
     </div>
   );
 });
