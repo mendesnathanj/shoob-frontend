@@ -53,7 +53,7 @@ specifiers:
   react: ^18.0.0
   react-collapsible: ^2.8.4
   react-dom: ^18.0.0
-  react-hook-form: ^7.30.0
+  react-hook-form: ^7.33.1
   react-input-mask: 3.0.0-alpha.2
   react-merge-refs: ^1.1.0
   react-query: ^3.39.1
@@ -79,7 +79,7 @@ dependencies:
   '@fortawesome/free-regular-svg-icons': 6.1.1
   '@fortawesome/free-solid-svg-icons': 6.1.1
   '@fortawesome/react-fontawesome': 0.1.18_hjfkmtq3pe7bdfmd7inrupgslm
-  '@hookform/resolvers': 2.9.5_react-hook-form@7.31.1
+  '@hookform/resolvers': 2.9.5_react-hook-form@7.33.1
   '@rollup/plugin-inject': 4.0.4
   '@tailwindcss/forms': 0.5.2_tailwindcss@3.0.24
   '@types/react': 18.0.12
@@ -98,7 +98,7 @@ dependencies:
   react: 18.1.0
   react-collapsible: 2.8.4_ef5jwxihqo6n7gxfmzogljlgcm
   react-dom: 18.1.0_react@18.1.0
-  react-hook-form: 7.31.1_react@18.1.0
+  react-hook-form: 7.33.1_react@18.1.0
   react-input-mask: 3.0.0-alpha.2_ef5jwxihqo6n7gxfmzogljlgcm
   react-merge-refs: 1.1.0
   react-query: 3.39.1_ef5jwxihqo6n7gxfmzogljlgcm
@@ -3247,12 +3247,12 @@ packages:
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
     dev: true
 
-  /@hookform/resolvers/2.9.5_react-hook-form@7.31.1:
+  /@hookform/resolvers/2.9.5_react-hook-form@7.33.1:
     resolution: {integrity: sha512-4XABrKdE4GpX6v2RZ+Ij1Wrl9qPEl5ZvVhFxROY+SZhP/6TU8gPw0LO4ZS9/GgIbTx3Pw1U8HmcXVAoGOq+7iA==}
     peerDependencies:
       react-hook-form: ^7.0.0
     dependencies:
-      react-hook-form: 7.31.1_react@18.1.0
+      react-hook-form: 7.33.1_react@18.1.0
     dev: false
 
   /@humanwhocodes/config-array/0.5.0:
@@ -7031,7 +7031,7 @@ packages:
       mississippi: 3.0.0
       mkdirp: 0.5.6
       move-concurrently: 1.0.1
-      promise-inflight: 1.0.1_bluebird@3.7.2
+      promise-inflight: 1.0.1
       rimraf: 2.7.1
       ssri: 6.0.2
       unique-filename: 1.1.1
@@ -12596,17 +12596,6 @@ packages:
         optional: true
     dev: true
 
-  /promise-inflight/1.0.1_bluebird@3.7.2:
-    resolution: {integrity: sha1-mEcocL8igTL8vdhoEputEsPAKeM=}
-    peerDependencies:
-      bluebird: '*'
-    peerDependenciesMeta:
-      bluebird:
-        optional: true
-    dependencies:
-      bluebird: 3.7.2
-    dev: true
-
   /promise.allsettled/1.0.5:
     resolution: {integrity: sha512-tVDqeZPoBC0SlzJHzWGZ2NKAguVq2oiYj7gbggbiTvH2itHohijTp7njOUA0aQ/nl+0lr/r6egmhoYu63UZ/pQ==}
     engines: {node: '>= 0.4'}
@@ -12919,8 +12908,8 @@ packages:
       react-is: 17.0.2
     dev: true
 
-  /react-hook-form/7.31.1_react@18.1.0:
-    resolution: {integrity: sha512-QjtjZ8r8KtEBWWpcXLyQordCraTFxILtyQpaz5KLLxN2YzcC+FZ9LLtOnNGuOnzZo9gCoB+viK3ZHV9Mb2htmQ==}
+  /react-hook-form/7.33.1_react@18.1.0:
+    resolution: {integrity: sha512-ydTfTxEJdvgjCZBj5DDXRc58oTEfnFupEwwTAQ9FSKzykEJkX+3CiAkGtAMiZG7IPWHuzgT6AOBfogiKhUvKgg==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
