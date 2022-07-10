@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form';
 import cn from 'classnames';
 import { useNestedName } from '../utils/NestedContext';
 import { InputProps } from './types';
-import ErrorMessage from './ErrorMessage';
+import { ErrorMessage, Label } from './helpers';
 
 type TextareaProps = React.HTMLProps<HTMLTextAreaElement> & InputProps;
 
@@ -27,19 +27,14 @@ export default function Textarea({
 
   return (
     <div {...containerProps} className={cn(containerClass, containerProps.className)}>
-      <label
-        htmlFor={nestedName}
+      <Label
+        name={name}
+        hasError={!!errors[nestedName]}
+        showLabel={showLabel}
         {...labelProps}
-        className={cn(
-          { hidden: !showLabel },
-          'inline-block',
-          'mb-1',
-          'min-w-min',
-          labelProps.className,
-        )}
       >
         {label}
-      </label>
+      </Label>
       <div className="relative">
         <textarea
           {...rest}

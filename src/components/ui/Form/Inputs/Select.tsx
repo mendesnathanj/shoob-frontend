@@ -5,7 +5,7 @@ import ReactSelect from 'react-select';
 import { StateManagerProps } from 'react-select/dist/declarations/src/useStateManager';
 import { useNestedName } from '../utils/NestedContext';
 import { InputProps } from './types';
-import ErrorMessage from './ErrorMessage';
+import { ErrorMessage, Label } from './helpers';
 
 type OptionType = {
   label: string;
@@ -34,8 +34,8 @@ export default function Select({
   const nestedName = useNestedName({ name });
 
   const customStyles = useMemo(() => ({
-    control: (provided: object) => {
-      const errorStyles = errors[nestedName] ? { borderColor: 'rgb(248 113 113)' } : {};
+    control: (provided: object, state: any) => {
+      const errorStyles = errors[nestedName] && !state.isFocused ? { borderColor: 'rgb(248 113 113)' } : {};
 
       return {
         ...provided,
@@ -53,20 +53,14 @@ export default function Select({
       name={nestedName}
       render={({ field: { onChange, onBlur, value, ref } }) => (
         <div {...containerProps} className={cn(containerClass, containerProps.className)}>
-          <label
-            htmlFor={nestedName}
+          <Label
+            name={name}
+            hasError={!!errors[nestedName]}
+            showLabel={showLabel}
             {...labelProps}
-            className={cn(
-              { hidden: !showLabel },
-              'inline-block',
-              'mb-1',
-              'min-w-min',
-              { 'text-red-500': errors[nestedName] },
-              labelProps.className,
-            )}
           >
             {label}
-          </label>
+          </Label>
           <ReactSelect
             className={cn(
               inline ? 'flex-1' : 'min-w-full',
