@@ -1,13 +1,11 @@
+import { useMemo } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import cn from 'classnames';
 import ReactSelect from 'react-select';
 import { StateManagerProps } from 'react-select/dist/declarations/src/useStateManager';
 import { useNestedName } from '../utils/NestedContext';
 import { InputProps } from './types';
-
-const customStyles = {
-  control: (provided: object) => ({ ...provided, height: 44 }),
-};
+import ErrorMessage from './ErrorMessage';
 
 type OptionType = {
   label: string;
@@ -35,6 +33,18 @@ export default function Select({
   const { control, formState: { errors } } = useFormContext();
   const nestedName = useNestedName({ name });
 
+  const customStyles = useMemo(() => ({
+    control: (provided: object) => {
+      const errorStyles = errors[nestedName] ? { borderColor: 'rgb(248 113 113)' } : {};
+
+      return {
+        ...provided,
+        height: 44,
+        ...errorStyles
+      };
+    },
+  }), [errors[nestedName]?.message]);
+
   const containerClass = inline ? 'flex gap-3 items-center' : '';
 
   return (
@@ -51,6 +61,7 @@ export default function Select({
               'inline-block',
               'mb-1',
               'min-w-min',
+              { 'text-red-500': errors[nestedName] },
               labelProps.className,
             )}
           >
@@ -80,7 +91,7 @@ export default function Select({
             {...reactSelectProps}
             {...rest}
           />
-          {errors && <span>{errors[nestedName]?.message}</span>}
+          {errors[nestedName] && <ErrorMessage message={errors[nestedName].message} />}
         </div>
       )}
     />

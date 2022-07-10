@@ -3,6 +3,7 @@ import { useFormContext } from 'react-hook-form';
 import cn from 'classnames';
 import { useNestedName } from '../utils/NestedContext';
 import { InputProps } from './types';
+import ErrorMessage from './ErrorMessage';
 
 type TextareaProps = React.HTMLProps<HTMLTextAreaElement> & InputProps;
 
@@ -47,13 +48,14 @@ export default function Textarea({
             `inline-block rounded border-gray-400 text-gray-600
             placeholder:opacity-70 placeholder:italic caret-shoob-300
           focus:border-shoob-300 focus:ring-shoob-300`,
+            { 'border-red-400': errors[nestedName] },
             className,
           )}
           id={nestedName}
           {...register(nestedName, registerOptions)}
         />
       </div>
-      {errors && <span>{errors[nestedName]?.message}</span>}
+      {errors[nestedName] && <ErrorMessage message={errors[nestedName].message} />}
     </div>
   );
 }

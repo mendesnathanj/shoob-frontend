@@ -43,22 +43,17 @@ export default function DProductsForm({ id }: DProductsFormProps) {
   ));
 
   const onSubmit = async (formData: FormData) => {
-    console.log({ formData });
-    console.log(SCHEMA.cast(formData));
-    const formattedValues = { price: formData.price || null };
+    Object.assign(dProduct.attributes, SCHEMA.cast(formData));
 
-    Object.assign(dProduct.attributes, formData, formattedValues);
+    const success = await dProduct.save();
 
-    // return;
-    // const success = await dProduct.save();
-
-    // if (success) {
-    //   toast('Successfully saved.', { autoClose: 500, type: 'success' });
-    //   setTimeout(() => navigate(routes.admin.products.home()), 1000);
-    // }
-    // else {
-    //   console.log(dProduct.errors);
-    // }
+    if (success) {
+      toast('Successfully saved.', { autoClose: 500, type: 'success' });
+      setTimeout(() => navigate(routes.admin.products.home()), 1000);
+    }
+    else {
+      console.log(dProduct.errors);
+    }
   };
 
   const dProduct = data || new DProduct();
