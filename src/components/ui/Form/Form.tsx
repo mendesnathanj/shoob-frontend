@@ -11,7 +11,7 @@ import Section from './Section';
 import NestedFields from './utils/NestedFields';
 
 export type FormProps = {
-  autoSave?: boolean;
+  autoSave?: boolean | { delay: number };
   defaultValues?: object;
   onSubmit: (values: object) => any;
   schema?: RequiredObjectSchema<{}, AnyObject, TypeOfShape<any>>;
@@ -48,7 +48,7 @@ function Form({
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)} {...rest}>
-        {autoSave && <AutoSave onSubmit={onSubmit} />}
+        {autoSave && <AutoSave delay={typeof autoSave === 'object' ? autoSave.delay : 0} onSubmit={onSubmit} />}
         {children}
       </form>
     </FormProvider>

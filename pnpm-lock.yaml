@@ -22,11 +22,13 @@ specifiers:
   '@storybook/react': ^6.5.9
   '@storybook/testing-library': ^0.0.9
   '@tailwindcss/forms': ^0.5.0
+  '@types/debounce': ^1.2.1
   '@types/node': ^17.0.23
   '@types/react': ^18.0.12
   '@types/react-color': ^3.0.6
   '@types/react-dom': ^18.0.5
   '@types/react-input-mask': ^3.0.1
+  '@types/use-deep-compare-effect': ^1.5.1
   '@types/yup': ^0.29.14
   '@typescript-eslint/eslint-plugin': ^5.16.0
   '@typescript-eslint/parser': ^5.16.0
@@ -39,6 +41,7 @@ specifiers:
   css-loader: ^6.7.1
   currency.js: ^2.0.4
   date-fns: ^2.28.0
+  debounce: ^1.2.1
   eslint: ^7.32.0
   eslint-config-airbnb: ^19.0.4
   eslint-plugin-import: ^2.25.4
@@ -68,6 +71,7 @@ specifiers:
   style-loader: ^3.3.1
   tailwindcss: ^3.0.23
   typescript: ^4.5.4
+  use-deep-compare-effect: ^1.8.1
   vite: ^2.9.1
   vite-plugin-eslint: ^1.4.0
   yup: ^0.32.11
@@ -85,12 +89,14 @@ dependencies:
   '@types/react': 18.0.12
   '@types/react-color': 3.0.6
   '@types/react-dom': 18.0.5
+  '@types/use-deep-compare-effect': 1.5.1_react@18.1.0
   '@vitejs/plugin-react': 1.3.2
   classnames: 2.3.1
   compression: 1.7.4
   cross-env: 7.0.3
   currency.js: 2.0.4
   date-fns: 2.28.0
+  debounce: 1.2.1
   express: 4.18.1
   framer-motion: 6.3.3_ef5jwxihqo6n7gxfmzogljlgcm
   isomorphic-fetch: 3.0.0
@@ -108,6 +114,7 @@ dependencies:
   react-toastify: 9.0.4_ef5jwxihqo6n7gxfmzogljlgcm
   spraypaint: 0.10.24
   tailwindcss: 3.0.24
+  use-deep-compare-effect: 1.8.1_react@18.1.0
   vite: 2.9.9_sass@1.51.0
   vite-plugin-eslint: 1.6.1_eslint@7.32.0+vite@2.9.9
   yup: 0.32.11
@@ -125,6 +132,7 @@ devDependencies:
   '@storybook/preset-scss': 1.0.3_iwaq43gxt3okio4s4snidroe3i
   '@storybook/react': 6.5.9_ruvd7gjlmgnz6mduqntkmqpqlu
   '@storybook/testing-library': 0.0.9_ef5jwxihqo6n7gxfmzogljlgcm
+  '@types/debounce': 1.2.1
   '@types/node': 17.0.35
   '@types/react-input-mask': 3.0.1
   '@types/yup': 0.29.14
@@ -5398,6 +5406,10 @@ packages:
     resolution: {integrity: sha512-HnYpAE1Y6kRyKM/XkEuiRQhTHvkzMBurTHnpFLYLBGPIylZNPs9jJcuOOYWxPLJCSEtmZT0Y8rHDokKN7rRTig==}
     dev: true
 
+  /@types/debounce/1.2.1:
+    resolution: {integrity: sha512-epMsEE85fi4lfmJUH/89/iV/LI+F5CvNIvmgs5g5jYFPfhO2S/ae8WSsLOKWdwtoaZw9Q2IhJ4tQ5tFCcS/4HA==}
+    dev: true
+
   /@types/eslint-scope/3.7.3:
     resolution: {integrity: sha512-PB3ldyrcnAicT35TWPs5IcwKD8S333HMaa2VVv4+wdvebJkjWuW/xESoB8IwRcog8HYVYamb1g/R31Qv5Bx03g==}
     dependencies:
@@ -5610,6 +5622,15 @@ packages:
   /@types/unist/2.0.6:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
     dev: true
+
+  /@types/use-deep-compare-effect/1.5.1_react@18.1.0:
+    resolution: {integrity: sha512-IpPu2lOV4HWjuzncETLsPpeYKJEOfYHbx6Bn7leBwp5X+a8TBmd4jIBcMQJ5F+WXz/lYkeKphmB4uUij3W4Gdg==}
+    deprecated: This is a stub types definition. use-deep-compare-effect provides its own type definitions, so you do not need this installed.
+    dependencies:
+      use-deep-compare-effect: 1.8.1_react@18.1.0
+    transitivePeerDependencies:
+      - react
+    dev: false
 
   /@types/webpack-env/1.17.0:
     resolution: {integrity: sha512-eHSaNYEyxRA5IAG0Ym/yCyf86niZUIF/TpWKofQI/CVfh5HsMEUyfE2kwFxha4ow0s5g0LfISQxpDKjbRDrizw==}
@@ -7741,6 +7762,10 @@ packages:
     engines: {node: '>=0.11'}
     dev: false
 
+  /debounce/1.2.1:
+    resolution: {integrity: sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==}
+    dev: false
+
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
     peerDependencies:
@@ -7875,6 +7900,11 @@ packages:
   /depd/2.0.0:
     resolution: {integrity: sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw==}
     engines: {node: '>= 0.8'}
+
+  /dequal/2.0.3:
+    resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
+    engines: {node: '>=6'}
+    dev: false
 
   /des.js/1.0.1:
     resolution: {integrity: sha512-Q0I4pfFrv2VPd34/vfLrFOoRmlYj3OV50i7fskps1jZWK1kApMWWT9G6RRUeYedLcBDIhnSDaUvJMb3AhUlaEA==}
@@ -14887,6 +14917,17 @@ packages:
       punycode: 1.3.2
       querystring: 0.2.0
     dev: true
+
+  /use-deep-compare-effect/1.8.1_react@18.1.0:
+    resolution: {integrity: sha512-kbeNVZ9Zkc0RFGpfMN3MNfaKNvcLNyxOAAd9O4CBZ+kCBXXscn9s/4I+8ytUER4RDpEYs5+O6Rs4PqiZ+rHr5Q==}
+    engines: {node: '>=10', npm: '>=6'}
+    peerDependencies:
+      react: '>=16.13'
+    dependencies:
+      '@babel/runtime': 7.18.0
+      dequal: 2.0.3
+      react: 18.1.0
+    dev: false
 
   /use-isomorphic-layout-effect/1.1.2_cbpnieqasrszcwkqeh5i7z7nse:
     resolution: {integrity: sha512-49L8yCO3iGT/ZF9QttjwLF/ZD9Iwto5LnH5LmEdk/6cFmXddqi2ulF0edxTwjj+7mqvpVVGQWvbXZdn32wRSHA==}
