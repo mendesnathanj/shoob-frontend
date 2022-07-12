@@ -22,6 +22,7 @@ specifiers:
   '@storybook/react': ^6.5.9
   '@storybook/testing-library': ^0.0.9
   '@tailwindcss/forms': ^0.5.0
+  '@tanstack/react-table': ^8.2.4
   '@types/debounce': ^1.2.1
   '@types/node': ^17.0.23
   '@types/react': ^18.0.12
@@ -86,6 +87,7 @@ dependencies:
   '@hookform/resolvers': 2.9.5_react-hook-form@7.33.1
   '@rollup/plugin-inject': 4.0.4
   '@tailwindcss/forms': 0.5.2_tailwindcss@3.0.24
+  '@tanstack/react-table': 8.2.4_ef5jwxihqo6n7gxfmzogljlgcm
   '@types/react': 18.0.12
   '@types/react-color': 3.0.6
   '@types/react-dom': 18.0.5
@@ -5376,6 +5378,23 @@ packages:
     dependencies:
       mini-svg-data-uri: 1.4.4
       tailwindcss: 3.0.24
+    dev: false
+
+  /@tanstack/react-table/8.2.4_ef5jwxihqo6n7gxfmzogljlgcm:
+    resolution: {integrity: sha512-u+3XqujBRMAZrtwZSzzFEAyG6H2JoaEJI+88OKurGCelalz7KE3evY+HgAsUjvaolLlk2OI/E6Cg/jSY0CXmYA==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+    dependencies:
+      '@tanstack/table-core': 8.2.4
+      react: 18.1.0
+      react-dom: 18.1.0_react@18.1.0
+    dev: false
+
+  /@tanstack/table-core/8.2.4:
+    resolution: {integrity: sha512-G7fGSh4p9BrcNGrXirWuNwI3nZVIFlLdMS1nytiE5EVBr2Yjvt0LE2t5ke9+LeIMjGVe1HqT9zrGa2ZtDOe1zQ==}
+    engines: {node: '>=12'}
     dev: false
 
   /@testing-library/dom/8.13.0:
