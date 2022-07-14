@@ -9,7 +9,6 @@ export default function Home() {
       <Link external to={routes.customer.home()}>Home</Link>
       <Link to={routes.admin.yearbookJobs()}>Yearbook Jobs</Link>
       <Link to={routes.admin.products.home()}>Products Page</Link>
-      <Table />
     </Page>
   );
 }
