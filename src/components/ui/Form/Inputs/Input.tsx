@@ -11,7 +11,6 @@ import { InputProps } from './types';
 
 function Input({
   name,
-  registerOptions = {},
   ...rest
 }: InputProps) {
   const { register, formState: { errors } } = useFormContext();

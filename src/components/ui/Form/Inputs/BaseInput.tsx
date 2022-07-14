@@ -6,7 +6,6 @@ import { ErrorMessage, Label } from './helpers';
 const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(({
   className,
   endIcon,
-  endIconProps = {},
   errors,
   containerProps = {},
   inline = false,
