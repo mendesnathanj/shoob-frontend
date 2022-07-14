@@ -14,10 +14,14 @@ function Input({
   registerOptions = {},
   ...rest
 }: InputProps) {
-  const { register } = useFormContext();
+  const { register, formState: { errors } } = useFormContext();
   const nestedName = useNestedName({ name });
 
-  return <BaseInput {...rest} {...register(nestedName, registerOptions)} />;
+  return (
+    <div>
+      <BaseInput {...rest} errors={errors[nestedName]?.message} {...register(nestedName)} />
+    </div>
+  );
 }
 
 Input.Checkboxes = Checkboxes;

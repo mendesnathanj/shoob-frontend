@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
@@ -8,7 +9,7 @@ import routes from '../../../routes';
 import Button from '../../../ui/Button';
 import Form from '../../../ui/Form';
 import Input from '../../../ui/Form/Inputs';
-import { CATEGORIES, DESTINATIONS } from './utils';
+import { CATEGORIES, DESTINATIONS, SCHEMA } from './utils';
 
 type FormData = {
   category: string;
@@ -29,9 +30,10 @@ type DProductsFormProps = {
 };
 
 export default function DProductsForm({ id }: DProductsFormProps) {
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-  const { data } = useQuery(`dProductForForm-${id || 'new'}`, () => {
+  const { data: dProduct } = useQuery(`dProductForForm-${id || 'new'}`, () => {
     if (!id) return new DProduct();
 
     return DProduct.find(id).then((res) => res.data.dup());
@@ -42,9 +44,11 @@ export default function DProductsForm({ id }: DProductsFormProps) {
   ));
 
   const onSubmit = async (formData: FormData) => {
-    const formattedValues = { price: formData.price || null };
+    if (!dProduct) return;
 
-    Object.assign(dProduct.attributes, formData, formattedValues);
+    setErrors({});
+
+    Object.assign(dProduct.attributes, SCHEMA.cast(formData));
 
     const success = await dProduct.save();
 
@@ -53,11 +57,12 @@ export default function DProductsForm({ id }: DProductsFormProps) {
       setTimeout(() => navigate(routes.admin.products.home()), 1000);
     }
     else {
-      console.log(dProduct.errors);
+      toast('Error with form submission', { autoClose: 1500, type: 'error' });
+      setErrors(dProduct.errors);
     }
   };
 
-  const dProduct = data || new DProduct();
+  if (!dProduct) return null;
 
   const {
     category,
@@ -80,6 +85,8 @@ export default function DProductsForm({ id }: DProductsFormProps) {
         price,
       }}
       onSubmit={(onSubmit as () => any)}
+      schema={SCHEMA}
+      serverErrors={errors}
     >
       <Form.Section
         contentClass="grid grid-cols-2 gap-3"
@@ -100,7 +107,7 @@ export default function DProductsForm({ id }: DProductsFormProps) {
         title="Product Information"
       >
         <Input label="Name" name="name" />
-        <Input label="Price" name="price" step="0.01" min="0.01" type="number" />
+        <Input label="Price" name="price" step="0.01" min="0" type="number" />
         <Input.Select
           label="Category"
           name="category"
