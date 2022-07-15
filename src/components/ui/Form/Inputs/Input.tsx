@@ -17,9 +17,7 @@ function Input({
   const nestedName = useNestedName({ name });
 
   return (
-    <div>
-      <BaseInput {...rest} errors={errors[nestedName]?.message} {...register(nestedName)} />
-    </div>
+    <BaseInput {...rest} errors={errors[nestedName]?.message} {...register(nestedName)} />
   );
 }
 

@@ -37,7 +37,7 @@ export default function DProductsForm({ id }: DProductsFormProps) {
     if (!id) return new DProduct();
 
     return DProduct.find(id).then((res) => res.data.dup());
-  }, { cacheTime: 0, enabled: !!id, staleTime: ONE_DAY });
+  }, { cacheTime: 0, staleTime: ONE_DAY });
 
   const { data: djobTypes } = useQuery('djobTypesForForm', () => (
     DjobType.per(100).order('jobType').all().then((res) => res.data)
