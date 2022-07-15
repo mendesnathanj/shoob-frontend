@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <Page>
       <Link external to={routes.customer.home()}>Home</Link>
-      <Link to={routes.admin.yearbookJobs()}>Yearbook Jobs</Link>
+      <Link to={routes.admin.yearbookAdminJobs.home()}>Yearbook Jobs</Link>
       <Link to={routes.admin.products.home()}>Products Page</Link>
     </Page>
   );
