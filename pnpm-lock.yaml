@@ -53,6 +53,7 @@ specifiers:
   express: ^4.18.1
   framer-motion: ^6.3.1
   isomorphic-fetch: ^3.0.0
+  lodash: ^4.17.21
   postcss: ^8.4.12
   query-string: ^7.1.1
   react: ^18.0.0
@@ -102,6 +103,7 @@ dependencies:
   express: 4.18.1
   framer-motion: 6.3.3_ef5jwxihqo6n7gxfmzogljlgcm
   isomorphic-fetch: 3.0.0
+  lodash: 4.17.21
   query-string: 7.1.1
   react: 18.1.0
   react-collapsible: 2.8.4_ef5jwxihqo6n7gxfmzogljlgcm
@@ -304,19 +306,6 @@ packages:
       '@babel/helper-validator-option': 7.16.7
       browserslist: 4.20.3
       semver: 6.3.0
-
-  /@babel/helper-compilation-targets/7.18.2_@babel+core@7.18.0:
-    resolution: {integrity: sha512-s1jnPotJS9uQnzFtiZVBUxe67CuBa679oWFHpxYYnTpRL/1ffhyX44R9uYiXoa/pLXcY9H2moJta0iaanlk/rQ==}
-    engines: {node: '>=6.9.0'}
-    peerDependencies:
-      '@babel/core': ^7.0.0
-    dependencies:
-      '@babel/compat-data': 7.18.5
-      '@babel/core': 7.18.0
-      '@babel/helper-validator-option': 7.16.7
-      browserslist: 4.20.4
-      semver: 6.3.0
-    dev: true
 
   /@babel/helper-compilation-targets/7.18.2_@babel+core@7.18.0:
     resolution: {integrity: sha512-s1jnPotJS9uQnzFtiZVBUxe67CuBa679oWFHpxYYnTpRL/1ffhyX44R9uYiXoa/pLXcY9H2moJta0iaanlk/rQ==}
@@ -3738,7 +3727,7 @@ packages:
       '@storybook/core-events': 6.5.3
       '@storybook/csf': 0.0.2--canary.4566f4d.1
       '@storybook/docs-tools': 6.5.3_ef5jwxihqo6n7gxfmzogljlgcm
-      '@storybook/mdx1-csf': 0.0.2-canary.5.6cee405.0_obpnotbfpw3vqhxpouazlalzou
+      '@storybook/mdx1-csf': 0.0.5-canary.13.9ce928a.0_obpnotbfpw3vqhxpouazlalzou
       '@storybook/node-logger': 6.5.3
       '@storybook/postinstall': 6.5.3
       '@storybook/preview-web': 6.5.3_ef5jwxihqo6n7gxfmzogljlgcm
@@ -4770,7 +4759,7 @@ packages:
       '@babel/traverse': 7.18.0
       '@babel/types': 7.18.0
       '@storybook/csf': 0.0.2--canary.4566f4d.1
-      '@storybook/mdx1-csf': 0.0.2-canary.5.6cee405.0_obpnotbfpw3vqhxpouazlalzou
+      '@storybook/mdx1-csf': 0.0.5-canary.13.9ce928a.0_obpnotbfpw3vqhxpouazlalzou
       core-js: 3.22.5
       fs-extra: 9.1.0
       global: 4.4.0
@@ -4935,8 +4924,8 @@ packages:
       - supports-color
     dev: true
 
-  /@storybook/mdx1-csf/0.0.2-canary.5.6cee405.0_obpnotbfpw3vqhxpouazlalzou:
-    resolution: {integrity: sha512-LRQ086H27/Ro8jQPoXb3hb0LgYokurqqFf4eDNSv/EqvzUihGrurvpiIGfTJ6JDzWZbiX1NIsqe8dx4jKpEGMw==}
+  /@storybook/mdx1-csf/0.0.5-canary.13.9ce928a.0_obpnotbfpw3vqhxpouazlalzou:
+    resolution: {integrity: sha512-K4wqrObf2Yu3djRMR5hnorTBA9VIl19qpGbna3TsJNA7WzADHKdEMXrURkZOkEN5YPTui4irfw06mo/D3+eeIg==}
     dependencies:
       '@babel/generator': 7.18.2
       '@babel/parser': 7.18.5
@@ -5435,6 +5424,7 @@ packages:
     deprecated: This is a stub types definition for date-fns (https://github.com/date-fns/date-fns). date-fns provides its own type definitions, so you don't need @types/date-fns installed!
     dependencies:
       date-fns: 2.28.0
+    dev: true
 
   /@types/debounce/1.2.1:
     resolution: {integrity: sha512-epMsEE85fi4lfmJUH/89/iV/LI+F5CvNIvmgs5g5jYFPfhO2S/ae8WSsLOKWdwtoaZw9Q2IhJ4tQ5tFCcS/4HA==}

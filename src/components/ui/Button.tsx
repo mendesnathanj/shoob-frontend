@@ -16,11 +16,11 @@ type BaseProps = {
   variant?: 'base' | 'danger' | 'primary' | 'success' | 'warning';
 } & IconProps;
 
-type ButtonProps = BaseProps & React.HTMLProps<HTMLButtonElement>;
+export type ButtonProps = BaseProps & React.HTMLProps<HTMLButtonElement>;
 
 const baseClasses = `inline-flex items-center justify-center py-0.5 px-2 whitespace-nowrap tracking-wide
 appearance-none min-w-[100px] min-h-[36px] rounded shadow-sm transition-all duration-200
-disabled:cursor-not-allowed disabled:transition-none disaabled:opacity-75 disabled:text-inherit shadow
+disabled:cursor-not-allowed disabled:transition-none disabled:opacity-75 disabled:text-inherit shadow
 `;
 
 const variantClasses = {

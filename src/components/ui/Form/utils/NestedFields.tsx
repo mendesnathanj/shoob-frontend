@@ -1,16 +1,23 @@
 import React from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
-import { ChildrenProps } from '../../../../types';
-import Button from '../../Button';
+import Button, { ButtonProps } from '../../Button';
 import { NestedContextProvider, useNestedName } from './NestedContext';
 
-type NestedFieldsProps = {
+type BaseProps = {
   addText?: string;
+  buttonProps?: ButtonProps;
   newItemDefaults: object;
   scope: string;
-} & ChildrenProps;
+}
+type NestedFieldsProps = React.PropsWithChildren<BaseProps>;
 
-export default function NestedFields({ addText = 'Add Item', children, newItemDefaults, scope }: NestedFieldsProps) {
+export default function NestedFields({
+  addText = 'Add Item',
+  buttonProps = {},
+  children,
+  newItemDefaults,
+  scope,
+}: NestedFieldsProps) {
   const { control } = useFormContext();
   const computedScope = useNestedName({ name: scope });
   const { fields, append } = useFieldArray({ control, name: computedScope });
@@ -24,7 +31,15 @@ export default function NestedFields({ addText = 'Add Item', children, newItemDe
           </NestedContextProvider>
         </React.Fragment>
       ))}
-      <Button onClick={() => append(newItemDefaults)}>{addText}</Button>
+      <Button
+        {...buttonProps}
+        onClick={(e) => {
+          append(newItemDefaults);
+          if (buttonProps.onClick) buttonProps.onClick(e);
+        }}
+      >
+        {addText}
+      </Button>
     </>
   );
 }
