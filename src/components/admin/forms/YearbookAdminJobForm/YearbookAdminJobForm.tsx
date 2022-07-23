@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
-import { mergeWith } from 'lodash';
+import { merge } from 'lodash';
 import Form from '../../../ui/Form';
 import Page from '../../../ui/Page';
 import Input from '../../../ui/Form/Inputs';
@@ -21,19 +21,16 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
     return YearbookAdminJob.includes('yearbookContractDetails').find(id).then((res) => res.data);
   }, { cacheTime: 0, staleTime: ONE_DAY });
 
-  if (!yearbookAdminJob) return null;
-
   return (
-    <Page>
+    <Page isLoading={!yearbookAdminJob}>
       <Link to={routes.admin.root()}>Admin Page</Link>
       <Form
         className="grid grid-cols-12 gap-y-5"
         defaultValues={yearbookAdminJob}
         onSubmit={async (values) => {
-          mergeWith(yearbookAdminJob, values);
-          const res = await yearbookAdminJob.save({ with: ['yearbookContractDetails'] });
+          merge(yearbookAdminJob, values);
+          const res = await yearbookAdminJob?.save({ with: ['yearbookContractDetails'] });
 
-          console.log(values);
           console.log(res);
         }}
       >
@@ -66,7 +63,6 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
         <Form.Section
           className="col-span-12"
           collapsible
-          contentClass="grid grid-cols-2 gap-x-8 gap-y-4"
           title="Contract Details"
         >
           <YearbookContractDetailFields />

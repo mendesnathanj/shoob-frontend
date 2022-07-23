@@ -8,6 +8,7 @@ import Radio from './Radio';
 import Select from './Select';
 import Textarea from './Textarea';
 import { InputProps } from './types';
+import CurrencyInput from './CurrencyInput';
 
 function Input({
   name,
@@ -23,6 +24,7 @@ function Input({
 
 Input.Checkboxes = Checkboxes;
 Input.Checkbox = Checkbox;
+Input.Currency = CurrencyInput;
 Input.Date = DateInput;
 Input.Radio = Radio;
 Input.Select = Select;
