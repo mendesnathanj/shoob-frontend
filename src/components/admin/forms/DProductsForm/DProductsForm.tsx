@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router';
-import { toast } from 'react-toastify';
+import { toast, Slide } from 'react-toastify';
 import { DProduct } from '../../../../models/v2';
 import DjobType from '../../../../models/v2/DjobType';
 import { ONE_DAY } from '../../../../utils/constants';
@@ -57,7 +57,7 @@ export default function DProductsForm({ id }: DProductsFormProps) {
       setTimeout(() => navigate(routes.admin.products.home()), 1000);
     }
     else {
-      toast('Error with form submission', { autoClose: 1500, type: 'error' });
+      toast('Error with form submission', { autoClose: 1500, transition: Slide, type: 'error' });
       setErrors(dProduct.errors);
     }
   };

@@ -1,6 +1,7 @@
 import routes from '../../routes';
 import Link from '../../ui/Link';
 import Page from '../../ui/Page';
+import Table from '../../ui/Table';
 
 export default function Home() {
   return (
