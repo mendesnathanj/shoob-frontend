@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
-import { merge } from 'lodash';
+// import { merge } from 'lodash';
 import Form from '../../../ui/Form';
 import Page from '../../../ui/Page';
 import Input from '../../../ui/Form/Inputs';
@@ -9,6 +9,7 @@ import { YearbookAdminJob } from '../../../../models/v2';
 import { ONE_DAY } from '../../../../utils/constants';
 import routes from '../../../routes';
 import YearbookContractDetailFields from './YearbookContractDetailsFields';
+import { SCHEMA } from './utils';
 
 type YearbookAdminJobFormProps = {
   id?: string | number;
@@ -28,11 +29,13 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
         className="grid grid-cols-12 gap-y-5"
         defaultValues={yearbookAdminJob}
         onSubmit={async (values) => {
-          merge(yearbookAdminJob, values);
-          const res = await yearbookAdminJob?.save({ with: ['yearbookContractDetails'] });
+          console.log(values);
+          // merge(yearbookAdminJob, values);
+          // const res = await yearbookAdminJob?.save({ with: ['yearbookContractDetails'] });
 
-          console.log(res);
+          // console.log(res);
         }}
+        schema={SCHEMA}
       >
         <Form.Section
           className="col-span-12"

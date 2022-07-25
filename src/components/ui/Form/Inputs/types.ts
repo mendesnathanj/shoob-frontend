@@ -1,4 +1,4 @@
-import { RegisterOptions } from 'react-hook-form';
+import { RegisterOptions, Merge, FieldError, FieldErrorsImpl, DeepRequired } from 'react-hook-form';
 
 type OmitRegisterProps = Omit<React.HTMLProps<HTMLInputElement>, 'name' | 'onBlur' | 'onChange' | 'ref'>;
 
@@ -12,7 +12,7 @@ export type BaseInputProps = {
   containerProps?: React.HTMLProps<HTMLDivElement>;
   endIcon?: React.ReactElement;
   endIconProps?: React.HTMLProps<HTMLButtonElement>;
-  errors?: string;
+  errors?: Merge<FieldError, FieldErrorsImpl<DeepRequired<any>>>;
   inline?: boolean;
   label: string;
   labelProps?: React.HTMLProps<HTMLLabelElement>;

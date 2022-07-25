@@ -38,10 +38,10 @@ export default function YearbookContractDetailFields() {
 
                   const res = await temp.destroy();
 
-                  if (res) remove();
+                  if (res) remove(i);
                 }
                 else {
-                  remove();
+                  remove(i);
                 }
               }}
               type="button"

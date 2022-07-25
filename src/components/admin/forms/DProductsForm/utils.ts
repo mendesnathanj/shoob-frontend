@@ -5,12 +5,12 @@ export const CATEGORIES = [
   { label: 'Prep', value: 'prep' },
   { label: 'Shoot', value: 'shoot' },
   { label: 'Image Prep', value: 'image_prep' },
-];
+] as const;
 
 export const DESTINATIONS = [
   { label: 'Printer', value: 'printer' },
   { label: 'School Portal', value: 'school_portal' },
-];
+] as const;
 
 export const SCHEMA = yup.object({
   category: yup.string().label('Category').oneOf(CATEGORIES.map((category) => category.value)).required(),

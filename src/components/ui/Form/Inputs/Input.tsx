@@ -1,4 +1,5 @@
 import { useFormContext } from 'react-hook-form';
+import { get } from 'lodash';
 import { useNestedName } from '../utils/NestedContext';
 import Checkbox from './Checkboxes/Checkbox';
 import Checkboxes from './Checkboxes/Checkboxes';
@@ -17,8 +18,10 @@ function Input({
   const { register, formState: { errors } } = useFormContext();
   const nestedName = useNestedName({ name });
 
+  const myErrors = get(errors, nestedName);
+
   return (
-    <BaseInput {...rest} errors={errors[nestedName]?.message} {...register(nestedName)} />
+    <BaseInput {...rest} errors={myErrors?.message} {...register(nestedName)} />
   );
 }
 

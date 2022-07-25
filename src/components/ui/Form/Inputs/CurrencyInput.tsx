@@ -28,8 +28,8 @@ export default function CurrencyInput({
             className={cn(
               inline ? 'flex-1' : 'min-w-full',
               `inline-block rounded border-gray-400 text-gray-600
-            placeholder:opacity-70 placeholder:italic
-          focus:border-shoob-300 focus:ring-shoob-300`,
+              placeholder:opacity-70 placeholder:italic
+            focus:border-shoob-300 focus:ring-shoob-300`,
               { 'border-red-400': errors },
               className,
             )}
