@@ -43,14 +43,6 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
           contentClass="grid grid-cols-2 gap-x-8 gap-y-4"
           title="Contact Information"
         >
-          <Input.Textarea
-            label="Fill in details"
-            name="details"
-          />
-          <Input.Date
-            label="Promise Date"
-            name="promiseDate"
-          />
           <Input.Select
             label="School"
             name="schoolId"
@@ -59,7 +51,6 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
               { label: 'Gregory', value: 42 },
             ]}
           />
-          <Input label="Scode:" name="sCode" />
           <Input label="YB Advisor 1:" name="yearbook_advisor" />
           <Input label="YB Advisor 1 Email:" name="yearbook_advisor" />
         </Form.Section>
