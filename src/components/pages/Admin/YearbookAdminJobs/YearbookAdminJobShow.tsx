@@ -24,6 +24,7 @@ export default function YearbookAdminJobShow() {
 
   return (
     <Page maxWidth="xl" isLoading={isLoading}>
+      <Link className="inline-block mb-4" to={routes.admin.yearbookAdminJobs.home()}>Back</Link>
       <h1 className="text-3xl font-display mb-6">Yearbook Job for {yearbookAdminJob?.school.name}</h1>
       {yearbookAdminJob && (
         <div className="grid grid-cols-12 gap-x-5">
