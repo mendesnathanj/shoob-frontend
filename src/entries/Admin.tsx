@@ -12,6 +12,7 @@ import routes from '../components/routes';
 import YearbookAdminJobsHome from '../components/pages/Admin/YearbookAdminJobs/YearbookAdminJobsHome';
 import YearbookAdminJobsNew from '../components/pages/Admin/YearbookAdminJobs/YearbookAdminJobsNew';
 import YearbookAdminJobEdit from '../components/pages/Admin/YearbookAdminJobs/YearbookAdminJobsEdit';
+import YearbookAdminJobShow from '../components/pages/Admin/YearbookAdminJobs/YearbookAdminJobShow';
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ export default function Admin() {
             <Route index element={<YearbookAdminJobsHome />} />
             <Route path={routes.admin.yearbookAdminJobs.new()} element={<YearbookAdminJobsNew />} />
             <Route path={routes.admin.yearbookAdminJobs.edit(':id')} element={<YearbookAdminJobEdit />} />
+            <Route path={routes.admin.yearbookAdminJobs.show(':id')} element={<YearbookAdminJobShow />} />
           </Route>
         </Routes>
       </Router>

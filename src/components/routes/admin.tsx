@@ -9,7 +9,8 @@ export default {
   yearbookAdminJobs: {
     edit: (id: number | string) => `/yearbook-admin-jobs/${id}/edit` as const,
     home: () => '/yearbook-admin-jobs' as const,
-    new: () => 'yearbook-admin-jobs/new' as const,
+    new: () => '/yearbook-admin-jobs/new' as const,
+    show: (id: number | string) => `/yearbook-admin-jobs/${id}` as const,
   },
   yearbookJobs: () => '/yearbook-jobs' as const,
 };

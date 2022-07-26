@@ -1,17 +1,18 @@
-import { Attr, HasMany, Model } from 'spraypaint';
+import { Attr, BelongsTo, HasMany, Model } from 'spraypaint';
 import ApplicationRecord from './ApplicationRecord';
-import ContactInformation from './ContactInformation';
+import School from './School';
 import YearbookContractDetail from './YearbookContractDetail';
 
 @Model()
 class YearbookAdminJob extends ApplicationRecord {
   static jsonapiType = 'yearbook_admin_jobs';
-  @Attr() name: string;
-  @Attr() scode: string;
+  @Attr() confirmationStatus?: 'tentative' | 'confirmed' | 'declined';
   @Attr() schoolId: number;
-  @Attr() status: string;
-  @HasMany() contactInformations: ContactInformation[];
+  @Attr() year: number;
+  @BelongsTo() school: School;
   @HasMany() yearbookContractDetails: YearbookContractDetail[];
+  // Extra attributes for querying
+  @Attr() years?: number[];
 }
 
 export default YearbookAdminJob;

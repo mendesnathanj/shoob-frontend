@@ -6,6 +6,7 @@ type LinkProps = {
   to: string;
   disabled?: boolean;
   external?: boolean;
+  variant?: 'link' | 'plain';
 } & RouterLinkProps;
 
 const Link = forwardRef<HTMLAnchorElement, LinkProps>((
@@ -15,11 +16,17 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>((
     disabled = false,
     external = false,
     to,
+    variant = 'link',
     ...props
   },
   ref
 ) => {
-  const classes = cn(className, disabled && 'pointer-events-none');
+  const classes = cn(
+    variant === 'link' && 'text-shoob-400 hover:underline underline-offset-2',
+    className,
+    disabled && 'pointer-events-none'
+  );
+
   if (external) return <a className={classes} href={to} ref={ref} {...props}>{children}</a>;
 
   return (

@@ -66,6 +66,7 @@ module.exports = {
     'react/no-danger': 'off',
     'react/no-did-mount-set-state': 'off', // https://github.com/airbnb/javascript/issues/684
     'react/no-unstable-nested-components': [
+      'off',
       { allowAsProps: true },
     ],
     'react/prop-types': 'off',
