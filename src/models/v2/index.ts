@@ -1,4 +1,5 @@
 import ContactInformation from './ContactInformation';
+import District from './District';
 import DjobType from './DjobType';
 import DProduct from './DProduct';
 import School from './School';
@@ -7,6 +8,7 @@ import YearbookContractDetail from './YearbookContractDetail';
 
 export {
   ContactInformation,
+  District,
   DProduct,
   DjobType,
   School,

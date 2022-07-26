@@ -60,3 +60,12 @@ export function useYearbookAdminJobTableColumns() {
     },
   ]), []);
 }
+
+export function useYearbookAdminJob(id: string) {
+  return useQuery(['yearbookAdminJob', id], () => (
+    YearbookAdminJob
+      .includes(['school', 'yearbookContractDetails'])
+      .find(id)
+      .then((res) => res.data)
+  ));
+}
