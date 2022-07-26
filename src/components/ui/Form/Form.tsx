@@ -7,7 +7,7 @@ import { AnyObject } from 'yup/lib/types';
 import { ValidationErrors } from 'spraypaint/lib-esm/validation-errors';
 import { ChildrenProps } from '../../../types';
 import AutoSave from './AutoSave';
-import Section from './Section';
+import Section from '../../common/Section';
 import NestedFields from './utils/NestedFields';
 
 export type FormProps = {
