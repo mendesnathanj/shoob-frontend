@@ -18,6 +18,7 @@ export function useYearbookAdminJobsHome({ schoolName, year }: useYearbookAdminJ
       .where({ schoolName, year })
       .order('name')
       .per(150)
+      .select(['year', 'confirmationStatus', 'yearbkadvisor1name'])
       .all()
       .then((res) => res.data)
   ));
@@ -46,13 +47,13 @@ export function useYearbookAdminJobTableColumns() {
       id: 'school'
     },
     { accessorFn: (row) => row.school.scode, accessorKey: 'school', header: 'Scode', id: 'scode' },
-    { accessorFn: () => 'TODO:', accessorKey: '', header: 'Yearbook Advisor', id: 'yearbookAdvisor' },
+    { accessorKey: 'yearbkadvisor1name', header: 'Yearbook Advisor', id: 'yearbookAdvisor' },
     { accessorFn: (row) => `${row.year} - ${row.year + 1}`, accessorKey: 'year', header: 'Year', id: 'year' },
     {
       accessorFn: (row) => {
         if (row.confirmationStatus) return capitalize(row.confirmationStatus);
 
-        return '';
+        return 'Null';
       },
       accessorKey: 'confirmationStatus',
       header: 'Confirmation Status',
