@@ -18,7 +18,10 @@ export function useYearbookAdminJobsHome({ schoolName, year }: useYearbookAdminJ
       .where({ schoolName, year })
       .order('name')
       .per(150)
-      .select(['year', 'confirmationStatus', 'yearbkadvisor1name'])
+      .select({
+        schools: ['name', 'scode'],
+        yearbookAdminJobs: ['year', 'confirmationStatus', 'yearbkadvisor1name']
+      })
       .all()
       .then((res) => res.data)
   ));
@@ -65,7 +68,7 @@ export function useYearbookAdminJobTableColumns() {
 export function useYearbookAdminJob(id: string) {
   return useQuery(['yearbookAdminJob', id], () => (
     YearbookAdminJob
-      .includes(['school', 'yearbookContractDetails'])
+      .includes([{ school: ['district', 'schoolType'] }, 'yearbookContractDetails'])
       .find(id)
       .then((res) => res.data)
   ));

@@ -12,6 +12,7 @@ type FormData = {
 
 export default function Filters() {
   const navigate = useNavigate();
+
   const [searchParams] = useSearchParams();
 
   const { data = [] } = useQuery('yearbookAdminJobHomeFilters', () => (
@@ -33,7 +34,7 @@ export default function Filters() {
       autoSave={{ delay: 250 }}
       className="grid grid-cols-12 gap-4 py-4"
       defaultValues={{
-        school: searchParams.get('school'),
+        school: searchParams.get('school') || '',
         year: parseInt(searchParams.get('year') || '', 10) || 2021
       }}
       onSubmit={onSubmit}
