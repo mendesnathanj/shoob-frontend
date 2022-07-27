@@ -29,7 +29,7 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
     <Form
       defaultValues={yearbookAdminJob}
       onSubmit={async () => {
-        const { yearbookContractDetails, ...newAttributes } = SCHEMA.cast(yearbookAdminJob);
+        const { yearbookContractDetails = [], ...newAttributes } = SCHEMA.cast(yearbookAdminJob);
         delete newAttributes.school;
 
         yearbookAdminJob.attributes = { ...yearbookAdminJob.attributes, ...newAttributes };
