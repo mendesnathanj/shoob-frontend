@@ -22,9 +22,11 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
   return (
     <Form
       defaultValues={yearbookAdminJob}
-      onSubmit={async (values) => {
-        console.log(values);
+      onSubmit={() => {
+        console.log('Submitting...');
+        // console.log(values);
         // merge(yearbookAdminJob, values);
+        // console.log(yearbookAdminJob?.lastday);
         // const res = await yearbookAdminJob?.save({ with: ['yearbookContractDetails'] });
 
         // console.log(res);
@@ -69,7 +71,7 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
             />
             <Input label="Number of pages" name="numberofpages" type="number" />
             <Input.Date label="Presale Deadline" name="presaleDeadline" />
-            <Input.Date label="Final Sale Deadline" name="presaleDeadline" />
+            <Input.Date label="Final Sale Deadline" name="salesdeadline" />
             <Input.Textarea
               containerProps={{ className: 'col-span-3' }}
               label="Notes"

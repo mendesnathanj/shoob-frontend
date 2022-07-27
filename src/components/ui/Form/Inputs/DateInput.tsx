@@ -11,6 +11,7 @@ import {
   useInteractions,
   useRole,
 } from '@floating-ui/react-dom-interactions';
+import { get } from 'lodash';
 import InputMask from 'react-input-mask';
 import { motion, Variants } from 'framer-motion';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
@@ -31,15 +32,19 @@ const variants: Variants = {
 };
 
 export default function DateInput(props: InputProps) {
-  const { watch, setValue, register } = useFormContext();
+  const { formState: { errors }, watch, setValue, register } = useFormContext();
   const nestedName = useNestedName({ name: props.name });
   const [open, setOpen] = useState(false);
+  const myErrors = get(errors, nestedName);
 
   const toggle = () => setOpen((prev) => !prev);
 
   const watchDate = watch(nestedName);
 
   useEffect(() => {
+    if (typeof watchDate === 'object') {
+      setValue(nestedName, formattedDate(watchDate));
+    }
     if (isMatch(watchDate, SERVER_DATE_FORMAT)) {
       setValue(nestedName, formattedDate(watchDate, 'client'));
     }
@@ -82,13 +87,14 @@ export default function DateInput(props: InputProps) {
     <>
       <InputMask
         mask="99/99/9999"
-        maskPlaceholder="dd/mm/yyyy"
+        maskPlaceholder=""
         onBlur={registerDate.onBlur}
         onChange={registerDate.onChange}
       >
         <BaseInput
           label={props.label}
           {...registerDate}
+          errors={myErrors?.message}
           endIcon={(
             <button
               className={`

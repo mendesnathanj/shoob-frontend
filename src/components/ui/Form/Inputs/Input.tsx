@@ -20,6 +20,8 @@ function Input({
 
   const myErrors = get(errors, nestedName);
 
+  console.log(errors);
+
   return (
     <BaseInput {...rest} errors={myErrors?.message} {...register(nestedName)} />
   );

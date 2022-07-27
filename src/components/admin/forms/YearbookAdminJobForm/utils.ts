@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 export const CONFIRMATION_STATUSES = [
-  { label: 'Null', value: undefined },
+  { label: 'Null', value: null },
   { label: 'Tentative', value: 'tentative' },
   { label: 'Confirmed', value: 'confirmed' },
   { label: 'Declined', value: 'declined' },
@@ -14,14 +14,63 @@ export const BINDING_TYPES = [
 ];
 
 export const SCHEMA = yup.object({
-  confirmationStatus: yup.string().oneOf(CONFIRMATION_STATUSES.map((status) => status.value)),
+  confirmationStatus: yup.string().oneOf(CONFIRMATION_STATUSES.map((status) => status.value)).nullable(true),
+  coverApproval: yup
+    .date()
+    .label('Cover Approval')
+    .nullable(true)
+    .transform((curr, orig) => (orig === '' ? null : curr)),
   customSetup: yup.bool().required(),
-  numberOfPages: yup.number().positive().integer(),
+  dateflyersposterssenttoprint: yup
+    .date()
+    .label('Flyers / Posters Sent Date')
+    .nullable(true)
+    .transform((curr, orig) => (orig === '' ? null : curr)),
+  flowClassPictures: yup
+    .date()
+    .label('Flow Class Pictures')
+    .nullable(true)
+    .transform((curr, orig) => (orig === '' ? null : curr)),
+  lastday: yup
+    .date()
+    .label('Last Day of School')
+    .nullable(true)
+    .transform((curr, orig) => (orig === '' ? null : curr)),
+  notes: yup.string(),
+  numberofpages: yup.number().positive().integer(),
+  pixamisetupdate: yup
+    .date()
+    .label('Pixami Setup Date')
+    .nullable(true)
+    .transform((curr, orig) => (orig === '' ? null : curr)),
+  presaleDeadline: yup
+    .date()
+    .label('Presale Deadline')
+    .nullable(true)
+    .transform((curr, orig) => (orig === '' ? null : curr)),
+  salesdeadline: yup
+    .date()
+    .label('Final Sale Deadline')
+    .nullable(true)
+    .transform((curr, orig) => (orig === '' ? null : curr)),
   school: yup.object({
-    enrollment: yup.number().positive(),
-    lastDay: yup.date(),
+    enrollment: yup
+      .number()
+      .positive()
+      .nullable(true)
+      .transform((_, val) => (Number(val) || null)),
   }),
   schoolId: yup.number().required(),
+  submittedFinalYearbook: yup
+    .date()
+    .label('Submitted YB for Proofing')
+    .nullable(true)
+    .transform((curr, orig) => (orig === '' ? null : curr)),
+  submittedYearbookForProofing: yup
+    .date()
+    .label('Submitted Final YB')
+    .nullable(true)
+    .transform((curr, orig) => (orig === '' ? null : curr)),
   yearbookContractDetails: yup.array(yup.object({
     bindingType: yup
       .string()
@@ -29,14 +78,26 @@ export const SCHEMA = yup.object({
       .oneOf(BINDING_TYPES.map((bindingType) => bindingType.value))
       .required(),
     finalSalePrice: yup.number().label('Final Sale Price').positive().nullable(),
+    hardCopyProof: yup.bool().required(),
+    numOfExtras: yup
+      .number()
+      .positive()
+      .nullable(true)
+      .transform((_, val) => (Number(val) || null)),
     presalePrice: yup.number().label('Presale Price').positive().nullable(),
+    pricePerBook: yup.number().label('Price per book').positive().nullable(),
     quantity: yup
       .number()
       .label('Quantity')
       .positive()
       .nullable(true)
-      .transform((_, val) => (val === Number(val) ? val : null)),
-    schoolPrice: yup.number().label('Price for school').positive().nullable(),
+      .transform((_, val) => (Number(val) || null)),
     shipping: yup.number().label('Shipping').positive().nullable(),
   })),
+  yearbookadvisor1email: yup.string().email(),
+  yearbookadvisor1name: yup.string(),
+  yearbookadvisor1phone: yup.string(),
+  yearbookadvisor2email: yup.string().email(),
+  yearbookadvisor2name: yup.string(),
+  yearbookadvisor2phone: yup.string(),
 }).required();

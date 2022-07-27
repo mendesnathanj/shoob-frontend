@@ -29,12 +29,19 @@ function Form({
   validateOn = 'onSubmit',
   ...rest
 }: FormProps) {
-  const methods = useForm({ defaultValues, mode: validateOn, resolver: yupResolver(schema) });
+  const methods = useForm({
+    defaultValues,
+    mode: validateOn,
+    reValidateMode: 'onSubmit',
+    resolver: yupResolver(schema)
+  });
 
   useEffect(() => methods.reset(defaultValues), [JSON.stringify(defaultValues)]);
   useEffect(() => {
     const errorKeys = Object.keys(serverErrors);
     if (errorKeys.length === 0) return;
+
+    console.log('we moving');
 
     errorKeys.forEach((key) => {
       const error = serverErrors[key];
