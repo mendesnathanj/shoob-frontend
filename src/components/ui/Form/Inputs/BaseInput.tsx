@@ -1,11 +1,12 @@
 import React from 'react';
 import cn from 'classnames';
 import { BaseInputProps } from './types';
+import { ErrorMessage, Label } from './helpers';
 
 const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(({
   className,
   endIcon,
-  endIconProps = {},
+  errors,
   containerProps = {},
   inline = false,
   label,
@@ -19,19 +20,14 @@ const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(({
 
   return (
     <div {...containerProps} className={cn(containerClass, containerProps.className)}>
-      <label
-        htmlFor={name}
+      <Label
+        name={name}
+        hasError={!!errors}
+        showLabel={showLabel}
         {...labelProps}
-        className={cn(
-          { hidden: !showLabel },
-          'inline-block',
-          'mb-1',
-          'min-w-min',
-          labelProps.className,
-        )}
       >
         {label}
-      </label>
+      </Label>
       <div className="relative">
         <input
           className={cn(
@@ -39,6 +35,7 @@ const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(({
             `inline-block rounded border-gray-400 text-gray-600
             placeholder:opacity-70 placeholder:italic
           focus:border-shoob-300 focus:ring-shoob-300`,
+            { 'border-red-400': errors },
             className,
           )}
           id={name}
@@ -53,6 +50,7 @@ const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(({
           </span>
         )}
       </div>
+      {errors && <ErrorMessage message={errors} />}
     </div>
   );
 });

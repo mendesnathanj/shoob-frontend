@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useNestedName } from '../../utils/NestedContext';
 import { InputProps } from '../types';

@@ -1,17 +1,16 @@
+import { useMemo } from 'react';
+import { get } from 'lodash';
 import { Controller, useFormContext } from 'react-hook-form';
 import cn from 'classnames';
 import ReactSelect from 'react-select';
 import { StateManagerProps } from 'react-select/dist/declarations/src/useStateManager';
 import { useNestedName } from '../utils/NestedContext';
 import { InputProps } from './types';
-
-const customStyles = {
-  control: (provided: object) => ({ ...provided, height: 44 }),
-};
+import { ErrorMessage, Label } from './helpers';
 
 type OptionType = {
   label: string;
-  value?: string | number;
+  value?: string | number | boolean | null;
 }
 
 type SelectProps = {
@@ -32,8 +31,22 @@ export default function Select({
   showLabel = true,
   ...rest
 }: SelectProps) {
-  const { control } = useFormContext();
+  const { control, formState: { errors } } = useFormContext();
   const nestedName = useNestedName({ name });
+
+  const myErrors = get(errors, nestedName);
+
+  const customStyles = useMemo(() => ({
+    control: (provided: object, state: any) => {
+      const errorStyles = errors[nestedName] && !state.isFocused ? { borderColor: 'rgb(248 113 113)' } : {};
+
+      return {
+        ...provided,
+        height: 42,
+        ...errorStyles
+      };
+    },
+  }), [errors[nestedName]?.message]);
 
   const containerClass = inline ? 'flex gap-3 items-center' : '';
 
@@ -43,19 +56,14 @@ export default function Select({
       name={nestedName}
       render={({ field: { onChange, onBlur, value, ref } }) => (
         <div {...containerProps} className={cn(containerClass, containerProps.className)}>
-          <label
-            htmlFor={nestedName}
+          <Label
+            name={name}
+            hasError={!!errors[nestedName]}
+            showLabel={showLabel}
             {...labelProps}
-            className={cn(
-              { hidden: !showLabel },
-              'inline-block',
-              'mb-1',
-              'min-w-min',
-              labelProps.className,
-            )}
           >
             {label}
-          </label>
+          </Label>
           <ReactSelect
             className={cn(
               inline ? 'flex-1' : 'min-w-full',
@@ -80,6 +88,7 @@ export default function Select({
             {...reactSelectProps}
             {...rest}
           />
+          {myErrors && <ErrorMessage message={myErrors.message} />}
         </div>
       )}
     />

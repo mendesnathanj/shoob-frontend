@@ -11,6 +11,7 @@ import {
   useInteractions,
   useRole,
 } from '@floating-ui/react-dom-interactions';
+import { get } from 'lodash';
 import InputMask from 'react-input-mask';
 import { motion, Variants } from 'framer-motion';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
@@ -21,9 +22,9 @@ import { useFormContext } from 'react-hook-form';
 import Calendar from '../../Calendar/Calendar';
 import { useNestedName } from '../utils/NestedContext';
 import { InputProps } from './types';
-import { SERVER_DATE_FORMAT, USER_DATE_FORMAT } from '../../../../utils/constants';
+import { SERVER_DATE_FORMAT, SERVER_DATE_TIME_FORMAT, USER_DATE_FORMAT } from '../../../../utils/constants';
 import BaseInput from './BaseInput';
-import { formattedDate } from '../../../../utils/functions';
+import { formattedDate, formattedDateTime } from '../../../../utils/functions';
 
 const variants: Variants = {
   closed: { marginTop: -8, opacity: 0, },
@@ -31,17 +32,24 @@ const variants: Variants = {
 };
 
 export default function DateInput(props: InputProps) {
-  const { watch, setValue, register } = useFormContext();
+  const { formState: { errors }, watch, setValue, register } = useFormContext();
   const nestedName = useNestedName({ name: props.name });
   const [open, setOpen] = useState(false);
+  const myErrors = get(errors, nestedName);
 
   const toggle = () => setOpen((prev) => !prev);
 
   const watchDate = watch(nestedName);
 
   useEffect(() => {
+    if (typeof watchDate === 'object') {
+      setValue(nestedName, formattedDate(watchDate));
+    }
     if (isMatch(watchDate, SERVER_DATE_FORMAT)) {
       setValue(nestedName, formattedDate(watchDate, 'client'));
+    }
+    else if (isMatch(watchDate, SERVER_DATE_TIME_FORMAT)) {
+      setValue(nestedName, formattedDateTime(watchDate));
     }
   }, [watchDate]);
 
@@ -79,13 +87,14 @@ export default function DateInput(props: InputProps) {
     <>
       <InputMask
         mask="99/99/9999"
-        maskPlaceholder="dd/mm/yyyy"
+        maskPlaceholder=""
         onBlur={registerDate.onBlur}
         onChange={registerDate.onChange}
       >
         <BaseInput
           label={props.label}
           {...registerDate}
+          errors={myErrors?.message}
           endIcon={(
             <button
               className={`

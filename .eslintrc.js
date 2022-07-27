@@ -21,6 +21,7 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
+    '@typescript-eslint/no-unused-vars': 2,
     'brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
     camelcase: ['error', { ignoreDestructuring: true, properties: 'never' }],
     'comma-dangle': 'off',
@@ -64,6 +65,10 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/no-danger': 'off',
     'react/no-did-mount-set-state': 'off', // https://github.com/airbnb/javascript/issues/684
+    'react/no-unstable-nested-components': [
+      'off',
+      { allowAsProps: true },
+    ],
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/require-default-props': 'off',

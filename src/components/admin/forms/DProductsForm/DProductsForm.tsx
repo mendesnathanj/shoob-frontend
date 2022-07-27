@@ -1,15 +1,15 @@
+import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router';
-import { toast } from 'react-toastify';
+import { toast, Slide } from 'react-toastify';
 import { DProduct } from '../../../../models/v2';
 import DjobType from '../../../../models/v2/DjobType';
 import { ONE_DAY } from '../../../../utils/constants';
-import { formattedDate } from '../../../../utils/functions';
 import routes from '../../../routes';
 import Button from '../../../ui/Button';
 import Form from '../../../ui/Form';
 import Input from '../../../ui/Form/Inputs';
-import { CATEGORIES, DESTINATIONS } from './utils';
+import { CATEGORIES, DESTINATIONS, SCHEMA } from './utils';
 
 type FormData = {
   category: string;
@@ -30,28 +30,25 @@ type DProductsFormProps = {
 };
 
 export default function DProductsForm({ id }: DProductsFormProps) {
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-  const { data } = useQuery(`dProductForForm-${id || 'new'}`, () => {
+  const { data: dProduct } = useQuery(`dProductForForm-${id || 'new'}`, () => {
     if (!id) return new DProduct();
 
     return DProduct.find(id).then((res) => res.data.dup());
-  }, { cacheTime: 0, enabled: !!id, staleTime: ONE_DAY });
+  }, { cacheTime: 0, staleTime: ONE_DAY });
 
   const { data: djobTypes } = useQuery('djobTypesForForm', () => (
     DjobType.per(100).order('jobType').all().then((res) => res.data)
   ));
 
   const onSubmit = async (formData: FormData) => {
-    const formattedValues = {
-      djobId: parseInt(formData.djobId.toString(), 10),
-      jobDate: formattedDate(formData.jobDate, 'server') || null,
-      price: formData.price || null,
-      shipDate: formattedDate(formData.shipDate, 'server') || null,
-      shippedBy: formattedDate(formData.shippedBy, 'server') || null,
-    };
+    if (!dProduct) return;
 
-    Object.assign(dProduct.attributes, formData, formattedValues);
+    setErrors({});
+
+    Object.assign(dProduct.attributes, SCHEMA.cast(formData));
 
     const success = await dProduct.save();
 
@@ -60,24 +57,20 @@ export default function DProductsForm({ id }: DProductsFormProps) {
       setTimeout(() => navigate(routes.admin.products.home()), 1000);
     }
     else {
-      console.log(dProduct.errors);
+      toast('Error with form submission', { autoClose: 1500, transition: Slide, type: 'error' });
+      setErrors(dProduct.errors);
     }
   };
 
-  const dProduct = data || new DProduct();
+  if (!dProduct) return null;
 
   const {
     category,
     description,
     destination,
-    jobDate,
-    djobId,
     djobTypeId,
     name,
     price,
-    shipDate,
-    shippedBy,
-    shippedVia,
   } = dProduct;
 
   return (
@@ -87,23 +80,19 @@ export default function DProductsForm({ id }: DProductsFormProps) {
         category,
         description,
         destination,
-        djobId,
         djobTypeId,
-        jobDate,
         name,
         price,
-        shipDate,
-        shippedBy,
-        shippedVia,
       }}
       onSubmit={(onSubmit as () => any)}
+      schema={SCHEMA}
+      serverErrors={errors}
     >
       <Form.Section
         contentClass="grid grid-cols-2 gap-3"
         collapsible
         title="Job Information"
       >
-        <Input label="Job ID" name="djobId" type="number" />
         <Input.Select
           label="Job Type"
           name="djobTypeId"
@@ -111,7 +100,6 @@ export default function DProductsForm({ id }: DProductsFormProps) {
             label: djobType.jobType, value: djobType.id
           }))}
         />
-        <Input.Date label="Job Date" name="jobDate" />
       </Form.Section>
       <Form.Section
         collapsible
@@ -119,7 +107,7 @@ export default function DProductsForm({ id }: DProductsFormProps) {
         title="Product Information"
       >
         <Input label="Name" name="name" />
-        <Input label="Price" name="price" step="0.01" min="0.01" type="number" />
+        <Input label="Price" name="price" step="0.01" type="number" />
         <Input.Select
           label="Category"
           name="category"
@@ -137,15 +125,6 @@ export default function DProductsForm({ id }: DProductsFormProps) {
           label="Description"
           name="description"
         />
-      </Form.Section>
-      <Form.Section
-        collapsible
-        contentClass="grid grid-cols-2 gap-3"
-        title="Shipping Information"
-      >
-        <Input.Date label="Shipped By" name="shippedBy" />
-        <Input.Date label="Ship Date" name="shipDate" />
-        <Input label="Shipped Via" name="shippedVia" />
       </Form.Section>
       <div className="flex justify-end">
         <Button fullWidth={{ sm: true }} submit variant="primary">

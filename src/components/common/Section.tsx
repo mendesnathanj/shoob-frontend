@@ -14,7 +14,7 @@ type BaseProps = {
   title: string | React.ReactElement;
 };
 
-const triggerClass = 'flex justify-between text-xl pr-4 border-b-gray-300 border-b py-1 mb-4';
+const triggerClass = 'flex items-center justify-between text-xl pr-4 border-b-gray-300 border-b py-1 mb-4';
 
 type SectionProps = React.PropsWithChildren<BaseProps>;
 

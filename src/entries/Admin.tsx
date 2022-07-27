@@ -9,14 +9,23 @@ import ProductsHome from '../components/pages/Admin/Products/ProductsHome';
 import ProductsNew from '../components/pages/Admin/Products/ProductsNew';
 import YearbookJobs from '../components/pages/Admin/YearbookJobs';
 import routes from '../components/routes';
+import YearbookAdminJobsHome from '../components/pages/Admin/YearbookAdminJobs/YearbookAdminJobsHome';
+import YearbookAdminJobsNew from '../components/pages/Admin/YearbookAdminJobs/YearbookAdminJobsNew';
+import YearbookAdminJobEdit from '../components/pages/Admin/YearbookAdminJobs/YearbookAdminJobsEdit';
+import YearbookAdminJobShow from '../components/pages/Admin/YearbookAdminJobs/YearbookAdminJobShow';
+import ScrollToTop from '../components/utils/ScrollToTop';
 
 const queryClient = new QueryClient();
 
 export default function Admin() {
+  const isAdminSubdomain = window.location.hostname.split('.').includes('admin');
+  const basename = isAdminSubdomain ? '' : 'admin';
+
   return (
     <QueryClientProvider client={queryClient}>
       <ToastContainer theme="light" />
-      <Router basename="admin">
+      <Router basename={basename}>
+        <ScrollToTop />
         <Routes>
           <Route path="/">
             <Route index element={<Home />} />
@@ -26,6 +35,12 @@ export default function Admin() {
             <Route index element={<ProductsHome />} />
             <Route path={routes.admin.products.new()} element={<ProductsNew />} />
             <Route path={routes.admin.products.edit(':id')} element={<ProductsEdit />} />
+          </Route>
+          <Route path={routes.admin.yearbookAdminJobs.home()}>
+            <Route index element={<YearbookAdminJobsHome />} />
+            <Route path={routes.admin.yearbookAdminJobs.new()} element={<YearbookAdminJobsNew />} />
+            <Route path={routes.admin.yearbookAdminJobs.edit(':id')} element={<YearbookAdminJobEdit />} />
+            <Route path={routes.admin.yearbookAdminJobs.show(':id')} element={<YearbookAdminJobShow />} />
           </Route>
         </Routes>
       </Router>

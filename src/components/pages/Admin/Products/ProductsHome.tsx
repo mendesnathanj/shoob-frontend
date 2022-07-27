@@ -4,7 +4,7 @@ import qs from 'query-string';
 import { useNavigate } from 'react-router';
 import { useSearchParams } from 'react-router-dom';
 import { DProduct } from '../../../../models/v2';
-import { capitalize, formattedDate } from '../../../../utils/functions';
+import { capitalize } from '../../../../utils/functions';
 import { CATEGORIES } from '../../../admin/forms/DProductsForm/utils';
 import routes from '../../../routes';
 import Button from '../../../ui/Button';
@@ -66,24 +66,19 @@ export default function ProductsHome() {
       <table className="min-w-full rounded border overflow-hidden">
         <thead>
           <tr>
-            <th className="border border-gray-200 p-2">Job ID</th>
             <th className="border border-gray-200 p-2">Name</th>
             <th className="border border-gray-200 p-2">Description</th>
             <th className="border border-gray-200 p-2">Price</th>
             <th className="border border-gray-200 p-2">Category</th>
             <th className="border border-gray-200 p-2">Job Type</th>
             <th className="border border-gray-200 p-2">Destination</th>
-            <th className="border border-gray-200 p-2">Ship Date</th>
             {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
             <th className="border border-gray-200 p-2" />
           </tr>
         </thead>
         <tbody>
-          {data?.map(({ id, djobId, djobType, name, description, price, category, destination, shipDate }) => (
+          {data?.map(({ id, djobType, name, description, price, category, destination }) => (
             <tr key={id}>
-              <td className="text-center p-2 border">
-                {djobId}
-              </td>
               <td className="text-center p-2 border">
                 {name}
               </td>
@@ -101,9 +96,6 @@ export default function ProductsHome() {
               </td>
               <td className="text-center p-2 border">
                 {destination.split('_').map((substring) => capitalize(substring)).join(' ')}
-              </td>
-              <td className="text-center p-2 border">
-                {formattedDate(shipDate, 'client')}
               </td>
               <td className="text-center p-2 border">
                 <DropdownButton label="Actions">

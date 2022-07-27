@@ -1,9 +1,11 @@
 import { useFormContext } from 'react-hook-form';
 import { useNestedName } from '../utils/NestedContext';
+import { ErrorMessage } from './helpers';
 import { InputProps } from './types';
 
+// TODO: this will probably need to be grouped together like checkboxes for better error display
 export default function Radio({ label, name, registerOptions = {}, ...rest }: InputProps) {
-  const { register } = useFormContext();
+  const { register, formState: { errors } } = useFormContext();
   const nestedName = useNestedName({ name });
 
   return (
@@ -17,6 +19,7 @@ export default function Radio({ label, name, registerOptions = {}, ...rest }: In
         type="radio"
       />
       <span>{label}</span>
+      {errors[nestedName] && <ErrorMessage message={errors[nestedName]?.message} />}
     </label>
   );
 }

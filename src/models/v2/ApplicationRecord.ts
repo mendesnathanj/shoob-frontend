@@ -9,4 +9,6 @@ class ApplicationRecord extends SpraypaintBase {
   static clientApplication = 'shoob-frontend';
 }
 
+ApplicationRecord.credentials = 'include';
+
 export default ApplicationRecord;
