@@ -36,10 +36,8 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
         yearbookAdminJob.yearbookContractDetails = yearbookAdminJob
           .yearbookContractDetails
           .map((yearbookContractDetail, i) => {
-            if (yearbookContractDetails[i] !== undefined) {
-              // eslint-disable-next-line no-param-reassign
-              yearbookContractDetail.attributes = yearbookContractDetails[i];
-            }
+            // eslint-disable-next-line no-param-reassign
+            yearbookContractDetail.attributes = yearbookContractDetails[i];
 
             return yearbookContractDetail;
           });
