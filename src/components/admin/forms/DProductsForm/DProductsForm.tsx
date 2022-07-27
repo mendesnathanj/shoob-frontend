@@ -107,7 +107,7 @@ export default function DProductsForm({ id }: DProductsFormProps) {
         title="Product Information"
       >
         <Input label="Name" name="name" />
-        <Input label="Price" name="price" step="0.01" min="0" type="number" />
+        <Input label="Price" name="price" step="0.01" type="number" />
         <Input.Select
           label="Category"
           name="category"

@@ -19,9 +19,11 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
     return YearbookAdminJob.includes(['school', 'yearbookContractDetails']).find(id).then((res) => res.data);
   }, { cacheTime: 0, staleTime: ONE_DAY });
 
+  console.log('Re-rendering...');
+
   return (
     <Form
-      defaultValues={yearbookAdminJob}
+      defaultValues={yearbookAdminJob?.dup()}
       onSubmit={() => {
         console.log('Submitting...');
         // console.log(values);

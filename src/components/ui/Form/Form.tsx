@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import useDeepCompareEffect from 'use-deep-compare-effect';
 import { FormProvider, useForm, ValidationMode } from 'react-hook-form';
 import { object } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -36,7 +37,7 @@ function Form({
     resolver: yupResolver(schema)
   });
 
-  useEffect(() => methods.reset(defaultValues), [JSON.stringify(defaultValues)]);
+  useDeepCompareEffect(() => methods.reset(defaultValues), [defaultValues]);
   useEffect(() => {
     const errorKeys = Object.keys(serverErrors);
     if (errorKeys.length === 0) return;
