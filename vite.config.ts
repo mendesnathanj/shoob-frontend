@@ -25,7 +25,7 @@ export default defineConfig({
     inject({
       ...modelInjects,
     }),
-    eslintPlugin({ cache: false }),
+    eslintPlugin({ cache: false, failOnError: false }),
   ],
   server: {
     port: 4000

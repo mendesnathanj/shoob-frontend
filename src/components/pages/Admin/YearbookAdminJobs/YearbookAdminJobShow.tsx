@@ -24,7 +24,7 @@ export default function YearbookAdminJobShow() {
 
   return (
     <Page maxWidth="xl" isLoading={isLoading}>
-      <Link className="inline-block mb-4" to={routes.admin.yearbookAdminJobs.home()}>Back</Link>
+      <Link className="inline-block mb-4" to={routes.admin.yearbookAdminJobs.home()}>All Yearbook Jobs</Link>
       <h1 className="text-3xl font-display mb-6">Yearbook Job for {yearbookAdminJob?.school.name}</h1>
       {yearbookAdminJob && (
         <div className="grid grid-cols-12 gap-x-5">
@@ -102,19 +102,19 @@ export default function YearbookAdminJobShow() {
               />
               <Item
                 label="Flow Class Pictures:"
-                value={formattedDateTime(yearbookAdminJob.flowClassPictures)}
+                value={formattedDate(yearbookAdminJob.flowClassPictures)}
               />
               <Item
                 label="Cover Approval:"
-                value={formattedDateTime(yearbookAdminJob.coverApproval)}
+                value={formattedDate(yearbookAdminJob.coverApproval)}
               />
               <Item
                 label="Submitted YB for Proofing:"
-                value={formattedDateTime(yearbookAdminJob.submittedYearbookForProofing)}
+                value={formattedDate(yearbookAdminJob.submittedYearbookForProofing)}
               />
               <Item
                 label="Submitted Final YB:"
-                value={formattedDateTime(yearbookAdminJob.submittedFinalYearbook)}
+                value={formattedDate(yearbookAdminJob.submittedFinalYearbook)}
               />
             </Section>
           </div>

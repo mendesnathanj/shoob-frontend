@@ -13,6 +13,31 @@ export const BINDING_TYPES = [
   { label: 'Perfect Bound', value: 'perfect_bound' },
 ];
 
+export const YEARBOOK_CONTRACT_DETAIL_SCHEMA = yup.object({
+  bindingType: yup
+    .string()
+    .label('Binding type')
+    .oneOf(BINDING_TYPES.map((bindingType) => bindingType.value))
+    .required(),
+  finalSalePrice: yup.number().label('Final Sale Price').positive().nullable(),
+  hardCopyProof: yup.bool().default(false).required(),
+  numOfExtras: yup
+    .number()
+    .min(0)
+    .nullable(true)
+    .default(null)
+    .transform((_, val) => (Number(val) || null)),
+  presalePrice: yup.number().label('Presale Price').positive().nullable(),
+  pricePerBook: yup.number().label('Price per book').positive().nullable(),
+  quantity: yup
+    .number()
+    .label('Quantity')
+    .positive()
+    .nullable(true)
+    .transform((_, val) => (Number(val) || null)),
+  shipping: yup.number().label('Shipping').positive().nullable(),
+});
+
 export const SCHEMA = yup.object({
   confirmationStatus: yup.string().oneOf(CONFIRMATION_STATUSES.map((status) => status.value)).nullable(true),
   coverApproval: yup
@@ -59,7 +84,7 @@ export const SCHEMA = yup.object({
       .positive()
       .nullable(true)
       .transform((_, val) => (Number(val) || null)),
-  }),
+  }).notRequired(),
   schoolId: yup.number().required(),
   submittedFinalYearbook: yup
     .date()
@@ -71,29 +96,7 @@ export const SCHEMA = yup.object({
     .label('Submitted Final YB')
     .nullable(true)
     .transform((curr, orig) => (orig === '' ? null : curr)),
-  yearbookContractDetails: yup.array(yup.object({
-    bindingType: yup
-      .string()
-      .label('Binding type')
-      .oneOf(BINDING_TYPES.map((bindingType) => bindingType.value))
-      .required(),
-    finalSalePrice: yup.number().label('Final Sale Price').positive().nullable(),
-    hardCopyProof: yup.bool().required(),
-    numOfExtras: yup
-      .number()
-      .positive()
-      .nullable(true)
-      .transform((_, val) => (Number(val) || null)),
-    presalePrice: yup.number().label('Presale Price').positive().nullable(),
-    pricePerBook: yup.number().label('Price per book').positive().nullable(),
-    quantity: yup
-      .number()
-      .label('Quantity')
-      .positive()
-      .nullable(true)
-      .transform((_, val) => (Number(val) || null)),
-    shipping: yup.number().label('Shipping').positive().nullable(),
-  })),
+  yearbookContractDetails: yup.array(YEARBOOK_CONTRACT_DETAIL_SCHEMA),
   yearbookadvisor1email: yup.string().email(),
   yearbookadvisor1name: yup.string(),
   yearbookadvisor1phone: yup.string(),

@@ -1,5 +1,6 @@
 import { useQuery } from 'react-query';
-// import { merge } from 'lodash';
+import { Slide, toast } from 'react-toastify';
+import { useNavigate } from 'react-router';
 import Form from '../../../ui/Form';
 import Input from '../../../ui/Form/Inputs';
 import Button from '../../../ui/Button';
@@ -7,31 +8,51 @@ import { YearbookAdminJob } from '../../../../models/v2';
 import { ONE_DAY } from '../../../../utils/constants';
 import YearbookContractDetailFields from './YearbookContractDetailsFields';
 import { CONFIRMATION_STATUSES, SCHEMA } from './utils';
+import routes from '../../../routes';
 
 type YearbookAdminJobFormProps = {
   id?: string | number;
 };
 
 export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) {
+  const navigate = useNavigate();
+
   const { data: yearbookAdminJob } = useQuery(`yearbookAdminJobEdit-${id || 'new'}`, () => {
     if (!id) return new YearbookAdminJob();
 
     return YearbookAdminJob.includes(['school', 'yearbookContractDetails']).find(id).then((res) => res.data);
   }, { cacheTime: 0, staleTime: ONE_DAY });
 
-  console.log('Re-rendering...');
+  if (!yearbookAdminJob) return null;
 
   return (
     <Form
-      defaultValues={yearbookAdminJob?.dup()}
-      onSubmit={() => {
-        console.log('Submitting...');
-        // console.log(values);
-        // merge(yearbookAdminJob, values);
-        // console.log(yearbookAdminJob?.lastday);
-        // const res = await yearbookAdminJob?.save({ with: ['yearbookContractDetails'] });
+      defaultValues={yearbookAdminJob}
+      onSubmit={async () => {
+        const { yearbookContractDetails, ...newAttributes } = SCHEMA.cast(yearbookAdminJob);
+        delete newAttributes.school;
 
-        // console.log(res);
+        yearbookAdminJob.attributes = { ...yearbookAdminJob.attributes, ...newAttributes };
+        yearbookAdminJob.yearbookContractDetails = yearbookAdminJob
+          .yearbookContractDetails
+          .map((yearbookContractDetail, i) => {
+            if (yearbookContractDetails[i] !== undefined) {
+              // eslint-disable-next-line no-param-reassign
+              yearbookContractDetail.attributes = yearbookContractDetails[i];
+            }
+
+            return yearbookContractDetail;
+          });
+
+        const res = await yearbookAdminJob.save({ with: ['school', 'yearbookContractDetails'] });
+
+        if (res) {
+          toast('Successfully saved.', { autoClose: 1500, type: 'success' });
+          setTimeout(() => navigate(routes.admin.yearbookAdminJobs.show(yearbookAdminJob.id as string)), 1000);
+        }
+        else {
+          toast('Error with form submission.', { autoClose: 1500, transition: Slide, type: 'error' });
+        }
       }}
       schema={SCHEMA}
     >
@@ -43,6 +64,7 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
             contentClass="grid grid-cols-3 gap-x-8 gap-y-6"
             title="Contact Information"
           >
+            <Input containerProps={{ className: 'hidden' }} label="School" name="schoolId" type="hidden" />
             <Input label="YB Advisor Name" name="yearbkadvisor1name" />
             <Input label="YB Advisor Email" name="yearbkadvisor1email" />
             <Input label="YB Advisor Phone Number" name="yearbkadvisor1phone" />
@@ -82,7 +104,7 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
           </Form.Section>
           <Form.Section
             className="col-span-1"
-            contentClass="grid grid-cols-2"
+            contentClass="grid grid-cols-10"
             collapsible
             title="Types of Yearbooks"
           >

@@ -12,14 +12,14 @@ export default function YearbookContractDetailFields() {
 
   return (
     <>
-      <div className="col-span-2">
+      <div className="col-span-10">
         {fields.map((item, i) => (
           <div
-            className="grid grid-cols-12 gap-y-6 gap-x-8 border-b-gray-300 border-b last:border-none pb-4 mb-4"
+            className="grid grid-cols-10 gap-y-6 gap-x-8 border-b-gray-300 border-b last:border-none pb-4 mb-4"
             key={item.yearbookContractDetailsId}
           >
             <Input.Select
-              containerProps={{ className: 'col-span-11' }}
+              containerProps={{ className: 'col-span-9' }}
               label="Binding Type"
               name={getNestedName('bindingType', i)}
               options={[
@@ -49,22 +49,22 @@ export default function YearbookContractDetailFields() {
               </button>
             </div>
             <Input.Currency
-              containerProps={{ className: 'col-span-4' }}
+              containerProps={{ className: 'col-span-3' }}
               label="Price per Book"
               name={getNestedName('pricePerBook', i)}
             />
             <Input.Currency
-              containerProps={{ className: 'col-span-4' }}
+              containerProps={{ className: 'col-span-3' }}
               label="Pre-Sale Price"
               name={getNestedName('presalePrice', i)}
             />
             <Input.Currency
-              containerProps={{ className: 'col-span-4' }}
+              containerProps={{ className: 'col-span-3' }}
               label="Final-Sale Price"
               name={getNestedName('finalSalePrice', i)}
             />
             <Input.Select
-              containerProps={{ className: 'col-span-4' }}
+              containerProps={{ className: 'col-span-3' }}
               label="Hard Copy Proof"
               name={getNestedName('hardCopyProof', i)}
               options={[
@@ -73,13 +73,13 @@ export default function YearbookContractDetailFields() {
               ]}
             />
             <Input
-              containerProps={{ className: 'col-span-4' }}
+              containerProps={{ className: 'col-span-3' }}
               label="Number of Extras"
               name={getNestedName('numOfExtras', i)}
               type="number"
             />
             <Input
-              containerProps={{ className: 'col-span-4' }}
+              containerProps={{ className: 'col-span-3' }}
               label="Quantity"
               name={getNestedName('quantity', i)}
               type="number"
@@ -88,7 +88,7 @@ export default function YearbookContractDetailFields() {
         ))}
       </div>
       <Button
-        className="col-start-2 place-self-end"
+        className="col-end-10 place-self-end"
         outlined
         onClick={() => append(new YearbookContractDetail())}
         variant="success"
