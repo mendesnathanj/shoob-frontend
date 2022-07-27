@@ -42,7 +42,7 @@ export default function Select({
 
       return {
         ...provided,
-        height: 44,
+        height: 42,
         ...errorStyles
       };
     },

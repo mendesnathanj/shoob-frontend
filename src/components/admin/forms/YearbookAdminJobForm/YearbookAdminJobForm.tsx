@@ -19,8 +19,6 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
     return YearbookAdminJob.includes(['school', 'yearbookContractDetails']).find(id).then((res) => res.data);
   }, { cacheTime: 0, staleTime: ONE_DAY });
 
-  console.log(yearbookAdminJob);
-
   return (
     <Form
       defaultValues={yearbookAdminJob}
@@ -33,12 +31,12 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
       }}
       schema={SCHEMA}
     >
-      <div className="grid grid-cols-12 gap-x-5">
+      <div className="grid grid-cols-12 gap-x-6">
         <div className="grid grid-cols-1 gap-y-14 gap-x-2 col-span-9">
           <Form.Section
             className="col-span-1"
             collapsible
-            contentClass="grid grid-cols-3 gap-x-8 gap-y-4"
+            contentClass="grid grid-cols-3 gap-x-8 gap-y-6"
             title="Contact Information"
           >
             <Input label="YB Advisor Name" name="yearbkadvisor1name" />
@@ -48,12 +46,12 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
             <Input label="Additional User Email" name="yearbkadvisor2email" />
             <Input label="Additional User Phone Number" name="yearbkadvisor2phone" />
             <Input label="Enrollment" name="school.enrollment" />
-            <Input label="Last Day of School" name="lastday" />
+            <Input.Date label="Last Day of School" name="lastday" />
           </Form.Section>
           <Form.Section
             className="col-span-1"
             collapsible
-            contentClass="grid grid-cols-3 gap-x-8 gap-y-4"
+            contentClass="grid grid-cols-3 gap-x-8 gap-y-6"
             title="Contract Details"
           >
             <Input.Select
@@ -88,7 +86,14 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
           </Form.Section>
         </div>
         <div className="col-span-3">
-          <Form.Section collapsible title="Checklist" />
+          <Form.Section contentClass="flex flex-col gap-6" collapsible title="Checklist">
+            <Input.Date label="Pixami Setup Date" name="pixamisetupdate" />
+            <Input.Date label="Flyers / Posters Sent Date" name="dateflyersposterssenttoprint" />
+            <Input.Date label="Flow Class Pictures" name="flowClassPictures" />
+            <Input.Date label="Cover Approval" name="coverApproval" />
+            <Input.Date label="Submitted YB for Proofing" name="submittedYearbookForProofing" />
+            <Input.Date label="Submitted Final YB" name="submittedFinalYearbook" />
+          </Form.Section>
         </div>
       </div>
       <div className="pt-3">

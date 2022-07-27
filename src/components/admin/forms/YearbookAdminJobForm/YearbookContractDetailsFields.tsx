@@ -15,7 +15,7 @@ export default function YearbookContractDetailFields() {
       <div className="col-span-2">
         {fields.map((item, i) => (
           <div
-            className="grid grid-cols-12 gap-y-6 gap-x-2 border-b-gray-300 border-b pb-4 mb-4"
+            className="grid grid-cols-12 gap-y-6 gap-x-2 border-b-gray-300 border-b last:border-none pb-4 mb-4"
             key={item.yearbookContractDetailsId}
           >
             <Input.Select

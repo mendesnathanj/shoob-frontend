@@ -21,9 +21,9 @@ import { useFormContext } from 'react-hook-form';
 import Calendar from '../../Calendar/Calendar';
 import { useNestedName } from '../utils/NestedContext';
 import { InputProps } from './types';
-import { SERVER_DATE_FORMAT, USER_DATE_FORMAT } from '../../../../utils/constants';
+import { SERVER_DATE_FORMAT, SERVER_DATE_TIME_FORMAT, USER_DATE_FORMAT } from '../../../../utils/constants';
 import BaseInput from './BaseInput';
-import { formattedDate } from '../../../../utils/functions';
+import { formattedDate, formattedDateTime } from '../../../../utils/functions';
 
 const variants: Variants = {
   closed: { marginTop: -8, opacity: 0, },
@@ -42,6 +42,9 @@ export default function DateInput(props: InputProps) {
   useEffect(() => {
     if (isMatch(watchDate, SERVER_DATE_FORMAT)) {
       setValue(nestedName, formattedDate(watchDate, 'client'));
+    }
+    else if (isMatch(watchDate, SERVER_DATE_TIME_FORMAT)) {
+      setValue(nestedName, formattedDateTime(watchDate));
     }
   }, [watchDate]);
 
