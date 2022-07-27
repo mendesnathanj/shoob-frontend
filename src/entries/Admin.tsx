@@ -13,6 +13,7 @@ import YearbookAdminJobsHome from '../components/pages/Admin/YearbookAdminJobs/Y
 import YearbookAdminJobsNew from '../components/pages/Admin/YearbookAdminJobs/YearbookAdminJobsNew';
 import YearbookAdminJobEdit from '../components/pages/Admin/YearbookAdminJobs/YearbookAdminJobsEdit';
 import YearbookAdminJobShow from '../components/pages/Admin/YearbookAdminJobs/YearbookAdminJobShow';
+import ScrollToTop from '../components/utils/ScrollToTop';
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ export default function Admin() {
     <QueryClientProvider client={queryClient}>
       <ToastContainer theme="light" />
       <Router basename={basename}>
+        <ScrollToTop />
         <Routes>
           <Route path="/">
             <Route index element={<Home />} />
