@@ -42,8 +42,6 @@ function Form({
     const errorKeys = Object.keys(serverErrors);
     if (errorKeys.length === 0) return;
 
-    console.log('we moving');
-
     errorKeys.forEach((key) => {
       const error = serverErrors[key];
 
