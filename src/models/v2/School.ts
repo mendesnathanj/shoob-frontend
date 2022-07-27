@@ -15,6 +15,7 @@ class School extends ApplicationRecord {
   @Attr() prinLname: string;
   @Attr() prinEmail: string;
   @Attr() route: string;
+  @Attr() salesStat: string;
   @Attr() sec1Fname: string;
   @Attr() sec1Lname: string;
   @Attr() sec1Email: string;

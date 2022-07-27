@@ -14,7 +14,7 @@ export default function YearbookAdminJobsHome() {
   const columns = useYearbookAdminJobTableColumns();
 
   return (
-    <Page>
+    <Page maxWidth="xl">
       <h1 className="text-4xl pb-2 mb-4 border-b border-b-gray-200">Yearbook Jobs</h1>
       <Filters />
       {isLoading ? <PageSpinner /> : <Table data={data} columns={columns} />}
