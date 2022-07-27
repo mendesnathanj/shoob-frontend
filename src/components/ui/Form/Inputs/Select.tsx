@@ -10,7 +10,7 @@ import { ErrorMessage, Label } from './helpers';
 
 type OptionType = {
   label: string;
-  value?: string | number;
+  value?: string | number | boolean;
 }
 
 type SelectProps = {

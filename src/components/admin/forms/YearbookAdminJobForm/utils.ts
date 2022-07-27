@@ -1,20 +1,20 @@
 import * as yup from 'yup';
 
-export const CONTRACT_STATUSES = [
+export const CONFIRMATION_STATUSES = [
   { label: 'Null', value: undefined },
   { label: 'Tentative', value: 'tentative' },
   { label: 'Confirmed', value: 'confirmed' },
   { label: 'Declined', value: 'declined' },
-] as const;
+];
 
 export const BINDING_TYPES = [
   { label: 'Hard Cover', value: 'hard_cover' },
   { label: 'Soft Cover', value: 'soft_cover' },
   { label: 'Perfect Bound', value: 'perfect_bound' },
-] as const;
+];
 
 export const SCHEMA = yup.object({
-  contractStatus: yup.string().oneOf(CONTRACT_STATUSES.map((status) => status.value)),
+  confirmationStatus: yup.string().oneOf(CONFIRMATION_STATUSES.map((status) => status.value)),
   customSetup: yup.bool().required(),
   numberOfPages: yup.number().positive().integer(),
   school: yup.object({

@@ -21,6 +21,7 @@ export default function CurrencyInput({
       name={nestedName}
       render={({ field: { name, onChange, value, ref } }) => (
         <InputContainer
+          containerProps={rest.containerProps || {}}
           label={rest.label}
           name={name}
         >
@@ -33,6 +34,7 @@ export default function CurrencyInput({
               { 'border-red-400': errors },
               className,
             )}
+            decimalScale={2}
             prefix="$"
             placeholder="$00.00"
             ref={ref}

@@ -64,7 +64,7 @@ export default function YearbookAdminJobShow() {
               <Item label="Enrollment:" value={yearbookAdminJob.school.enrollment} />
               <Item label="Last Day of School:" value={formattedDate(yearbookAdminJob.lastday)} />
             </Section>
-            <Section title="Contract Details" contentClass="grid grid-cols-4 gap-y-6 gap-x-2">
+            <Section title="Contract Details" contentClass="grid grid-cols-3 gap-y-6 gap-x-2">
               <Item label="Confirmation Status:" value={capitalize(yearbookAdminJob.confirmationStatus || 'null')} />
               <Item label="Custom Setup:" value={yearbookAdminJob.customSetup ? 'Yes' : 'No'} />
               <Item
@@ -74,7 +74,9 @@ export default function YearbookAdminJobShow() {
                   .map((contractDetail) => capitalize(contractDetail.bindingType.replace('_', ' '))).join(', ')}
               />
               <Item label="Number of Pages:" value={yearbookAdminJob.numberofpages} />
-              <Item className="col-span-4" label="Notes:" value={yearbookAdminJob.notes} />
+              <Item label="Presale Deadline:" value={formattedDate(yearbookAdminJob.presaleDeadline)} />
+              <Item label="Final Sale Deadline:" value={formattedDate(yearbookAdminJob.salesdeadline)} />
+              <Item className="col-span-3" label="Notes:" value={yearbookAdminJob.notes} />
             </Section>
             {yearbookAdminJob.yearbookContractDetails.map((contractDetail) => (
               <Section
@@ -87,6 +89,7 @@ export default function YearbookAdminJobShow() {
                 <Item label="Final-Sale Price:" value={currency(contractDetail.finalSalePrice).format()} />
                 <Item label="Hard Copy Proof:" value={contractDetail.hardCopyProof ? 'Yes' : 'No'} />
                 <Item label="Number of Extras:" value={contractDetail.numOfExtras} />
+                <Item label="Quantity:" value={contractDetail.quantity} />
               </Section>
             ))}
           </div>

@@ -11,6 +11,7 @@ class YearbookAdminJob extends ApplicationRecord {
   @Attr() customSetup: boolean;
   @Attr() dateflyersposterssenttoprint?: string;
   @Attr() flowClassPictures?: string;
+  @Attr() hardCopyProof: boolean;
   @Attr() lastday: string;
   @Attr() notes: string;
   @Attr() numberofpages: number;

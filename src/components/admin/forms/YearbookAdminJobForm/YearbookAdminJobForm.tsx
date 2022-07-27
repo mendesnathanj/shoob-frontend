@@ -6,7 +6,7 @@ import Button from '../../../ui/Button';
 import { YearbookAdminJob } from '../../../../models/v2';
 import { ONE_DAY } from '../../../../utils/constants';
 import YearbookContractDetailFields from './YearbookContractDetailsFields';
-import { SCHEMA } from './utils';
+import { CONFIRMATION_STATUSES, SCHEMA } from './utils';
 
 type YearbookAdminJobFormProps = {
   id?: string | number;
@@ -16,12 +16,13 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
   const { data: yearbookAdminJob } = useQuery(`yearbookAdminJobEdit-${id || 'new'}`, () => {
     if (!id) return new YearbookAdminJob();
 
-    return YearbookAdminJob.includes('yearbookContractDetails').find(id).then((res) => res.data);
+    return YearbookAdminJob.includes(['school', 'yearbookContractDetails']).find(id).then((res) => res.data);
   }, { cacheTime: 0, staleTime: ONE_DAY });
+
+  console.log(yearbookAdminJob);
 
   return (
     <Form
-      className="grid grid-cols-12 gap-y-5"
       defaultValues={yearbookAdminJob}
       onSubmit={async (values) => {
         console.log(values);
@@ -32,30 +33,64 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
       }}
       schema={SCHEMA}
     >
-      <Form.Section
-        className="col-span-12"
-        collapsible
-        contentClass="grid grid-cols-2 gap-x-8 gap-y-4"
-        title="Contact Information"
-      >
-        <Input.Select
-          label="School"
-          name="schoolId"
-          options={[
-            { label: 'Enochs', value: 49 },
-            { label: 'Gregory', value: 42 },
-          ]}
-        />
-        <Input label="YB Advisor 1:" name="yearbook_advisor" />
-        <Input label="YB Advisor 1 Email:" name="yearbook_advisor" />
-      </Form.Section>
-      <Form.Section
-        className="col-span-12"
-        collapsible
-        title="Contract Details"
-      >
-        <YearbookContractDetailFields />
-      </Form.Section>
+      <div className="grid grid-cols-12 gap-x-5">
+        <div className="grid grid-cols-1 gap-y-14 gap-x-2 col-span-9">
+          <Form.Section
+            className="col-span-1"
+            collapsible
+            contentClass="grid grid-cols-3 gap-x-8 gap-y-4"
+            title="Contact Information"
+          >
+            <Input label="YB Advisor Name" name="yearbkadvisor1name" />
+            <Input label="YB Advisor Email" name="yearbkadvisor1email" />
+            <Input label="YB Advisor Phone Number" name="yearbkadvisor1phone" />
+            <Input label="Additional User Name" name="yearbkadvisor2name" />
+            <Input label="Additional User Email" name="yearbkadvisor2email" />
+            <Input label="Additional User Phone Number" name="yearbkadvisor2phone" />
+            <Input label="Enrollment" name="school.enrollment" />
+            <Input label="Last Day of School" name="lastday" />
+          </Form.Section>
+          <Form.Section
+            className="col-span-1"
+            collapsible
+            contentClass="grid grid-cols-3 gap-x-8 gap-y-4"
+            title="Contract Details"
+          >
+            <Input.Select
+              label="Confirmation Status"
+              name="confirmationStatus"
+              options={CONFIRMATION_STATUSES}
+            />
+            <Input.Select
+              label="Custom Setup"
+              name="customSetup"
+              options={[
+                { label: 'Yes', value: true },
+                { label: 'No', value: false },
+              ]}
+            />
+            <Input label="Number of pages" name="numberofpages" type="number" />
+            <Input.Date label="Presale Deadline" name="presaleDeadline" />
+            <Input.Date label="Final Sale Deadline" name="presaleDeadline" />
+            <Input.Textarea
+              containerProps={{ className: 'col-span-3' }}
+              label="Notes"
+              name="notes"
+            />
+          </Form.Section>
+          <Form.Section
+            className="col-span-1"
+            contentClass="grid grid-cols-2"
+            collapsible
+            title="Types of Yearbooks"
+          >
+            <YearbookContractDetailFields />
+          </Form.Section>
+        </div>
+        <div className="col-span-3">
+          <Form.Section collapsible title="Checklist" />
+        </div>
+      </div>
       <div className="pt-3">
         <Button submit variant="primary">Submit</Button>
       </div>
