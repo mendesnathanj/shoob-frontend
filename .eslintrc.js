@@ -45,7 +45,7 @@ module.exports = {
     'max-len': ['warn', { code: 120 }],
     'no-console': 'warn',
     'no-mixed-operators': 'warn',
-    'no-param-reassign': 'warn',
+    'no-param-reassign': 'off',
     'no-plusplus': 'off',
     'no-restricted-globals': 'off',
     'no-undef': 'off',

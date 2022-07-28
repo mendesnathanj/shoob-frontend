@@ -36,16 +36,14 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
         yearbookAdminJob.yearbookContractDetails = yearbookAdminJob
           .yearbookContractDetails
           .map((yearbookContractDetail, i) => {
-            // eslint-disable-next-line no-param-reassign
             yearbookContractDetail.attributes = yearbookContractDetails[i];
-
             return yearbookContractDetail;
           });
 
         const res = await yearbookAdminJob.save({ with: ['school', 'yearbookContractDetails'] });
 
         if (res) {
-          toast('Successfully saved.', { autoClose: 1500, type: 'success' });
+          toast('Successfully saved.', { autoClose: 500, type: 'success' });
           setTimeout(() => navigate(routes.admin.yearbookAdminJobs.show(yearbookAdminJob.id as string)), 1000);
         }
         else {
