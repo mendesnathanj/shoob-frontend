@@ -75,12 +75,6 @@ export default function YearbookContractDetailFields() {
               name={getNestedName('numOfExtras', i)}
               type="number"
             />
-            <Input
-              containerProps={{ className: 'col-span-3' }}
-              label="Quantity"
-              name={getNestedName('quantity', i)}
-              type="number"
-            />
           </div>
         ))}
       </div>

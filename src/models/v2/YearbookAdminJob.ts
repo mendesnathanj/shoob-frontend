@@ -1,3 +1,4 @@
+import { capitalize } from 'lodash';
 import { Attr, BelongsTo, HasMany, Model } from 'spraypaint';
 import ApplicationRecord from './ApplicationRecord';
 import School from './School';
@@ -32,6 +33,18 @@ class YearbookAdminJob extends ApplicationRecord {
   @HasMany() yearbookContractDetails: YearbookContractDetail[];
   // Extra attributes for querying
   @Attr() years?: number[];
+  formattedBindingTypes() : string {
+    if (this.yearbookContractDetails.length === 0) return '';
+    if (this.yearbookContractDetails.length === 1) {
+      return capitalize((this.yearbookContractDetails[0].bindingType || '').replace('_', ' '));
+    }
+
+    const bindings = this
+      .yearbookContractDetails
+      .map((contractDetail) => capitalize(contractDetail.bindingType.replace('_', ' '))).join(', ');
+
+    return `Split binding (${bindings})`;
+  }
 }
 
 export default YearbookAdminJob;

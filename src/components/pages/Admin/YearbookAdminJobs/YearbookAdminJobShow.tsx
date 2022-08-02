@@ -69,9 +69,7 @@ export default function YearbookAdminJobShow() {
               <Item label="Custom Setup:" value={yearbookAdminJob.customSetup ? 'Yes' : 'No'} />
               <Item
                 label="Types of Binding"
-                value={yearbookAdminJob
-                  .yearbookContractDetails
-                  .map((contractDetail) => capitalize(contractDetail.bindingType.replace('_', ' '))).join(', ')}
+                value={yearbookAdminJob.formattedBindingTypes()}
               />
               <Item label="Number of Pages:" value={yearbookAdminJob.numberofpages} />
               <Item label="Presale Deadline:" value={formattedDate(yearbookAdminJob.presaleDeadline)} />
@@ -89,7 +87,6 @@ export default function YearbookAdminJobShow() {
                 <Item label="Final-Sale Price:" value={currency(contractDetail.finalSalePrice).format()} />
                 <Item label="Hard Copy Proof:" value={contractDetail.hardCopyProof ? 'Yes' : 'No'} />
                 <Item label="Number of Extras:" value={contractDetail.numOfExtras} />
-                <Item label="Quantity:" value={contractDetail.quantity} />
               </Section>
             ))}
           </div>
