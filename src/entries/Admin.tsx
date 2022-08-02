@@ -8,7 +8,7 @@ import ProductsEdit from '../components/pages/Admin/Products/ProductsEdit';
 import ProductsHome from '../components/pages/Admin/Products/ProductsHome';
 import ProductsNew from '../components/pages/Admin/Products/ProductsNew';
 import YearbookJobs from '../components/pages/Admin/YearbookJobs';
-import routes from '../components/routes';
+import routes from '../routes';
 import YearbookAdminJobsHome from '../components/pages/Admin/YearbookAdminJobs/YearbookAdminJobsHome';
 import YearbookAdminJobsNew from '../components/pages/Admin/YearbookAdminJobs/YearbookAdminJobsNew';
 import YearbookAdminJobEdit from '../components/pages/Admin/YearbookAdminJobs/YearbookAdminJobsEdit';

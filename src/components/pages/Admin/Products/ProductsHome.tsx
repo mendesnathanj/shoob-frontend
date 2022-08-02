@@ -6,7 +6,7 @@ import { useSearchParams } from 'react-router-dom';
 import { DProduct } from '../../../../models/v2';
 import { capitalize } from '../../../../utils/functions';
 import { CATEGORIES } from '../../../admin/forms/DProductsForm/utils';
-import routes from '../../../routes';
+import routes from '../../../../routes';
 import Button from '../../../ui/Button';
 import DropdownButton from '../../../ui/DropdownButton';
 import Form from '../../../ui/Form';

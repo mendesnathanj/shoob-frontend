@@ -1,12 +1,12 @@
 import { useParams } from 'react-router';
 import cn from 'classnames';
 import currency from 'currency.js';
-import { capitalize, formattedDate, formattedDateTime } from '../../../../utils/functions';
-import Section from '../../../common/Section';
-import routes from '../../../routes';
-import Button from '../../../ui/Button';
-import Link from '../../../ui/Link';
-import Page from '../../../ui/Page';
+import { capitalize, formattedDate, formattedDateTime } from '@/utils/functions';
+import Section from '@/components/common/Section';
+import routes from '@/routes';
+import Button from '@/components/ui/Button';
+import Link from '@/components/ui/Link';
+import Page from '@/components/ui/Page';
 import { useYearbookAdminJob } from './utils';
 
 function Item({ className = '', label, value }: { className?: string, label: string, value?: string | number }) {

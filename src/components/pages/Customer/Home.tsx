@@ -1,4 +1,4 @@
-import routes from '../../routes';
+import routes from '../../../routes';
 import Page from '../../ui/Page';
 
 export default function Home() {

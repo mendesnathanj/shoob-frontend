@@ -3,7 +3,7 @@ import { capitalize } from 'lodash';
 import { useMemo } from 'react';
 import { useQuery } from 'react-query';
 import { YearbookAdminJob } from '../../../../models/v2';
-import routes from '../../../routes';
+import routes from '../../../../routes';
 import Link from '../../../ui/Link';
 
 type useYearbookAdminJobsHomeProps = {

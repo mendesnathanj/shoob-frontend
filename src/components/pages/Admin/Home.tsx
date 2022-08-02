@@ -1,4 +1,4 @@
-import routes from '../../routes';
+import routes from '../../../routes';
 import Link from '../../ui/Link';
 import Page from '../../ui/Page';
 

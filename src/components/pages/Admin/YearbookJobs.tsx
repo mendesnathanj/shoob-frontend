@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 import { merge } from 'lodash';
 import { YearbookAdminJob } from '../../../models/v2';
-import routes from '../../routes';
+import routes from '../../../routes';
 import Button from '../../ui/Button';
 import Form from '../../ui/Form';
 import Input from '../../ui/Form/Inputs';

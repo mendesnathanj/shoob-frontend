@@ -2,7 +2,7 @@ import { useQuery } from 'react-query';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import qs from 'query-string';
 import { YearbookAdminJob } from '../../../../../models/v2';
-import routes from '../../../../routes';
+import routes from '../../../../../routes';
 import Form from '../../../../ui/Form';
 import Input from '../../../../ui/Form/Inputs';
 

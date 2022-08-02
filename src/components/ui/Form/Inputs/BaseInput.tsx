@@ -32,7 +32,7 @@ const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(({
         <input
           className={cn(
             inline ? 'flex-1' : 'min-w-full',
-            `inline-block rounded border-gray-400 text-gray-600
+            `max-w-full inline-block rounded border-gray-400 text-gray-600
             placeholder:opacity-70 placeholder:italic
           focus:border-shoob-300 focus:ring-shoob-300`,
             { 'border-red-400': errors },
@@ -45,7 +45,7 @@ const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(({
           {...rest}
         />
         {endIcon && (
-          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600">
+          <span className="absolute right-1 top-1/2 -translate-y-1/2 text-gray-600">
             {endIcon}
           </span>
         )}

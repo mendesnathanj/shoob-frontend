@@ -64,11 +64,13 @@ export const SCHEMA = yup.object({
     .transform((curr, orig) => (orig === '' ? null : curr)),
   presaleDeadline: yup
     .date()
+    .default(new Date(2022, 12, 31))
     .label('Presale Deadline')
     .nullable(true)
     .transform((curr, orig) => (orig === '' ? null : curr)),
   salesdeadline: yup
     .date()
+    .default(new Date(2023, 4, 21))
     .label('Final Sale Deadline')
     .nullable(true)
     .transform((curr, orig) => (orig === '' ? null : curr)),

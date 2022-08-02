@@ -8,7 +8,7 @@ import { YearbookAdminJob } from '../../../../models/v2';
 import { ONE_DAY } from '../../../../utils/constants';
 import YearbookContractDetailFields from './YearbookContractDetailsFields';
 import { CONFIRMATION_STATUSES, SCHEMA } from './utils';
-import routes from '../../../routes';
+import routes from '../../../../routes';
 
 type YearbookAdminJobFormProps = {
   id?: string | number;
