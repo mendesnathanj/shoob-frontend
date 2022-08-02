@@ -29,12 +29,6 @@ export const YEARBOOK_CONTRACT_DETAIL_SCHEMA = yup.object({
     .transform((_, val) => (Number(val) || null)),
   presalePrice: yup.number().label('Presale Price').positive().nullable(),
   pricePerBook: yup.number().label('Price per book').positive().nullable(),
-  quantity: yup
-    .number()
-    .label('Quantity')
-    .positive()
-    .nullable(true)
-    .transform((_, val) => (Number(val) || null)),
   shipping: yup.number().label('Shipping').positive().nullable(),
 });
 
