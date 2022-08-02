@@ -4,6 +4,9 @@ import Table from '@/components/ui/Table';
 import Page from '@/components/ui/Page';
 import { useYearbookAdminJobsHome, useYearbookAdminJobTableColumns } from '../utils';
 import Filters from './Filters';
+import Button from '@/components/ui/Button';
+import Link from '@/components/ui/Link';
+import routes from '@/routes';
 
 export default function YearbookAdminJobsHome() {
   const [searchParams] = useSearchParams();
@@ -15,7 +18,12 @@ export default function YearbookAdminJobsHome() {
 
   return (
     <Page maxWidth="xl">
-      <h1 className="text-4xl pb-2 mb-4 border-b border-b-gray-200">Yearbook Jobs</h1>
+      <div className="flex justify-between border-b border-b-gray-200">
+        <h1 className="text-4xl pb-2 mb-4">Yearbook Jobs</h1>
+        <Link to={routes.admin.yearbookAdminJobs.new()}>
+          <Button variant="primary">Add New Job</Button>
+        </Link>
+      </div>
       <Filters />
       {isLoading ? <PageSpinner /> : <Table data={data} columns={columns} />}
     </Page>
