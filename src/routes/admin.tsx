@@ -12,5 +12,4 @@ export default {
     new: () => '/yearbook-admin-jobs/new' as const,
     show: (id: number | string) => `/yearbook-admin-jobs/${id}` as const,
   },
-  yearbookJobs: () => '/yearbook-jobs' as const,
 };

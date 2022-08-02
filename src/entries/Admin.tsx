@@ -7,7 +7,6 @@ import { Home } from '../components/pages/Admin';
 import ProductsEdit from '../components/pages/Admin/Products/ProductsEdit';
 import ProductsHome from '../components/pages/Admin/Products/ProductsHome';
 import ProductsNew from '../components/pages/Admin/Products/ProductsNew';
-import YearbookJobs from '../components/pages/Admin/YearbookJobs';
 import routes from '../routes';
 import YearbookAdminJobsHome from '../components/pages/Admin/YearbookAdminJobs/YearbookAdminJobsHome';
 import YearbookAdminJobsNew from '../components/pages/Admin/YearbookAdminJobs/YearbookAdminJobsNew';
@@ -30,7 +29,6 @@ export default function Admin() {
           <Route path="/">
             <Route index element={<Home />} />
           </Route>
-          <Route path={routes.admin.yearbookJobs()} element={<YearbookJobs />} />
           <Route path={routes.admin.products.home()}>
             <Route index element={<ProductsHome />} />
             <Route path={routes.admin.products.new()} element={<ProductsNew />} />
