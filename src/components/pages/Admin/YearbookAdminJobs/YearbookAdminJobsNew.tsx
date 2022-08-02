@@ -1,7 +1,7 @@
 import Link from '@/components/ui/Link';
 import Page from '@/components/ui/Page';
 import routes from '@/routes';
-import YearbookAdminJobForm from '../../../admin/forms/YearbookAdminJobForm';
+import YearbookAdminJobForm from '@/components/admin/forms/YearbookAdminJobForm';
 
 export default function YearbookAdminJobsNew() {
   return (

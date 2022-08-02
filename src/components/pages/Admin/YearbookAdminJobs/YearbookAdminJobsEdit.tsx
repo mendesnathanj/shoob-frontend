@@ -1,8 +1,8 @@
 import { useParams } from 'react-router';
-import YearbookAdminJobForm from '../../../admin/forms/YearbookAdminJobForm';
-import routes from '../../../../routes';
-import Link from '../../../ui/Link';
-import Page from '../../../ui/Page';
+import YearbookAdminJobForm from '@/components/admin/forms/YearbookAdminJobForm';
+import routes from '@/routes';
+import Link from '@/components/ui/Link';
+import Page from '@/components/ui/Page';
 
 export default function YearbookAdminJobEdit() {
   const { id } = useParams();

@@ -1,14 +1,14 @@
 import { useQuery } from 'react-query';
 import { Slide, toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
-import Form from '../../../ui/Form';
-import Input from '../../../ui/Form/Inputs';
-import Button from '../../../ui/Button';
-import { YearbookAdminJob } from '../../../../models/v2';
-import { ONE_DAY } from '../../../../utils/constants';
+import Form from '@/components/ui/Form';
+import Input from '@/components/ui/Form/Inputs';
+import Button from '@/components/ui/Button';
+import { YearbookAdminJob } from '@/models/v2';
+import { ONE_DAY } from '@/utils/constants';
 import YearbookContractDetailFields from './YearbookContractDetailsFields';
 import { CONFIRMATION_STATUSES, SCHEMA } from './utils';
-import routes from '../../../../routes';
+import routes from '@/routes';
 import SchoolInput from './SchoolInput';
 
 type YearbookAdminJobFormProps = {

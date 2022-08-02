@@ -22,9 +22,9 @@ import { useFormContext } from 'react-hook-form';
 import Calendar from '../../Calendar/Calendar';
 import { useNestedName } from '../utils/NestedContext';
 import { InputProps } from './types';
-import { SERVER_DATE_FORMAT, SERVER_DATE_TIME_FORMAT, USER_DATE_FORMAT } from '../../../../utils/constants';
+import { SERVER_DATE_FORMAT, SERVER_DATE_TIME_FORMAT, USER_DATE_FORMAT } from '@/utils/constants';
 import BaseInput from './BaseInput';
-import { formattedDate, formattedDateTime } from '../../../../utils/functions';
+import { formattedDate, formattedDateTime } from '@/utils/functions';
 
 const variants: Variants = {
   closed: { marginTop: -8, opacity: 0, },

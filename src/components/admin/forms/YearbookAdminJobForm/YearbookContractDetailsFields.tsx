@@ -1,9 +1,9 @@
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import useNestedFields from '../../../../hooks/useNestedFields';
-import { YearbookContractDetail } from '../../../../models/v2';
-import Button from '../../../ui/Button';
-import Input from '../../../ui/Form/Inputs';
+import useNestedFields from '@/hooks/useNestedFields';
+import { YearbookContractDetail } from '@/models/v2';
+import Button from '@/components/ui/Button';
+import Input from '@/components/ui/Form/Inputs';
 import { BINDING_TYPES } from './utils';
 
 export default function YearbookContractDetailFields() {

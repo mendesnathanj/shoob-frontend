@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
-import DProductsForm from '../../../admin/forms/DProductsForm';
-import Page from '../../../ui/Page';
+import Page from '@/components/ui/Page';
+import DProductsForm from '@/components/admin/forms/DProductsForm';
 
 type PageParams = {
   id: string;

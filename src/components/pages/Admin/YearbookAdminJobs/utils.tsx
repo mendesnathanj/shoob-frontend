@@ -2,9 +2,9 @@ import { ColumnDef } from '@tanstack/react-table';
 import { capitalize } from 'lodash';
 import { useMemo } from 'react';
 import { useQuery } from 'react-query';
-import { YearbookAdminJob } from '../../../../models/v2';
-import routes from '../../../../routes';
-import Link from '../../../ui/Link';
+import { YearbookAdminJob } from '@/models/v2';
+import routes from '@/routes';
+import Link from '@/components/ui/Link';
 
 type useYearbookAdminJobsHomeProps = {
   schoolName: string;

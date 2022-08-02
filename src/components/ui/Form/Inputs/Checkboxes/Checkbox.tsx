@@ -1,7 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 import cn from 'classnames';
-import { useNestedName } from '../../utils/NestedContext';
 import { InputProps } from '../types';
+import { useNestedName } from '../../utils/NestedContext';
 
 export default function Checkbox({
   label,

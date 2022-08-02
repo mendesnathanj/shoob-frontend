@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router';
 import { toast, Slide } from 'react-toastify';
-import { DProduct } from '../../../../models/v2';
-import DjobType from '../../../../models/v2/DjobType';
-import { ONE_DAY } from '../../../../utils/constants';
-import routes from '../../../../routes';
-import Button from '../../../ui/Button';
-import Form from '../../../ui/Form';
-import Input from '../../../ui/Form/Inputs';
+import { DProduct } from '@/models/v2';
+import DjobType from '@/models/v2/DjobType';
+import { ONE_DAY } from '@/utils/constants';
+import routes from '@/routes';
+import Button from '@/components/ui/Button';
+import Form from '@/components/ui/Form';
+import Input from '@/components/ui/Form/Inputs';
 import { CATEGORIES, DESTINATIONS, SCHEMA } from './utils';
 
 type FormData = {

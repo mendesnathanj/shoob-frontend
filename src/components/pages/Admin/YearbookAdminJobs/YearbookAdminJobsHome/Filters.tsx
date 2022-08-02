@@ -1,10 +1,10 @@
 import { useQuery } from 'react-query';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import qs from 'query-string';
-import { YearbookAdminJob } from '../../../../../models/v2';
-import routes from '../../../../../routes';
-import Form from '../../../../ui/Form';
-import Input from '../../../../ui/Form/Inputs';
+import { YearbookAdminJob } from '@/models/v2';
+import routes from '@/routes';
+import Form from '@/components/ui/Form';
+import Input from '@/components/ui/Form/Inputs';
 
 type FormData = {
   year: number;
