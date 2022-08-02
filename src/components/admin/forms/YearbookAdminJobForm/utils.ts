@@ -39,7 +39,7 @@ export const SCHEMA = yup.object({
     .label('Cover Approval')
     .nullable(true)
     .transform((curr, orig) => (orig === '' ? null : curr)),
-  customSetup: yup.bool().required(),
+  customSetup: yup.bool().default(false).required(),
   dateflyersposterssenttoprint: yup
     .date()
     .label('Flyers / Posters Sent Date')
@@ -56,7 +56,13 @@ export const SCHEMA = yup.object({
     .nullable(true)
     .transform((curr, orig) => (orig === '' ? null : curr)),
   notes: yup.string(),
-  numberofpages: yup.number().positive().integer(),
+  numberofpages: yup
+    .number()
+    .positive()
+    .integer()
+    .nullable(true)
+    .default(null)
+    .transform((_, val) => (Number(val) || null)),
   pixamisetupdate: yup
     .date()
     .label('Pixami Setup Date')

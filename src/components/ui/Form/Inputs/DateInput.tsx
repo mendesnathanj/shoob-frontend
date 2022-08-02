@@ -83,10 +83,6 @@ export default function DateInput(props: InputProps) {
 
   const registerDate = register(nestedName);
 
-  if (nestedName === 'salesdeadline') {
-    console.log(watchDate);
-  }
-
   return (
     <>
       <InputMask

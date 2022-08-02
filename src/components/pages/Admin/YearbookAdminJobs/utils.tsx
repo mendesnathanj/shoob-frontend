@@ -26,9 +26,7 @@ export function useYearbookAdminJobsHome({ schoolName, year }: useYearbookAdminJ
       .then((res) => res.data)
   ));
 
-  const memoizedData = useMemo(() => data || [], [isLoading, schoolName, year]);
-
-  return { data: memoizedData, isLoading };
+  return { data, isLoading };
 }
 
 export function useYearbookAdminJobTableColumns() {

@@ -22,7 +22,7 @@ class YearbookAdminJob extends ApplicationRecord {
   @Attr() schoolId: number;
   @Attr() submittedFinalYearbook?: string;
   @Attr() submittedYearbookForProofing?: string;
-  @Attr() year: number;
+  @Attr() year: number = 2022;
   @Attr() yearbkadvisor1name: string;
   @Attr() yearbkadvisor1email: string;
   @Attr() yearbkadvisor1phone: string;

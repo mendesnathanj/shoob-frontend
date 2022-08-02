@@ -9,6 +9,7 @@ import { ONE_DAY } from '../../../../utils/constants';
 import YearbookContractDetailFields from './YearbookContractDetailsFields';
 import { CONFIRMATION_STATUSES, SCHEMA } from './utils';
 import routes from '../../../../routes';
+import SchoolInput from './SchoolInput';
 
 type YearbookAdminJobFormProps = {
   id?: string | number;
@@ -43,6 +44,16 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
     >
       <div className="grid grid-cols-12 gap-x-6">
         <div className="grid grid-cols-1 gap-y-14 gap-x-2 col-span-9">
+          {!id && (
+            <Form.Section
+              className="col-span-1"
+              collapsible
+              contentClass="grid grid-cols-3 gap-x-8 gap-y-6"
+              title="Select School"
+            >
+              <SchoolInput />
+            </Form.Section>
+          )}
           <Form.Section
             className="col-span-1"
             collapsible
@@ -56,7 +67,7 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
             <Input label="Additional User Name" name="yearbkadvisor2name" />
             <Input label="Additional User Email" name="yearbkadvisor2email" />
             <Input label="Additional User Phone Number" name="yearbkadvisor2phone" />
-            <Input label="Enrollment" name="school.enrollment" />
+            {id && <Input label="Enrollment" name="school.enrollment" />}
             <Input.Date label="Last Day of School" name="lastday" />
           </Form.Section>
           <Form.Section
