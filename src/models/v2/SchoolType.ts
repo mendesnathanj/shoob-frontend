@@ -3,7 +3,7 @@ import ApplicationRecord from './ApplicationRecord';
 
 @Model()
 class SchoolType extends ApplicationRecord {
-  static jsonapiType: 'school_types';
+  static jsonapiType = 'school_types';
   @Attr() name: string;
 }
 

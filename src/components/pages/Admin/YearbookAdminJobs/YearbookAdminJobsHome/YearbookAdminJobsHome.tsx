@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
-import PageSpinner from '../../../../common/PageSpinner';
-import Page from '../../../../ui/Page';
-import Table from '../../../../ui/Table';
+import PageSpinner from '@/components/common/PageSpinner';
+import Table from '@/components/ui/Table';
+import Page from '@/components/ui/Page';
 import { useYearbookAdminJobsHome, useYearbookAdminJobTableColumns } from '../utils';
 import Filters from './Filters';
 
@@ -9,7 +9,7 @@ export default function YearbookAdminJobsHome() {
   const [searchParams] = useSearchParams();
   const { data, isLoading } = useYearbookAdminJobsHome({
     schoolName: searchParams.get('school') || '',
-    year: searchParams.get('year') || '2021',
+    year: searchParams.get('year') || '2022',
   });
   const columns = useYearbookAdminJobTableColumns();
 

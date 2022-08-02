@@ -35,7 +35,7 @@ export default function Filters() {
       className="grid grid-cols-12 gap-4 py-4"
       defaultValues={{
         school: searchParams.get('school') || '',
-        year: parseInt(searchParams.get('year') || '', 10) || 2021
+        year: parseInt(searchParams.get('year') || '', 10) || 2022
       }}
       onSubmit={onSubmit}
     >

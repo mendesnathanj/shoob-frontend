@@ -29,17 +29,6 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
     <Form
       defaultValues={yearbookAdminJob}
       onSubmit={async () => {
-        const { yearbookContractDetails = [], ...newAttributes } = SCHEMA.cast(yearbookAdminJob);
-        delete newAttributes.school;
-
-        yearbookAdminJob.attributes = { ...yearbookAdminJob.attributes, ...newAttributes };
-        yearbookAdminJob.yearbookContractDetails = yearbookAdminJob
-          .yearbookContractDetails
-          .map((yearbookContractDetail, i) => {
-            yearbookContractDetail.attributes = yearbookContractDetails[i];
-            return yearbookContractDetail;
-          });
-
         const res = await yearbookAdminJob.save({ with: ['school', 'yearbookContractDetails'] });
 
         if (res) {

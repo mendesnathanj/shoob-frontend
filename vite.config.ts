@@ -27,6 +27,11 @@ export default defineConfig({
     }),
     eslintPlugin({ cache: false, failOnError: false }),
   ],
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, './src'),
+    }
+  },
   server: {
     port: 4000
   }
