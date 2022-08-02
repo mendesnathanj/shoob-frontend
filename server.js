@@ -22,7 +22,7 @@ async function createServer() {
   if (!isProduction) {
     vite = await require('vite').createServer({
       root: process.cwd(),
-      server: { appType: 'custom', middlewareMode: true },
+      server: { middlewareMode: 'ssr' },
     });
 
     app.use(vite.middlewares);

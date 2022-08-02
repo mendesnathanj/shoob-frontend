@@ -4,6 +4,7 @@ import useNestedFields from '../../../../hooks/useNestedFields';
 import { YearbookContractDetail } from '../../../../models/v2';
 import Button from '../../../ui/Button';
 import Input from '../../../ui/Form/Inputs';
+import { BINDING_TYPES } from './utils';
 
 export default function YearbookContractDetailFields() {
   const { append, fields, name, remove } = useNestedFields({ name: 'yearbookContractDetails' });
@@ -22,11 +23,7 @@ export default function YearbookContractDetailFields() {
               containerProps={{ className: 'col-span-9' }}
               label="Binding Type"
               name={getNestedName('bindingType', i)}
-              options={[
-                { label: 'Soft Cover', value: 'soft_cover' },
-                { label: 'Hard Cover', value: 'hard_cover' },
-                { label: 'Perfect Bound', value: 'perfect_bound' },
-              ]}
+              options={BINDING_TYPES}
             />
             <div className="flex justify-center items-end pb-2 col-span-1">
               <button
