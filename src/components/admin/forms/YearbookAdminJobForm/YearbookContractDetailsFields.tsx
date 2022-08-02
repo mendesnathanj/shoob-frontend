@@ -90,7 +90,7 @@ export default function YearbookContractDetailFields() {
         onClick={() => append(new YearbookContractDetail())}
         variant="success"
       >
-        Add Yearbook Contract
+        Add Another Binding
       </Button>
     </>
   );
