@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 
 const ANIMATION = {
   animate: { opacity: 1, scale: 1 },

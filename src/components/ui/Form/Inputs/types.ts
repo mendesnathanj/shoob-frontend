@@ -1,3 +1,4 @@
+import React from 'react';
 import { RegisterOptions, Merge, FieldError, FieldErrorsImpl, DeepRequired } from 'react-hook-form';
 
 type OmitRegisterProps = Omit<React.HTMLProps<HTMLInputElement>, 'name' | 'onBlur' | 'onChange' | 'ref'>;

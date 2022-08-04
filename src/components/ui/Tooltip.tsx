@@ -1,4 +1,4 @@
-import { cloneElement, useEffect, useState } from 'react';
+import { cloneElement, ReactNode, useEffect, useState } from 'react';
 import {
   Placement,
   offset,
@@ -16,7 +16,7 @@ import {
 import FloatingContent from '../utils/FloatingContent';
 
 interface Props {
-  label: string | React.ReactNode;
+  label: string | ReactNode;
   interactive?: boolean;
   placement?: Placement;
   children: string | JSX.Element;

@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { ReactNode } from 'react';
 import PageSpinner from '../common/PageSpinner';
 
 /* eslint-disable sort-keys */
@@ -11,7 +12,7 @@ const widths = {
 };
 
 type PageProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   isLoading?: boolean;
   hasError?: boolean | unknown;
   maxWidth?: keyof typeof widths;

@@ -5,6 +5,7 @@ export const CONFIRMATION_STATUSES = [
   { label: 'Tentative', value: 'tentative' },
   { label: 'Confirmed', value: 'confirmed' },
   { label: 'Declined', value: 'declined' },
+  { label: 'Previous', value: 'previous' },
 ];
 
 export const BINDING_TYPES = [
