@@ -74,7 +74,8 @@ export default function YearbookAdminJobShow() {
               <Item label="Number of Pages:" value={yearbookAdminJob.numberofpages} />
               <Item label="Presale Deadline:" value={formattedDate(yearbookAdminJob.presaleDeadline)} />
               <Item label="Final Sale Deadline:" value={formattedDate(yearbookAdminJob.salesdeadline)} />
-              <Item className="col-span-3" label="Notes:" value={yearbookAdminJob.notes} />
+              <Item label="Cover Contest:" value={yearbookAdminJob.coverContest} />
+              <Item className="col-span-2" label="Notes:" value={yearbookAdminJob.notes} />
             </Section>
             {yearbookAdminJob.yearbookContractDetails.map((contractDetail) => (
               <Section

@@ -8,7 +8,8 @@ import YearbookContractDetail from './YearbookContractDetail';
 class YearbookAdminJob extends ApplicationRecord {
   static jsonapiType = 'yearbook_admin_jobs';
   @Attr() confirmationStatus?: 'tentative' | 'confirmed' | 'declined';
-  @Attr() coverApproval?: string;
+  @Attr() coverApproval: string;
+  @Attr() coverContest: string = 'No';
   @Attr() customSetup: boolean;
   @Attr() dateflyersposterssenttoprint?: string;
   @Attr() flowClassPictures?: string;

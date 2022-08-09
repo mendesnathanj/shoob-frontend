@@ -40,6 +40,10 @@ export const SCHEMA = yup.object({
     .label('Cover Approval')
     .nullable(true)
     .transform((curr, orig) => (orig === '' ? null : curr)),
+  coverContest: yup
+    .string()
+    .oneOf(['Yes', 'No'])
+    .default('No'),
   customSetup: yup.bool().default(false).required(),
   dateflyersposterssenttoprint: yup
     .date()
