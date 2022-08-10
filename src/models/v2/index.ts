@@ -4,6 +4,7 @@ import DjobType from './DjobType';
 import DProduct from './DProduct';
 import School from './School';
 import SchoolType from './SchoolType';
+import User from './User';
 import YearbookAdminJob from './YearbookAdminJob';
 import YearbookContractDetail from './YearbookContractDetail';
 
@@ -14,6 +15,7 @@ export {
   DjobType,
   School,
   SchoolType,
+  User,
   YearbookAdminJob,
   YearbookContractDetail,
 };
