@@ -21,12 +21,13 @@ export const YEARBOOK_CONTRACT_DETAIL_SCHEMA = yup.object({
     .oneOf(BINDING_TYPES.map((bindingType) => bindingType.value))
     .required(),
   finalSalePrice: yup.number().label('Final Sale Price').positive().nullable(),
-  hardCopyProof: yup.bool().default(false).required(),
+  hardCopyProof: yup.bool().default(false).label('Hard Copy Proof').required(),
   numOfExtras: yup
     .number()
     .min(0)
     .nullable(true)
     .default(null)
+    .label('Number of Extras')
     .transform((_, val) => (Number(val) || null)),
   presalePrice: yup.number().label('Presale Price').positive().nullable(),
   pricePerBook: yup.number().label('Price per book').positive().nullable(),
@@ -40,10 +41,6 @@ export const SCHEMA = yup.object({
     .label('Cover Approval')
     .nullable(true)
     .transform((curr, orig) => (orig === '' ? null : curr)),
-  coverContest: yup
-    .string()
-    .oneOf(['Yes', 'No'])
-    .default('No'),
   customSetup: yup.bool().default(false).required(),
   dateflyersposterssenttoprint: yup
     .date()
@@ -60,9 +57,10 @@ export const SCHEMA = yup.object({
     .label('Last Day of School')
     .nullable(true)
     .transform((curr, orig) => (orig === '' ? null : curr)),
-  notes: yup.string(),
+  notes: yup.string().label('Notes'),
   numberofpages: yup
     .number()
+    .label('Number of Pages')
     .positive()
     .integer()
     .nullable(true)
@@ -90,9 +88,10 @@ export const SCHEMA = yup.object({
       .number()
       .positive()
       .nullable(true)
+      .label('Enrollment')
       .transform((_, val) => (Number(val) || null)),
   }).notRequired(),
-  schoolId: yup.number().required(),
+  schoolId: yup.number().label('School').typeError('School is a required field').required(),
   submittedFinalYearbook: yup
     .date()
     .label('Submitted YB for Proofing')
@@ -104,10 +103,10 @@ export const SCHEMA = yup.object({
     .nullable(true)
     .transform((curr, orig) => (orig === '' ? null : curr)),
   yearbookContractDetails: yup.array(YEARBOOK_CONTRACT_DETAIL_SCHEMA),
-  yearbookadvisor1email: yup.string().email(),
-  yearbookadvisor1name: yup.string(),
-  yearbookadvisor1phone: yup.string(),
-  yearbookadvisor2email: yup.string().email(),
-  yearbookadvisor2name: yup.string(),
-  yearbookadvisor2phone: yup.string(),
+  yearbookadvisor1email: yup.string().label('Yearbook Advisor 1 Email').email(),
+  yearbookadvisor1name: yup.string().label('Yearbook Advisor 1 Name'),
+  yearbookadvisor1phone: yup.string().label('Yearbook Advisor 1 Phone'),
+  yearbookadvisor2email: yup.string().label('Yearbook Advisor 2 Email').email(),
+  yearbookadvisor2name: yup.string().label('Yearbook Advisor 2 Name'),
+  yearbookadvisor2phone: yup.string().label('Yearbook Advisor 2 Phone'),
 }).required();

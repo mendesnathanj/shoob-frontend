@@ -92,14 +92,6 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
             <Input label="Number of pages" name="numberofpages" type="number" />
             <Input.Date label="Presale Deadline" name="presaleDeadline" />
             <Input.Date label="Final Sale Deadline" name="salesdeadline" />
-            <Input.Select
-              label="Cover Contest"
-              name="coverContest"
-              options={[
-                { label: 'Yes', value: 'Yes' },
-                { label: 'No', value: 'No' },
-              ]}
-            />
             <Input.Textarea
               containerProps={{ className: 'col-span-3' }}
               label="Notes"
