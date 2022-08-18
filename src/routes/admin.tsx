@@ -6,6 +6,7 @@ export default {
     new: () => '/products/new' as const,
   },
   root: () => '/' as const,
+  seniorStatus: () => '/senior-status' as const,
   yearbookAdminJobs: {
     edit: (id: number | string) => `/yearbook-admin-jobs/${id}/edit` as const,
     home: () => '/yearbook-admin-jobs' as const,

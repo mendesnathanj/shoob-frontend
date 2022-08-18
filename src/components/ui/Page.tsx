@@ -13,6 +13,7 @@ const widths = {
 
 type PageProps = {
   children: ReactNode;
+  className?: string;
   isLoading?: boolean;
   hasError?: boolean | unknown;
   maxWidth?: keyof typeof widths;
@@ -20,6 +21,7 @@ type PageProps = {
 
 export default function Page({
   children,
+  className,
   isLoading = false,
   hasError = false,
   maxWidth = 'lg'
@@ -28,7 +30,7 @@ export default function Page({
   if (hasError) return <p>Something has gone wrong.</p>;
 
   return (
-    <div className={cn(widths[maxWidth], 'mx-auto p-8')}>
+    <div className={cn('mx-auto p-8', className, widths[maxWidth])}>
       {children}
     </div>
   );

@@ -14,6 +14,7 @@ import YearbookAdminJobEdit from '@/components/pages/Admin/YearbookAdminJobs/Yea
 import YearbookAdminJobShow from '@/components/pages/Admin/YearbookAdminJobs/YearbookAdminJobShow';
 import ScrollToTop from '@/components/utils/ScrollToTop';
 import AuthProvider from '@/providers/AuthProvider';
+import SeniorStatus from '@/components/pages/Admin/SeniorStatus';
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ export default function Admin() {
               <Route path={routes.admin.products.new()} element={<ProductsNew />} />
               <Route path={routes.admin.products.edit(':id')} element={<ProductsEdit />} />
             </Route>
+            <Route path={routes.admin.seniorStatus()} element={<SeniorStatus />} />
             <Route path={routes.admin.yearbookAdminJobs.home()}>
               <Route index element={<YearbookAdminJobsHome />} />
               <Route path={routes.admin.yearbookAdminJobs.new()} element={<YearbookAdminJobsNew />} />
