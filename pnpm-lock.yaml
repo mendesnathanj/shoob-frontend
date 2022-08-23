@@ -22,6 +22,7 @@ specifiers:
   '@storybook/react': ^6.5.10
   '@storybook/testing-library': ^0.0.13
   '@tailwindcss/forms': ^0.5.0
+  '@tanstack/react-query': ^4.2.1
   '@tanstack/react-table': ^8.2.4
   '@types/classnames': ^2.3.1
   '@types/date-fns': ^2.6.0
@@ -66,7 +67,7 @@ specifiers:
   react-hook-form: ^7.33.1
   react-input-mask: 3.0.0-alpha.2
   react-merge-refs: ^1.1.0
-  react-query: ^3.39.1
+  react-query: 3.39.1
   react-router: ^6.3.0
   react-router-dom: ^6.3.0
   react-select: ^5.3.0
@@ -95,6 +96,7 @@ dependencies:
   '@hookform/resolvers': 2.9.5_react-hook-form@7.33.1
   '@rollup/plugin-inject': 4.0.4_rollup@2.77.2
   '@tailwindcss/forms': 0.5.2_tailwindcss@3.0.24
+  '@tanstack/react-query': 4.2.1_ef5jwxihqo6n7gxfmzogljlgcm
   '@tanstack/react-table': 8.2.4_ef5jwxihqo6n7gxfmzogljlgcm
   '@types/react': 18.0.12
   '@types/react-color': 3.0.6
@@ -5817,6 +5819,29 @@ packages:
       tailwindcss: 3.0.24
     dev: false
 
+  /@tanstack/query-core/4.2.1:
+    resolution: {integrity: sha512-UOyOhHKLS/5i9qG2iUnZNVV3R9riJJmG9eG+hnMFIPT/oRh5UzAfjxCtBneNgPQZLDuP8y6YtRYs/n4qVAD5Ng==}
+    dev: false
+
+  /@tanstack/react-query/4.2.1_ef5jwxihqo6n7gxfmzogljlgcm:
+    resolution: {integrity: sha512-w02oTOYpoxoBzD/onAGRQNeLAvggLn7WZjS811cT05WAE/4Q3br0PTp388M7tnmyYGbgOOhFq0MkhH0wIfAKqA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@tanstack/query-core': 4.2.1
+      '@types/use-sync-external-store': 0.0.3
+      react: 18.1.0
+      react-dom: 18.1.0_react@18.1.0
+      use-sync-external-store: 1.2.0_react@18.1.0
+    dev: false
+
   /@tanstack/react-table/8.2.4_ef5jwxihqo6n7gxfmzogljlgcm:
     resolution: {integrity: sha512-u+3XqujBRMAZrtwZSzzFEAyG6H2JoaEJI+88OKurGCelalz7KE3evY+HgAsUjvaolLlk2OI/E6Cg/jSY0CXmYA==}
     engines: {node: '>=12'}
@@ -6094,6 +6119,10 @@ packages:
       use-deep-compare-effect: 1.8.1_react@18.1.0
     transitivePeerDependencies:
       - react
+    dev: false
+
+  /@types/use-sync-external-store/0.0.3:
+    resolution: {integrity: sha512-EwmlvuaxPNej9+T4v5AuBPJa2x2UOJVdjCtDHgcDqitUeOtjnJKJ+apYjVcAoBEMjKW1VVFGZLUb5+qqa09XFA==}
     dev: false
 
   /@types/webpack-env/1.17.0:
