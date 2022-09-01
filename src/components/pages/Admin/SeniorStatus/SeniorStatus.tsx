@@ -11,7 +11,7 @@ import Link from '@/components/ui/Link';
 import routes from '@/routes';
 import { useAuth } from '@/hooks/useAuth';
 import { User } from '@/models/v2';
-import PhotoSection from './PhotoSection';
+import SeniorTable from './SeniorTable';
 
 export default function SeniorStatus() {
   const { user } = useAuth();
@@ -32,7 +32,7 @@ export default function SeniorStatus() {
         <LabeledItem isLoading={isApptLoading} label="Has a Future Appointment" value={apptData} />
         <LabeledItem isLoading={isYearbookLoading} label="Has Selected Yearbook Pose" value={yearbookPoseData} />
       </Section>
-      <PhotoSection />
+      <SeniorTable />
     </Page>
   );
 }

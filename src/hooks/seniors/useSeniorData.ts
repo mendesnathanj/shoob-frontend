@@ -1,7 +1,5 @@
-import { useQuery, useQueries } from 'react-query';
+import { useQuery } from 'react-query';
 import { OrderPackage, Pose, Student, StudentImage } from '@/models/v2';
-
-const PAGE_SIZE = 20;
 
 export function useEnrolledSeniors(schoolId: number) {
   return (
@@ -55,45 +53,37 @@ export function useAppointmentData(schoolId: number) {
   );
 }
 
-export function useSeniorsWithYearbookPoses(schoolId: number) {
-  const { data: enrolledCount } = useEnrolledSeniors(49);
+export function useSeniorPageCount(schoolId: number, pageSize: number) {
+  const { data } = useEnrolledSeniors(schoolId);
 
-  const pages: number[] = new Array(Math.round((enrolledCount || 0) / PAGE_SIZE))
-    .fill(1)
-    .map((pageNum, i) => i + pageNum);
+  return Math.round((data || 0) / pageSize) || -1;
+}
 
+export function useSeniorsWithYearbookPoses(schoolId: number, page: number, pageSize: number) {
   const orderPackageScope = OrderPackage.where({ hasSeniorImage: true, purchased: true });
   const studentImageScope = StudentImage.where({ isCurrentYear: true, isSenior: true });
   const poseScope = Pose.where({ isDefaultYearbookPose: true, skipAccessCode: true });
 
-  const studentQueries = useQueries(
-    pages.map((pageNum) => ({
-      queryFn: () => (
-        Student
-          .merge({
-            orderPackages: orderPackageScope,
-            poses: poseScope,
-            studentImages: studentImageScope,
-          })
-          .where({ enrolled: true, grade: 12, schoolId })
-          .page(pageNum)
-          .order('alphabetical')
-          .includes([{ orderPackages: ['seniorImage'], studentImages: ['poses'] }])
-          .all()
-          .then((res) => res.data)
-      ),
-      queryKey: ['useSeniorsWithYearbookPoses', pageNum, schoolId],
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false,
-    }))
-  );
-
-  return ({
-    data: studentQueries
-      .filter((queryData) => !queryData.isLoading)
-      .map((queryData) => queryData.data)
-      .flat(),
-    isLoading: studentQueries.some((queryData) => queryData.isLoading),
+  const results = useQuery(['useSeniorsWithYearbookPoses', page, schoolId], () => (
+    Student
+      .merge({
+        orderPackages: orderPackageScope,
+        poses: poseScope,
+        studentImages: studentImageScope,
+      })
+      .where({ enrolled: true, grade: 12, schoolId })
+      .page(page)
+      .per(pageSize)
+      .order('alphabetical')
+      .includes([{ orderPackages: ['seniorImage'], studentImages: ['poses'] }])
+      .all()
+      .then((res) => res.data)
+  ), {
+    keepPreviousData: true,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
   });
+
+  return results;
 }

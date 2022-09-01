@@ -2,6 +2,7 @@ import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
+  TableOptions,
   useReactTable,
 } from '@tanstack/react-table';
 import cn from 'classnames';
@@ -10,16 +11,18 @@ export interface Cell {
   [key: string]: any;
 }
 
-type TableProps = {
+export interface TableProps {
   columns: ColumnDef<any>[];
   data?: Cell[];
-};
+  tableOptions?: Omit<TableOptions<any>, 'getCoreRowModel' | 'columns' | 'data'>;
+}
 
-function Table({ columns, data = [] }: TableProps) {
+function Table({ columns, data = [], tableOptions = {} }: TableProps) {
   const table = useReactTable({
     columns,
     data,
     getCoreRowModel: getCoreRowModel(),
+    ...tableOptions,
   });
 
   return (
@@ -27,14 +30,23 @@ function Table({ columns, data = [] }: TableProps) {
       <thead>
         {table.getHeaderGroups().map((headerGroup: any) => (
           <tr key={headerGroup.id}>
-            {headerGroup.headers.map((header: any) => (
-              <th className="border border-gray-200 p-2" key={header.id} colSpan={header.colSpan}>
-                {header.isPlaceholder ? null : flexRender(
-                  header.column.columnDef.header,
-                  header.getContext()
-                )}
-              </th>
-            ))}
+            {headerGroup.headers.map((header: any) => {
+              const headerProps = header.column.columnDef.headerProps || {};
+
+              return (
+                <th
+                  key={header.id}
+                  colSpan={header.colSpan}
+                  {...headerProps}
+                  className={cn('border border-gray-200 p-2', headerProps.className)}
+                >
+                  {header.isPlaceholder ? null : flexRender(
+                    header.column.columnDef.header,
+                    header.getContext()
+                  )}
+                </th>
+              )
+            })}
           </tr>
         ))}
       </thead>

@@ -25,7 +25,7 @@
     "@rollup/plugin-inject": "^4.0.4",
     "@tailwindcss/forms": "^0.5.0",
     "@tanstack/react-query": "^4.2.1",
-    "@tanstack/react-table": "^8.2.4",
+    "@tanstack/react-table": "^8.5.13",
     "@types/react": "^18.0.12",
     "@types/react-color": "^3.0.6",
     "@types/react-dom": "^18.0.5",
@@ -54,7 +54,6 @@
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-select": "^5.3.0",
-    "react-table": "link:@types/@tanstack/react-table",
     "react-toastify": "^9.0.4",
     "spraypaint": "^0.10.24",
     "tailwindcss": "^3.0.23",
@@ -62,7 +61,7 @@
     "vite": "2.9.1",
     "vite-plugin-eslint": "^1.4.0",
     "yup": "^0.32.11",
-    "zustand": "^4.0.0"
+    "zustand": "^4.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",

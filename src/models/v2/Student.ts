@@ -20,20 +20,26 @@ class Student extends ApplicationRecord {
   @BelongsTo() school: School;
   @HasMany() studentImages: StudentImage[];
   @HasMany() orderPackages: OrderPackage[];
+  fullName(): string {
+    return `${this.firstName} ${this.lastName}`;
+  }
+  defaultYearbookPose(): Pose | undefined {
+    const imageWithPoses = this.studentImages.find((studentImage) => studentImage.poses.length > 0);
+    if (!imageWithPoses) return undefined;
+    const defaultPose = imageWithPoses.poses.find((pose) => (pose.imageUrl || '').includes('-01.png'));
+
+    return defaultPose;
+  }
+  selectedYearbookPose(): SeniorImage | undefined {
+    const orderPackage = this.orderPackages.find((temp) => temp.seniorImage);
+
+    if (orderPackage) return orderPackage.seniorImage;
+  }
   yearbookImage(): SeniorImage | Pose | undefined {
-    if (this.orderPackages.length > 0) {
-      return this.orderPackages.find((orderPackage) => orderPackage.seniorImage).seniorImage;
-    }
+    const selectedYearbookPose = this.selectedYearbookPose();
+    if (selectedYearbookPose) return selectedYearbookPose;
 
-    if (this.studentImages.length > 0) {
-      const imageWithPoses = this.studentImages.find((studentImage) => studentImage.poses.length > 0);
-      if (!imageWithPoses) return undefined;
-      const defaultPose = imageWithPoses.poses.find((pose) => (pose.imageUrl || '').includes('-01.png'));
-
-      return defaultPose;
-    }
-
-    return undefined;
+    return this.defaultYearbookPose();
   }
 }
 
