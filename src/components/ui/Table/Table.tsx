@@ -45,7 +45,7 @@ function Table({ columns, data = [], tableOptions = {} }: TableProps) {
                     header.getContext()
                   )}
                 </th>
-              )
+              );
             })}
           </tr>
         ))}

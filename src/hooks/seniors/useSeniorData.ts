@@ -60,22 +60,13 @@ export function useSeniorPageCount(schoolId: number, pageSize: number) {
 }
 
 export function useSeniorsWithYearbookPoses(schoolId: number, page: number, pageSize: number) {
-  const orderPackageScope = OrderPackage.where({ hasSeniorImage: true, purchased: true });
-  const studentImageScope = StudentImage.where({ isCurrentYear: true, isSenior: true });
-  const poseScope = Pose.where({ isDefaultYearbookPose: true, skipAccessCode: true });
-
   const results = useQuery(['useSeniorsWithYearbookPoses', page, schoolId], () => (
     Student
-      .merge({
-        orderPackages: orderPackageScope,
-        poses: poseScope,
-        studentImages: studentImageScope,
-      })
+      .selectExtra(['hasDefaultYearbookPose', 'hasSelectedYearbookPose'])
       .where({ enrolled: true, grade: 12, schoolId })
       .page(page)
       .per(pageSize)
       .order('alphabetical')
-      .includes([{ orderPackages: ['seniorImage'], studentImages: ['poses'] }])
       .all()
       .then((res) => res.data)
   ), {

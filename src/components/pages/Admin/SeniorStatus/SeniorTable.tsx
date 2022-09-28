@@ -5,9 +5,10 @@ import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import Section from '@/components/common/Section';
 import { useSeniorPageCount, useSeniorsWithYearbookPoses } from '@/hooks/seniors/useSeniorData';
 import { useAuth } from '@/hooks/useAuth';
-import { Student, User } from '@/models/v2';
+import { Pose, SeniorImage, Student, User } from '@/models/v2';
 import Table from '@/components/ui/Table';
 import { useTablePagination } from '@/components/ui/Table/tableHooks';
+import Modal, { useModal } from '@/components/ui/Modal/Modal';
 
 function StatusCell({ status }: { status: boolean }) {
   const icon = status ? faCircleCheck : faCircleXmark;
@@ -18,6 +19,48 @@ function StatusCell({ status }: { status: boolean }) {
 
 function usePhotoSectionTableColumns() {
   return useMemo<ColumnDef<Student>[]>(() => ([
+    {
+      accessorFn: (row) => row.yearbookImage(),
+      accessorKey: 'view',
+      cell: (row) => {
+        const modal = useModal();
+        const value = row.getValue() as Pose | SeniorImage | undefined;
+
+        return (
+          <>
+            <button
+              type="button"
+              onClick={() => {
+                modal.toggleModal();
+                console.log(value?.imageUrl);
+              }}
+            >
+              View
+            </button>
+            <Modal {...modal}>
+              {value ? (
+                <img src={value.imageUrl as string} alt="Student Yearbook Pose" />
+              ) : (
+                <div>boop</div>
+              )}
+            </Modal>
+          </>
+        );
+      },
+      header: '',
+    },
+    {
+      accessorKey: 'id',
+      className: '!text-left pl-4',
+      header: 'School ID',
+      headerProps: { className: 'text-left pl-4' },
+    },
+    {
+      accessorKey: 'schoolId',
+      className: '!text-left pl-4',
+      header: 'School ID',
+      headerProps: { className: 'text-left pl-4' },
+    },
     {
       accessorKey: 'studentId',
       className: '!text-left pl-4',
@@ -32,13 +75,11 @@ function usePhotoSectionTableColumns() {
       headerProps: { className: 'text-left pl-4' },
     },
     {
-      accessorFn: (row) => !!row.selectedYearbookPose(),
       accessorKey: 'hasSelectedYearbookPose',
       cell: (row) => <StatusCell status={row.getValue() as boolean} />,
       header: 'Has Selected Yearbook Pose',
     },
     {
-      accessorFn: (row) => !!row.defaultYearbookPose(),
       accessorKey: 'hasDefaultYearbookPose',
       cell: (row) => <StatusCell status={row.getValue() as boolean} />,
       header: 'Has Default Yearbook Pose',
@@ -56,6 +97,8 @@ export default function SeniorTable() {
   const { data: students = [], isLoading } =
     useSeniorsWithYearbookPoses((user as User).schoolId, pageIndex + 1, pageSize);
   const columns = usePhotoSectionTableColumns();
+
+  console.log(students);
 
   return (
     <Section title="Photos">

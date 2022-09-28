@@ -17,6 +17,9 @@ class Student extends ApplicationRecord {
   @Attr() teacher: string;
   @Attr() idOnly: string;
   @Attr() dob: string;
+  // Extra attributes
+  @Attr() hasDefaultYearbookPose: boolean;
+  @Attr() hasSelectedYearbookPose: boolean;
   @BelongsTo() school: School;
   @HasMany() studentImages: StudentImage[];
   @HasMany() orderPackages: OrderPackage[];
