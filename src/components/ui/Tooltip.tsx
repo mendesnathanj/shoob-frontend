@@ -50,7 +50,6 @@ export default function Tooltip({
     useHover(context, {
       delay: { open: 1000 },
       handleClose: interactive ? safePolygon() : undefined,
-      restMs: 40,
     }),
     useFocus(context),
     useRole(context, { role: 'tooltip' }),
@@ -76,7 +75,7 @@ export default function Tooltip({
       <FloatingContent
         open={open}
         {...getFloatingProps({
-          className: 'shadow px-4 py-2 rounded border',
+          className: 'shadow px-4 py-2 rounded border bg-white',
           ref: floating,
           style: {
             left: x ?? '',

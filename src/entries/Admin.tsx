@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClientProvider } from 'react-query';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ReactQueryDevtools } from 'react-query/devtools';
@@ -15,9 +15,9 @@ import YearbookAdminJobShow from '@/components/pages/Admin/YearbookAdminJobs/Yea
 import ScrollToTop from '@/components/utils/ScrollToTop';
 import AuthProvider from '@/providers/AuthProvider';
 import SeniorStatus from '@/components/pages/Admin/SeniorStatus';
-import FailedAccessCodeAttemptsHome from '@/components/pages/Admin/FailedAccessCodeAttempts/FailedAccessCodeAttemptsHome';
-
-const queryClient = new QueryClient();
+import FailedAccessCodeAttemptsHome
+  from '@/components/pages/Admin/FailedAccessCodeAttempts/FailedAccessCodeAttemptsHome';
+import { queryClient } from '@/utils/constants';
 
 export default function Admin() {
   const isAdminSubdomain = window.location.hostname.split('.').includes('admin');

@@ -10,7 +10,7 @@ class FailedAccessCodeAttempt extends ApplicationRecord {
   @Attr() grade: string;
   @Attr() phone: string;
   @Attr() schoolId: number;
-  @Attr() status: string;
+  @Attr() status: 'not_processed' | 'processed';
   @Attr() studentFirstName: string;
   @Attr() studentLastName: string;
   @Attr() updatedAt: Date;
