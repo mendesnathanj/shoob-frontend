@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, PropsWithoutRef } from 'react';
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 import cn from 'classnames';
 
@@ -6,6 +6,7 @@ type LinkProps = {
   to: string;
   disabled?: boolean;
   external?: boolean;
+  openInNewTab?: boolean;
   variant?: 'link' | 'plain';
 } & RouterLinkProps;
 
@@ -15,6 +16,7 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>((
     className,
     disabled = false,
     external = false,
+    openInNewTab = false,
     to,
     variant = 'link',
     ...props
@@ -27,10 +29,18 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>((
     disabled && 'pointer-events-none'
   );
 
-  if (external) return <a className={classes} href={to} ref={ref} {...props}>{children}</a>;
+  const newTabProps = openInNewTab ? { rel: 'noopener noreferrer', target: '_blank' } : {};
+
+  if (external) return <a className={classes} href={to} ref={ref} {...newTabProps} {...props}>{children}</a>;
 
   return (
-    <RouterLink className={classes} to={to} ref={ref} {...props}>
+    <RouterLink
+      className={classes}
+      to={to}
+      ref={ref}
+      {...newTabProps}
+      {...props}
+    >
       {children}
     </RouterLink>
   );
