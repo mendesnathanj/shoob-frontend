@@ -9,6 +9,7 @@ export default function Home() {
       <Link to={routes.admin.yearbookAdminJobs.home()}>Yearbook Jobs</Link>
       <Link to={routes.admin.products.home()}>Products Page</Link>
       <Link to={routes.admin.seniorStatus()}>Senior Status</Link>
+      <Link to={routes.admin.failedAccessCodeAttempts.home()}>Failed Access Code Attempts</Link>
     </Page>
   );
 }

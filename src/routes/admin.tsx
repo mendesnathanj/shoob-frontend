@@ -1,4 +1,7 @@
 export default {
+  failedAccessCodeAttempts: {
+    home: () => '/failed-access-code-attempts' as const,
+  },
   home: () => '/admin/' as const,
   products: {
     edit: (id: number | string) => `/products/${id}/edit` as const,

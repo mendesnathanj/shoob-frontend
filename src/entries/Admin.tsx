@@ -15,6 +15,7 @@ import YearbookAdminJobShow from '@/components/pages/Admin/YearbookAdminJobs/Yea
 import ScrollToTop from '@/components/utils/ScrollToTop';
 import AuthProvider from '@/providers/AuthProvider';
 import SeniorStatus from '@/components/pages/Admin/SeniorStatus';
+import FailedAccessCodeAttemptsHome from '@/components/pages/Admin/FailedAccessCodeAttempts/FailedAccessCodeAttemptsHome';
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,9 @@ export default function Admin() {
           <Routes>
             <Route path="/">
               <Route index element={<Home />} />
+            </Route>
+            <Route path={routes.admin.failedAccessCodeAttempts.home()}>
+              <Route index element={<FailedAccessCodeAttemptsHome />} />
             </Route>
             <Route path={routes.admin.products.home()}>
               <Route index element={<ProductsHome />} />
