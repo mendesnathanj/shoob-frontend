@@ -2,6 +2,7 @@ import ContactInformation from './ContactInformation';
 import District from './District';
 import DjobType from './DjobType';
 import DProduct from './DProduct';
+import FailedAccessCodeAttempt from './FailedAccessCodeAttempt';
 import OrderPackage from './OrderPackage';
 import Pose from './Pose';
 import School from './School';
@@ -18,6 +19,7 @@ export {
   District,
   DProduct,
   DjobType,
+  FailedAccessCodeAttempt,
   OrderPackage,
   Pose,
   School,
