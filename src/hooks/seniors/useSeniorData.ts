@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { OrderPackage, Pose, Student, StudentImage } from '@/models/v2';
+import { Student } from '@/models/v2';
 
 export function useEnrolledSeniors(schoolId: number) {
   return (

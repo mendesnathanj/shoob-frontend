@@ -32,7 +32,6 @@ function usePhotoSectionTableColumns() {
               type="button"
               onClick={() => {
                 modal.toggleModal();
-                console.log(value?.imageUrl);
               }}
             >
               View
@@ -94,11 +93,9 @@ export default function SeniorTable() {
   const pageCount = useSeniorPageCount((user as User).schoolId, pageSize);
   const { pageIndex, setPage, tableOptions } = useTablePagination({ pageCount, pageSize });
 
-  const { data: students = [], isLoading } =
+  const { data: students = [] } =
     useSeniorsWithYearbookPoses((user as User).schoolId, pageIndex + 1, pageSize);
   const columns = usePhotoSectionTableColumns();
-
-  console.log(students);
 
   return (
     <Section title="Photos">
