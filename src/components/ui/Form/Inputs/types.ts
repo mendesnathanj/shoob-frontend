@@ -1,5 +1,5 @@
 import React from 'react';
-import { RegisterOptions, Merge, FieldError, FieldErrorsImpl, DeepRequired } from 'react-hook-form';
+import { RegisterOptions } from 'react-hook-form';
 
 type OmitRegisterProps = Omit<React.HTMLProps<HTMLInputElement>, 'name' | 'onBlur' | 'onChange' | 'ref'>;
 
@@ -13,7 +13,7 @@ export type BaseInputProps = {
   containerProps?: React.HTMLProps<HTMLDivElement>;
   endIcon?: React.ReactElement;
   endIconProps?: React.HTMLProps<HTMLButtonElement>;
-  errors?: Merge<FieldError, FieldErrorsImpl<DeepRequired<any>>>;
+  errors?: string;
   inline?: boolean;
   label: string;
   labelProps?: React.HTMLProps<HTMLLabelElement>;

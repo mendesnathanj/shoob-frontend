@@ -31,7 +31,7 @@ export function useFailedAccessCodeAttemptsTableColumns() {
       header: 'Last Name',
     },
     {
-      accessorFn: (row) => row.school.name,
+      accessorFn: (row) => row?.school?.name || '',
       className: 'whitespace-nowrap',
       header: 'School',
     },
