@@ -76,16 +76,6 @@ export function useFailedAccessCodeAttemptsData() {
   const [page, setPage] = useState(1);
   const [data, setData] = useState<{ [key: number]: FailedAccessCodeAttempt[] }>({});
 
-  useEffect(() => {
-    const windowFocusHandler = () => {
-      setPage(() => 1);
-    };
-
-    window.addEventListener('focus', windowFocusHandler);
-
-    return () => window.removeEventListener('focus', windowFocusHandler);
-  }, []);
-
   const queryResults = useQuery(['failedAccessCodeAttempts', page], () => (
     FailedAccessCodeAttempt
       .includes(['school'])
@@ -99,7 +89,7 @@ export function useFailedAccessCodeAttemptsData() {
         setPage((prev) => prev + 1);
         setData((prev) => ({ ...prev, [page]: res.data }));
       })
-  ), { keepPreviousData: true });
+  ), { keepPreviousData: true, refetchOnMount: false, refetchOnReconnect: false });
 
   return { ...queryResults, data: Object.values(data).flat() };
 }
