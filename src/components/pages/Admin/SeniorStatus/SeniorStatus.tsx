@@ -11,7 +11,7 @@ import Link from '@/components/ui/Link';
 import routes from '@/routes';
 import { useAuth } from '@/hooks/useAuth';
 import { User } from '@/models/v2';
-import SeniorTable from './SeniorTable';
+import SeniorTable from '../../../admin/tables/SeniorTable';
 
 export default function SeniorStatus() {
   const { user } = useAuth();
@@ -22,7 +22,7 @@ export default function SeniorStatus() {
   const { data: yearbookPoseData, isLoading: isYearbookLoading } = useYearbookPoseData((user as User).schoolId);
 
   return (
-    <Page className="flex flex-col gap-12">
+    <Page className="flex flex-col gap-12" maxWidth="2xl">
       <Link external to={routes.external.home()}>
         To Shoob
       </Link>

@@ -18,6 +18,7 @@ import FloatingContent from '../utils/FloatingContent';
 interface Props {
   label: string | ReactNode;
   interactive?: boolean;
+  openDelay?: number;
   placement?: Placement;
   children: string | JSX.Element;
 }
@@ -26,6 +27,7 @@ export default function Tooltip({
   children,
   label,
   interactive = false,
+  openDelay = 1000,
   placement = 'top'
 }: Props) {
   const [open, setOpen] = useState(false);
@@ -48,7 +50,7 @@ export default function Tooltip({
 
   const { getReferenceProps, getFloatingProps } = useInteractions([
     useHover(context, {
-      delay: { open: 1000 },
+      delay: { open: openDelay },
       handleClose: interactive ? safePolygon() : undefined,
     }),
     useFocus(context),
