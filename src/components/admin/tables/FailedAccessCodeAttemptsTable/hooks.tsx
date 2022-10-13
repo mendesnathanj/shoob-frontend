@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import { ColumnDef } from '@tanstack/react-table';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { formattedDateTime, titleize } from '@/utils/functions';
 import { FailedAccessCodeAttempt } from '@/models/v2';
 import Button from '@/components/ui/Button';
