@@ -59,7 +59,7 @@ const outlineClasses = {
 const fullWidthClasses = (fullWidth: FullWidth) => {
   if (!fullWidth) return '';
 
-  const base = 'min-w-full';
+  const base = '!min-w-full';
   if (fullWidth === true) return base;
   if (fullWidth.xs) return `${base} sm:min-w-[128px]`;
   if (fullWidth.sm) return `${base} md:min-w-[128px]`;

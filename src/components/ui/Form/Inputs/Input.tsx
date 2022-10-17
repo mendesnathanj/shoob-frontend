@@ -10,6 +10,7 @@ import Select from './Select';
 import Textarea from './Textarea';
 import { InputProps } from './types';
 import CurrencyInput from './CurrencyInput';
+import SchoolInput from './SchoolInput';
 
 function Input({
   name,
@@ -31,6 +32,7 @@ Input.Currency = CurrencyInput;
 Input.Date = DateInput;
 Input.Radio = Radio;
 Input.Select = Select;
+Input.School = SchoolInput;
 Input.Textarea = Textarea;
 
 export default Input;

@@ -8,6 +8,7 @@ module.exports = {
     './admin/index.html',
     './src/entries/*.tsx',
     './src/components/**/*.{js,ts,jsx,tsx}',
+    './src/hooks/**/*.{js,ts,jsx,tsx}',
   ],
   plugins: [forms],
   theme: {

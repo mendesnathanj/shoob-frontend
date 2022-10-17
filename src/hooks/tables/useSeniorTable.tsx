@@ -13,12 +13,6 @@ export function usePhotoSectionTableColumns() {
       headerProps: { className: 'text-left pl-4' },
     },
     {
-      accessorKey: 'schoolId',
-      className: '!text-left pl-4',
-      header: 'School ID',
-      headerProps: { className: 'text-left pl-4' },
-    },
-    {
       accessorKey: 'studentId',
       className: '!text-left pl-4',
       header: 'Student ID',
@@ -51,7 +45,7 @@ export function usePhotoSectionTableColumns() {
             label={(
               <img
                 alt="Student Yearbook Pose"
-                className="w-80 rounded mx-auto bg-gray-100"
+                className="w-80 rounded mx-auto bg-slate-100 text-xs"
                 src={row.getValue() as string}
               />
             )}
@@ -60,7 +54,7 @@ export function usePhotoSectionTableColumns() {
           >
             <img
               alt="Yearbook Pose"
-              className="w-12 rounded mx-auto bg-gray-100 text-xs"
+              className="w-12 rounded mx-auto bg-slate-100 text-xs"
               src={row.getValue() as string}
             />
           </Tooltip>
