@@ -59,11 +59,12 @@ export function useSeniorPageCount(schoolId: number, pageSize: number) {
   return Math.round((data || 0) / pageSize) || -1;
 }
 
-export function useSeniorsWithYearbookPoses(schoolId: number, page: number, pageSize: number) {
-  return useQuery(['useSeniorsWithYearbookPoses', page, schoolId], () => (
+export function useSeniorsWithYearbookPoses(schoolId: number, page: number, pageSize: number, where = {}) {
+  return useQuery(['useSeniorsWithYearbookPoses', page, schoolId, where], () => (
     Student
       .selectExtra(['hasDefaultYearbookPose', 'hasSelectedYearbookPose', 'seniorYearbookPoseUrl'])
       .where({ enrolled: true, grade: 12, schoolId })
+      .where(where)
       .page(page)
       .per(pageSize)
       .order('alphabetical')

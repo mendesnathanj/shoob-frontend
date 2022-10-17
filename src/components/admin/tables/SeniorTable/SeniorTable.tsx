@@ -5,6 +5,7 @@ import { useTablePagination } from '@/components/ui/Table/tableHooks';
 import Spinner from '@/components/ui/Spinner';
 import { usePhotoSectionTableColumns } from '@/hooks/tables/useSeniorTable';
 import SeniorTableFilters from './SeniorTableFilters';
+import useRouteQuery from '@/hooks/useRouteQuery';
 
 const PAGE_SIZE = 25;
 
@@ -15,9 +16,16 @@ interface SeniorTableProps {
 export default function SeniorTable({ schoolId }: SeniorTableProps) {
   const pageCount = useSeniorPageCount(schoolId, PAGE_SIZE);
   const { pageIndex, setPage, tableOptions } = useTablePagination({ pageCount, pageSize: PAGE_SIZE });
+  const query = useRouteQuery();
+
+  const queryParams = {
+    firstName: query.get('firstName'),
+    lastName: query.get('lastName'),
+    studentId: query.get('studentId'),
+  };
 
   const { data: students = [], isFetching } =
-    useSeniorsWithYearbookPoses(schoolId, pageIndex + 1, PAGE_SIZE);
+    useSeniorsWithYearbookPoses(schoolId, pageIndex + 1, PAGE_SIZE, queryParams);
 
   const columns = usePhotoSectionTableColumns();
 

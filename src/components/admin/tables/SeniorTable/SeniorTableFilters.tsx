@@ -11,7 +11,7 @@ export default function SeniorTableFilters() {
   return (
     <div className="flex justify-between min-w-full">
       <Form
-        className="grid grid-cols-3 gap-4 ml-auto"
+        className="grid grid-cols-4 gap-4 ml-auto"
         onSubmit={(values) => {
           navigate({
             pathname: location.pathname,
@@ -20,7 +20,8 @@ export default function SeniorTableFilters() {
         }}
       >
         <Input label="Student ID" name="studentId" />
-        <Input label="Student Name" name="studentName" />
+        <Input label="First Name" name="firstName" />
+        <Input label="Last Name" name="lastName" />
         <Button className="place-self-end" fullWidth submit variant="primary">Search</Button>
       </Form>
     </div>
