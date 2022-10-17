@@ -22,7 +22,7 @@ export default function ActionSection({ schoolId }: ActionSectionProps) {
       <Form
         autoSave={{ delay: 250 }}
         className="col-span-3"
-        defaultValues={{ schoolId }}
+        defaultValues={{ schoolId: schoolId.toString() }}
         onSubmit={(values) => {
           navigate({
             pathname: location.pathname,
