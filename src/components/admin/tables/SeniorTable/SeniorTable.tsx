@@ -1,8 +1,8 @@
+import { useEffect } from 'react';
 import Section from '@/components/common/Section';
 import { useSeniorPageCount, useSeniorsWithYearbookPoses } from '@/hooks/seniors/useSeniorData';
 import Table from '@/components/ui/Table';
 import { useTablePagination } from '@/components/ui/Table/tableHooks';
-import Spinner from '@/components/ui/Spinner';
 import { usePhotoSectionTableColumns } from '@/hooks/tables/useSeniorTable';
 import SeniorTableFilters from './SeniorTableFilters';
 import useRouteQuery from '@/hooks/useRouteQuery';
@@ -24,6 +24,8 @@ export default function SeniorTable({ schoolId }: SeniorTableProps) {
     studentId: query.get('studentId'),
   };
 
+  useEffect(() => setPage(0), [query.get('firstName'), query.get('lastName'), query.get('studentId')]);
+
   const { data: students = [], isFetching } =
     useSeniorsWithYearbookPoses(schoolId, pageIndex + 1, PAGE_SIZE, queryParams);
 
@@ -31,15 +33,7 @@ export default function SeniorTable({ schoolId }: SeniorTableProps) {
 
   return (
     <Section title="Photos">
-      <SeniorTableFilters />
-      <div className="flex justify-between min-w-full">
-        <div>
-          <button onClick={() => setPage(Math.max(pageIndex - 1, 0))} type="button">Page - 1</button>
-          <span className="px-6">{pageIndex}</span>
-          <button onClick={() => setPage(pageIndex + 1)} type="button">Page + 1</button>
-        </div>
-        {isFetching && <Spinner className="opacity-30 w-6 h-6" color="gray" size="sm" />}
-      </div>
+      <SeniorTableFilters isLoading={isFetching} pageIndex={pageIndex} setPage={setPage} />
       <div className="flex flex-wrap gap-y-4">
         <Table
           columns={columns}

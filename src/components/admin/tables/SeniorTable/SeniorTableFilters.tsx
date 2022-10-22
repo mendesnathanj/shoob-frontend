@@ -6,14 +6,18 @@ import Form from '@/components/ui/Form';
 import Input from '@/components/ui/Form/Inputs';
 import Button from '@/components/ui/Button';
 import useRouteQuery from '@/hooks/useRouteQuery';
+import TablePagination, { TablePaginationProps } from '@/components/ui/Table/TablePagination';
 
-export default function SeniorTableFilters() {
+interface SeniorTableFiltersProps extends TablePaginationProps {}
+
+export default function SeniorTableFilters(props: SeniorTableFiltersProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const query = useRouteQuery();
 
   return (
-    <div className="flex justify-between min-w-full">
+    <div className="flex justify-between min-w-full pb-4">
+      <TablePagination {...props} />
       <Form
         className="grid grid-cols-4 gap-4 ml-auto"
         defaultValues={{
