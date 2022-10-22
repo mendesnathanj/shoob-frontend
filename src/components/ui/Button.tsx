@@ -6,14 +6,16 @@ type IconProps = |
   { startIcon?: JSX.Element, endIcon?: never } |
   { startIcon?: never, endIcon?: JSX.Element };
 
-type FullWidth = boolean | { xs?: boolean, sm?: boolean, md?: boolean, lg?: boolean }
+type FullWidth = boolean | { xs?: boolean, sm?: boolean, md?: boolean, lg?: boolean };
+
+export type ButtonVariants = 'base' | 'danger' | 'primary' | 'success' | 'warning';
 
 type BaseProps = {
   fullWidth?: FullWidth;
   loading?: boolean;
   outlined?: boolean;
   submit?: boolean;
-  variant?: 'base' | 'danger' | 'primary' | 'success' | 'warning';
+  variant?: ButtonVariants;
 } & IconProps;
 
 export type ButtonProps = BaseProps & React.HTMLProps<HTMLButtonElement>;

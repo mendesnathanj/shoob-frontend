@@ -15,9 +15,13 @@ type Roles = 'ADMIN' |
 @Model()
 class User extends ApplicationRecord {
   static jsonapiType = 'users';
+  @Attr() admin: boolean;
   @Attr() role: Roles;
   @Attr() schoolId: number;
   @BelongsTo() school: School;
+  isAdmin(): boolean {
+    return this.admin || this.role === 'ADMIN';
+  }
 }
 
 export default User;

@@ -38,7 +38,7 @@ import mergeRefs from 'react-merge-refs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import FloatingContent from '../utils/FloatingContent';
-import Button from './Button';
+import Button, { ButtonVariants } from './Button';
 import Link from './Link';
 
 type ItemProps = {
@@ -68,9 +68,10 @@ const useMinWidth = ({ ref }: useMinWidthProps) => {
 };
 
 interface Props {
+  children?: React.ReactNode;
   label?: string;
   nested?: boolean;
-  children?: React.ReactNode;
+  variant?: ButtonVariants;
 }
 
 const itemClass = 'inline-block min-w-full py-1 px-2 text-left bg-white hover:bg-gray-100 focus:bg-gray-100';
@@ -78,7 +79,7 @@ const itemClass = 'inline-block min-w-full py-1 px-2 text-left bg-white hover:bg
 export const MenuComponent = forwardRef<
   any,
   Props & React.HTMLProps<HTMLButtonElement>
->(({ children, label, ...props }, ref) => {
+>(({ children, label, variant = 'primary', ...props }, ref) => {
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [allowHover, setAllowHover] = useState(false);
@@ -252,8 +253,9 @@ export const MenuComponent = forwardRef<
             onClick: ({ currentTarget }) => (currentTarget as HTMLButtonElement).focus(),
             ref: mergedReferenceRef,
           })}
+          fullWidth
           endIcon={<FontAwesomeIcon icon={faCaretDown} />}
-          variant="primary"
+          variant={variant}
         >
           {label}
         </Button>
