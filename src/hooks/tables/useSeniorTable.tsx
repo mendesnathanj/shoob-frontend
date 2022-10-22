@@ -28,12 +28,18 @@ export function usePhotoSectionTableColumns() {
     {
       accessorKey: 'hasSelectedYearbookPose',
       cell: (row) => <StatusCell className="text-xl" status={row.getValue() as boolean} />,
-      header: 'Has Selected Yearbook Pose',
+      header: 'Has Selected Pose',
     },
     {
       accessorKey: 'hasDefaultYearbookPose',
-      cell: (row) => <StatusCell className="text-xl" status={row.getValue() as boolean} />,
-      header: 'Has Default Yearbook Pose',
+      cell: (row) => {
+        if (row.getValue()) {
+          return <StatusCell className="text-xl" status={row.getValue() as boolean} />;
+        }
+
+        return 'Not photographed';
+      },
+      header: 'Is Photographed',
     },
     {
       accessorKey: 'seniorYearbookPoseUrl',
