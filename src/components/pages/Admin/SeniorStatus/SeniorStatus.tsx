@@ -32,7 +32,7 @@ export default function SeniorStatus() {
       </Link>
       <ActionSection schoolId={schoolId} />
       <SeniorStatisticsSection schoolId={schoolId} />
-      <SeniorTable schoolId={schoolId} />
+      <SeniorTable isAdmin={user?.isAdmin()} schoolId={schoolId} />
     </Page>
   );
 }

@@ -19,10 +19,11 @@ export default function SeniorTableFilters(props: SeniorTableFiltersProps) {
     <div className="flex justify-between min-w-full pb-4">
       <TablePagination {...props} />
       <Form
-        className="grid grid-cols-4 gap-4 ml-auto"
+        className="grid grid-cols-5 gap-4 ml-auto"
         defaultValues={{
           firstName: query.get('firstName'),
           lastName: query.get('lastName'),
+          scope: query.get('scope') || 'enrolled',
           studentId: query.get('studentId'),
         }}
         onSubmit={(values) => {
@@ -36,6 +37,16 @@ export default function SeniorTableFilters(props: SeniorTableFiltersProps) {
           });
         }}
       >
+        <Input.Select
+          label="Filter by:"
+          name="scope"
+          options={[
+            { label: 'Enrolled', value: 'enrolled' },
+            { label: 'Photographed', value: 'photographed' },
+            { label: 'With an Appointment', value: 'appointments' },
+            { label: 'With Pose Selected', value: 'with_pose' },
+          ]}
+        />
         <Input label="Student ID" name="studentId" />
         <Input label="First Name" name="firstName" />
         <Input label="Last Name" name="lastName" />

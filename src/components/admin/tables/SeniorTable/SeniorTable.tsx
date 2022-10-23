@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import Section from '@/components/common/Section';
 import { useSeniorPageCount, useSeniorsWithYearbookPoses } from '@/hooks/seniors/useSeniorData';
 import Table from '@/components/ui/Table';
@@ -10,26 +10,43 @@ import useRouteQuery from '@/hooks/useRouteQuery';
 const PAGE_SIZE = 25;
 
 interface SeniorTableProps {
+  isAdmin?: boolean;
   schoolId: number;
 }
 
-export default function SeniorTable({ schoolId }: SeniorTableProps) {
+export default function SeniorTable({ isAdmin, schoolId }: SeniorTableProps) {
   const pageCount = useSeniorPageCount(schoolId, PAGE_SIZE);
   const { pageIndex, setPage, tableOptions } = useTablePagination({ pageCount, pageSize: PAGE_SIZE });
   const query = useRouteQuery();
 
+  const scope = useMemo(() => {
+    switch (query.get('scope')) {
+      case 'photographed':
+        return 'photographed_seniors';
+      case 'appointments':
+        return 'with_future_appointments';
+      case 'with_pose':
+        return 'seniors_with_yearbook_pose';
+      default:
+        return 'enrolled';
+    }
+  }, [query.get('scope')]);
+
   const queryParams = {
     firstName: query.get('firstName'),
     lastName: query.get('lastName'),
+    [scope]: true,
     studentId: query.get('studentId'),
   };
 
-  useEffect(() => setPage(0), [query.get('firstName'), query.get('lastName'), query.get('studentId')]);
+  useEffect(() => setPage(0),
+    [query.get('firstName'), query.get('lastName'), query.get('studentId'), query.get('scope')]
+  );
 
   const { data: students = [], isFetching } =
     useSeniorsWithYearbookPoses(schoolId, pageIndex + 1, PAGE_SIZE, queryParams);
 
-  const columns = usePhotoSectionTableColumns();
+  const columns = usePhotoSectionTableColumns({ isAdmin });
 
   return (
     <Section title="Photos">
