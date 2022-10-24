@@ -39,7 +39,8 @@ export default function SeniorTable({ isAdmin, schoolId }: SeniorTableProps) {
     studentId: query.get('studentId'),
   };
 
-  useEffect(() => setPage(0),
+  useEffect(
+    () => setPage(0),
     [query.get('firstName'), query.get('lastName'), query.get('studentId'), query.get('scope')]
   );
 
