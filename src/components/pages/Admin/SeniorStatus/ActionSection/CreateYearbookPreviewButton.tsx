@@ -17,7 +17,7 @@ export default function CreateYearbookPreviewButton({
 
     axios
       .post(routes.external.generateYearbookPreview, { school_id: schoolId, scope })
-      .then(() => toast('Your preview will be finished creating shortly', { autoClose: 2000 }));
+      .then(() => toast('Your preview will be ready soon.', { autoClose: 2000, type: 'info' }));
   }
 
   return (

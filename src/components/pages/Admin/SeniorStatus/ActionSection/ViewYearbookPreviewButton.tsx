@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
 import Link from '@/components/ui/Link';
 import Button from '@/components/ui/Button';
 import Tooltip from '@/components/ui/Tooltip';
@@ -32,7 +34,9 @@ export default function ViewYearbookPreviewButton({
         variant="plain"
         to={yearbookPreview?.previewUrl || ''}
       >
-        <Button {...props.Button}>View Yearbook Preview</Button>
+        <Button startIcon={<FontAwesomeIcon icon={faFilePdf} />} {...props.Button}>
+          View Yearbook Preview
+        </Button>
       </Link>
     </Tooltip>
   );
