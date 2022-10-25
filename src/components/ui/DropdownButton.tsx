@@ -42,11 +42,29 @@ import Button, { ButtonVariants } from './Button';
 import Link from './Link';
 
 type ItemProps = {
+  close?: () => void;
+  closeAfterClick?: boolean;
   disabled?: boolean;
 } & React.HTMLProps<HTMLButtonElement>;
 
-const Item = forwardRef<HTMLButtonElement, ItemProps>(({ children, disabled, ...props }, ref) => (
-  <button {...props} ref={ref} role="menuitem" disabled={disabled} type="button">
+const Item = forwardRef<HTMLButtonElement, ItemProps>(({
+  children,
+  close,
+  closeAfterClick = false,
+  disabled,
+  ...props
+}, ref) => (
+  <button
+    {...props}
+    onClick={(e) => {
+      if (props.onClick) props.onClick(e);
+      if (closeAfterClick && close) close();
+    }}
+    ref={ref}
+    role="menuitem"
+    disabled={disabled}
+    type="button"
+  >
     {children}
   </button>
 ));
@@ -286,6 +304,7 @@ export const MenuComponent = forwardRef<
                     child,
                     getItemProps({
                       className: itemClass,
+                      close: () => setOpen(false),
                       // By default `focusItemOnHover` uses `pointermove` sync,
                       // but when a menu closes we want this to sync it on
                       // `enter` even if the cursor didn't move.

@@ -13,6 +13,7 @@ import StudentImage from './StudentImage';
 import User from './User';
 import YearbookAdminJob from './YearbookAdminJob';
 import YearbookContractDetail from './YearbookContractDetail';
+import YearbookPreview from './YearbookPreview';
 
 export {
   ContactInformation,
@@ -30,4 +31,5 @@ export {
   User,
   YearbookAdminJob,
   YearbookContractDetail,
+  YearbookPreview,
 };

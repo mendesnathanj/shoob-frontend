@@ -1,7 +1,7 @@
 import Page from '@/components/ui/Page';
 import FailedAccessCodeAttemptsTable from '@/components/admin/tables/FailedAccessCodeAttemptsTable';
 import Link from '@/components/ui/Link';
-import { useTotalUnprocessedFailedAttempts } from '@/hooks/pages/FailedAccessCodeAttempts/useHomeHooks';
+import { useTotalUnprocessedFailedAttempts } from '@/hooks/pages/admin/FailedAccessCodeAttempts/useHomeHooks';
 
 export default function FailedAccessCodeAttemptsHome() {
   const { data: count, isLoading } = useTotalUnprocessedFailedAttempts();

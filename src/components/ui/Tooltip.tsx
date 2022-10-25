@@ -16,8 +16,10 @@ import {
 import FloatingContent from '../utils/FloatingContent';
 
 interface Props {
+  disabled?: boolean;
   label: string | ReactNode;
   interactive?: boolean;
+  offset?: number;
   openDelay?: number;
   placement?: Placement;
   children: string | JSX.Element;
@@ -25,8 +27,10 @@ interface Props {
 
 export default function Tooltip({
   children,
+  disabled = false,
   label,
   interactive = false,
+  offset: tooltipOffset = 5,
   openDelay = 1000,
   placement = 'top'
 }: Props) {
@@ -42,7 +46,7 @@ export default function Tooltip({
     refs,
     update
   } = useFloating({
-    middleware: [offset(5), flip(), shift({ padding: 8 })],
+    middleware: [offset(tooltipOffset), flip(), shift({ padding: 8 })],
     onOpenChange: setOpen,
     open,
     placement,
@@ -75,7 +79,7 @@ export default function Tooltip({
         )
       )}
       <FloatingContent
-        open={open}
+        open={!disabled && open}
         {...getFloatingProps({
           className: 'shadow px-4 py-2 rounded border bg-white',
           ref: floating,
