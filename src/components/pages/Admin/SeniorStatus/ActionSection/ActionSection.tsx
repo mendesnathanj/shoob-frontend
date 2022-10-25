@@ -15,25 +15,27 @@ export default function ActionSection({ schoolId }: ActionSectionProps) {
   const [isRequestingPreview, setIsRequestingPreview] = useState(false);
 
   return (
-    <Section title="Actions" contentClass="grid grid-cols-12">
+    <Section title="Actions" contentClass="flex justify-between flex-wrap">
       {user && user.isAdmin() && <SchoolSelect schoolId={schoolId} />}
-      <div className="col-start-8 flex justify-center items-end">
-        <div>
-          <ViewYearbookPreviewButton
-            isRequestingPreview={isRequestingPreview}
-            setIsRequestingPreview={setIsRequestingPreview}
-            schoolId={schoolId}
-          />
+      <div className="flex gap-8">
+        <div className="flex justify-center items-end lg:mr-8">
+          <div>
+            <ViewYearbookPreviewButton
+              isRequestingPreview={isRequestingPreview}
+              setIsRequestingPreview={setIsRequestingPreview}
+              schoolId={schoolId}
+            />
+          </div>
         </div>
-      </div>
-      <div className="col-start-10 flex justify-start items-end">
-        <div>
-          <CreateYearbookPreviewButton schoolId={schoolId} setIsRequestingPreview={setIsRequestingPreview} />
+        <div className="flex justify-start items-end">
+          <div>
+            <CreateYearbookPreviewButton schoolId={schoolId} setIsRequestingPreview={setIsRequestingPreview} />
+          </div>
         </div>
-      </div>
-      <div className="col-start-12 flex justify-center items-end">
-        <div>
-          <DownloadYearbookCsvButton schoolId={schoolId} />
+        <div className="flex justify-center items-end">
+          <div>
+            <DownloadYearbookCsvButton schoolId={schoolId} />
+          </div>
         </div>
       </div>
     </Section>
