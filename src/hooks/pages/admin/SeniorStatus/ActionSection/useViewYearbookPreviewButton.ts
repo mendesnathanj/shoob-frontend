@@ -20,7 +20,7 @@ export function useComponentProps(yearbookPreview: IYearbookPreview, isRequestin
     if (isRequestingPreview) {
       return ({
         Button: { disabled: true, variant: 'base' } as const,
-        Tooltip: { label: 'Your preview is generating and will be avaiable shortly.', openDelay: 0 },
+        Tooltip: { label: 'Your preview is generating and will be available shortly.', openDelay: 0 },
       });
     }
 
