@@ -12,7 +12,7 @@ export function useYearbookPreview(schoolId: number) {
       .where({ schoolId })
       .first()
       .then((res) => res.data)
-  ), { refetchInterval: 2 * ONE_SECOND, refetchOnMount: false, refetchOnWindowFocus: false });
+  ), { refetchInterval: 20 * ONE_SECOND, refetchOnMount: false, refetchOnWindowFocus: false });
 }
 
 export function useComponentProps(yearbookPreview: IYearbookPreview, isRequestingPreview: boolean) {
