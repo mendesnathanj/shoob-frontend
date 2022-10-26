@@ -7,12 +7,12 @@ import { YearbookPreview } from '@/models/v2';
 type IYearbookPreview = YearbookPreview | null | undefined;
 
 export function useYearbookPreview(schoolId: number) {
-  return useQuery(['useYearbookPreview'], () => (
+  return useQuery(['useYearbookPreview', schoolId], () => (
     YearbookPreview
       .where({ schoolId })
       .first()
       .then((res) => res.data)
-  ), { refetchInterval: 20 * ONE_SECOND, refetchOnMount: false, refetchOnWindowFocus: false });
+  ), { refetchInterval: 10 * ONE_SECOND, refetchOnMount: false, refetchOnWindowFocus: false });
 }
 
 export function useComponentProps(yearbookPreview: IYearbookPreview, isRequestingPreview: boolean) {

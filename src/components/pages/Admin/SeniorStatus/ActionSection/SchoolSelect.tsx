@@ -14,7 +14,7 @@ export default function SchoolSelect({ schoolId }: SchoolSelectProps) {
   return (
     <Form
       autoSave={{ delay: 250 }}
-      className="col-span-3"
+      className="min-w-[250px]"
       defaultValues={{ schoolId: schoolId.toString() }}
       onSubmit={(values) => {
         navigate({
