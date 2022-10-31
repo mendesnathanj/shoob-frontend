@@ -3,10 +3,7 @@ module.exports = {
     browser: true,
     es2021: true
   },
-  extends: [
-    'plugin:react/recommended',
-    'airbnb'
-  ],
+  extends: ['plugin:react/recommended', 'airbnb', 'plugin:storybook/recommended'],
   ignorePatterns: ['**/node_modules/**'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -16,14 +13,16 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  plugins: [
-    'react',
-    '@typescript-eslint'
-  ],
+  plugins: ['react', '@typescript-eslint'],
   rules: {
     '@typescript-eslint/no-unused-vars': 2,
-    'brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
-    camelcase: ['error', { ignoreDestructuring: true, properties: 'never' }],
+    'brace-style': ['error', 'stroustrup', {
+      allowSingleLine: true
+    }],
+    camelcase: ['error', {
+      ignoreDestructuring: true,
+      properties: 'never'
+    }],
     'comma-dangle': 'off',
     'consistent-return': 'off',
     'import/extensions': 'off',
@@ -34,15 +33,17 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': ['error', {
       required: {
         some: ['nesting', 'id']
-      },
+      }
     }],
     'jsx-a11y/label-has-for': ['error', {
       required: {
         some: ['nesting', 'id']
-      },
+      }
     }],
     'lines-between-class-members': ['error', 'never'],
-    'max-len': ['warn', { code: 120 }],
+    'max-len': ['warn', {
+      code: 120
+    }],
     'no-console': 'warn',
     'no-mixed-operators': 'warn',
     'no-param-reassign': 'off',
@@ -64,11 +65,11 @@ module.exports = {
     'react/jsx-one-expression-per-line': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/no-danger': 'off',
-    'react/no-did-mount-set-state': 'off', // https://github.com/airbnb/javascript/issues/684
-    'react/no-unstable-nested-components': [
-      'off',
-      { allowAsProps: true },
-    ],
+    'react/no-did-mount-set-state': 'off',
+    // https://github.com/airbnb/javascript/issues/684
+    'react/no-unstable-nested-components': ['off', {
+      allowAsProps: true
+    }],
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/require-default-props': 'off',
@@ -78,7 +79,7 @@ module.exports = {
     'space-before-function-paren': ['error', {
       anonymous: 'never',
       asyncArrow: 'always',
-      named: 'never',
+      named: 'never'
     }],
     'spaced-comment': 'warn'
   }
