@@ -24,7 +24,7 @@ export function useModal({ initialState = false }: useModalProps = DEFAULT_USE_M
 
 type ModalProps = {
   children: React.ReactNode;
-} & ReturnType<typeof useModal>;
+} & Omit<ReturnType<typeof useModal>, 'toggleModal' | 'openModal'>;
 
 export default function Modal({ children, closeModal, isOpen }: ModalProps) {
   return (

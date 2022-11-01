@@ -3,69 +3,88 @@ import { useMemo } from 'react';
 import StatusCell from '@/components/admin/helpers/StatusCell';
 import Tooltip from '@/components/ui/Tooltip';
 import { Student } from '@/models/v2';
+import { useModal, UseModal } from '@/hooks/useModal';
+import Button from '@/components/ui/Button';
 
-const DEFAULT_COLUMNS = [
-  {
-    accessorKey: 'studentId',
-    className: '!text-left pl-4',
-    header: 'Student ID',
-    headerProps: { className: 'text-left pl-4' },
-  },
-  {
-    accessorFn: (row) => row.fullName(),
-    accessorKey: 'fullName',
-    className: '!text-left pl-4',
-    header: 'Name',
-    headerProps: { className: 'text-left pl-4' },
-  },
-  {
-    accessorKey: 'hasSelectedYearbookPose',
-    cell: (row) => <StatusCell className="text-xl" status={row.getValue() as boolean} />,
-    header: 'Has Selected Pose',
-  },
-  {
-    accessorKey: 'hasDefaultYearbookPose',
-    cell: (row) => {
-      if (row.getValue()) {
-        return <StatusCell className="text-xl" status={row.getValue() as boolean} />;
-      }
-
-      return 'Not photographed';
+type defaultColumnsArgs = Omit<UseModal, 'closeModal' | 'toggleModal' | 'isOpen' | 'content'>;
+function defaultColumns({ openModal, setContent }: defaultColumnsArgs) {
+  const DEFAULT_COLUMNS = [
+    {
+      accessorKey: 'studentId',
+      className: '!text-left pl-4',
+      header: 'Student ID',
+      headerProps: { className: 'text-left pl-4' },
     },
-    header: 'Is Photographed',
-  },
-  {
-    accessorKey: 'seniorYearbookPoseUrl',
-    cell: (row) => {
-      if (!row.getValue()) return '';
+    {
+      accessorFn: (row) => row.fullName(),
+      accessorKey: 'fullName',
+      className: '!text-left pl-4',
+      header: 'Name',
+      headerProps: { className: 'text-left pl-4' },
+    },
+    {
+      accessorKey: 'hasSelectedYearbookPose',
+      cell: (row) => <StatusCell className="text-xl" status={row.getValue() as boolean} />,
+      header: 'Has Selected Pose',
+    },
+    {
+      accessorKey: 'hasDefaultYearbookPose',
+      cell: (row) => {
+        if (row.getValue()) {
+          return <StatusCell className="text-xl" status={row.getValue() as boolean} />;
+        }
 
-      return (
-        <Tooltip
-          label={(
+        return 'Not photographed';
+      },
+      header: 'Is Photographed',
+    },
+    {
+      accessorKey: 'seniorYearbookPoseUrl',
+      cell: (row) => {
+        if (!row.getValue()) return '';
+
+        return (
+          <Tooltip
+            label={(
+              <img
+                alt="Student Yearbook Pose"
+                className="w-80 rounded mx-auto bg-slate-100 text-xs"
+                src={row.getValue() as string}
+              />
+            )}
+            openDelay={250}
+            placement="left"
+          >
             <img
-              alt="Student Yearbook Pose"
-              className="w-80 rounded mx-auto bg-slate-100 text-xs"
+              alt="Yearbook Pose"
+              className="w-12 rounded mx-auto bg-slate-100 text-xs"
               src={row.getValue() as string}
             />
-          )}
-          openDelay={250}
-          placement="left"
-        >
-          <img
-            alt="Yearbook Pose"
-            className="w-12 rounded mx-auto bg-slate-100 text-xs"
-            src={row.getValue() as string}
-          />
-        </Tooltip>
-      );
+          </Tooltip>
+        );
+      },
+      header: 'Yearbook Pose',
     },
-    header: 'Yearbook Pose',
-  }
-] as ColumnDef<Student>[];
+    {
+      cell: () => {
+        return (
+          <Button variant="primary" onClick={openModal}>
+            Edit
+          </Button>
+        );
+      },
+      header: 'Actions',
+    }
+  ] as ColumnDef<Student>[];
+
+  return DEFAULT_COLUMNS;
+}
 
 export function usePhotoSectionTableColumns({ isAdmin = false }: { isAdmin?: boolean }) {
+  const { openModal, setContent } = useModal();
+
   return useMemo<ColumnDef<Student>[]>(() => {
-    if (!isAdmin) return DEFAULT_COLUMNS;
+    if (!isAdmin) return defaultColumns({ openModal, setContent });
 
     return ([
       {
@@ -74,7 +93,7 @@ export function usePhotoSectionTableColumns({ isAdmin = false }: { isAdmin?: boo
         header: 'ID',
         headerProps: { className: 'text-left pl-4' },
       },
-      ...DEFAULT_COLUMNS,
+      ...defaultColumns({ openModal, setContent }),
     ]);
   }, [isAdmin]);
 }
