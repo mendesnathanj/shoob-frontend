@@ -5,6 +5,8 @@ import Tooltip from '@/components/ui/Tooltip';
 import { Student } from '@/models/v2';
 import { useModal, UseModal } from '@/hooks/useModal';
 import Button from '@/components/ui/Button';
+import StudentYearbookPoseForm from '@/components/admin/forms/StudentYearbookPoseForm';
+import {PersistedSpraypaintRecord} from 'spraypaint';
 
 type defaultColumnsArgs = Omit<UseModal, 'closeModal' | 'toggleModal' | 'isOpen' | 'content'>;
 function defaultColumns({ openModal, setContent }: defaultColumnsArgs) {
@@ -66,16 +68,20 @@ function defaultColumns({ openModal, setContent }: defaultColumnsArgs) {
       header: 'Yearbook Pose',
     },
     {
-      cell: () => {
-        return (
-          <Button variant="primary" onClick={openModal}>
-            Edit
-          </Button>
-        );
-      },
+      cell: (props) => (
+        <Button
+          variant="primary"
+          onClick={() => {
+            setContent(<StudentYearbookPoseForm id={props.row.original.id} />);
+            openModal();
+          }}
+        >
+          Edit
+        </Button>
+      ),
       header: 'Actions',
     }
-  ] as ColumnDef<Student>[];
+  ] as ColumnDef<PersistedSpraypaintRecord<Student>>[];
 
   return DEFAULT_COLUMNS;
 }

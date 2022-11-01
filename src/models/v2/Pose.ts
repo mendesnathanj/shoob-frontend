@@ -7,6 +7,7 @@ class Pose extends ApplicationRecord {
   @Attr() extension: string;
   @Attr() imageUrl: string;
   @Attr() index: string;
+  @Attr() isYearbookPose: boolean;
   @Attr() selectedForYearbook: boolean;
   @Attr() studentImageId: string;
   @Attr({ persist: false }) type: string;

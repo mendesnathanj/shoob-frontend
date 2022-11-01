@@ -15,7 +15,7 @@ export type BaseInputProps = {
   endIconProps?: React.HTMLProps<HTMLButtonElement>;
   errors?: string;
   inline?: boolean;
-  label: string;
+  label: any; // TODO: Figure out how to type this correctly to take any element. React.ReactNode | React.ReactElement | Element shows error for img tag
   labelProps?: React.HTMLProps<HTMLLabelElement>;
   name: string;
 } & LabelProps & React.HTMLProps<HTMLInputElement>;
