@@ -6,7 +6,6 @@ import { useTablePagination } from '@/components/ui/Table/tableHooks';
 import { usePhotoSectionTableColumns } from '@/hooks/tables/useSeniorTable';
 import SeniorTableFilters from './SeniorTableFilters';
 import useRouteQuery from '@/hooks/useRouteQuery';
-import Modal from '@/components/ui/Modal';
 
 const PAGE_SIZE = 25;
 

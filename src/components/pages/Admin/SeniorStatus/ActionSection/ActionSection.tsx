@@ -16,7 +16,7 @@ export default function ActionSection({ schoolId }: ActionSectionProps) {
 
   return (
     <Section title="Actions" contentClass="flex justify-between flex-wrap">
-      {user && user.isAdmin() && <SchoolSelect schoolId={schoolId} />}
+      {user && user.isAdmin() ? <SchoolSelect schoolId={schoolId} /> : <span />}
       <div className="flex gap-8">
         <div className="flex justify-center items-end lg:mr-8">
           <div>

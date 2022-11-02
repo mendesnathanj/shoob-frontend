@@ -1,5 +1,11 @@
-import { useQuery } from 'react-query';
+import { QueryKey, useQuery, UseQueryOptions } from 'react-query';
 import { Student } from '@/models/v2';
+
+const REFETCH_SETTINGS: Omit<UseQueryOptions<number, unknown, number, QueryKey>, 'queryKey' | 'queryFn'> = {
+  refetchOnMount: false,
+  refetchOnReconnect: false,
+  refetchOnWindowFocus: false,
+};
 
 export function useEnrolledSeniors(schoolId: number) {
   return (
@@ -10,7 +16,7 @@ export function useEnrolledSeniors(schoolId: number) {
         .stats({ total: 'count' })
         .all()
         .then((res) => res.meta.stats.total.count)
-    ))
+    ), REFETCH_SETTINGS)
   );
 }
 
@@ -23,7 +29,7 @@ export function usePhotographedSeniors(schoolId: number) {
         .stats({ total: 'count' })
         .all()
         .then((res) => res.meta.stats.total.count)
-    ))
+    ), REFETCH_SETTINGS)
   );
 }
 
@@ -36,7 +42,7 @@ export function useYearbookPoseData(schoolId: number) {
         .stats({ total: 'count' })
         .all()
         .then((res) => res.meta.stats.total.count)
-    ))
+    ), REFETCH_SETTINGS)
   );
 }
 
@@ -49,7 +55,7 @@ export function useAppointmentData(schoolId: number) {
         .stats({ total: 'count' })
         .all()
         .then((res) => res.meta.stats.total.count)
-    ))
+    ), REFETCH_SETTINGS)
   );
 }
 

@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import useStudentWithYearbookPoses from '@/components/admin/forms/StudentYearbookPoseForm/useStudentWithYearbookPoses';
+import { toast } from 'react-toastify';
 import { useModal } from '@/hooks/useModal';
 import { Pose } from '@/models/v2';
 import { queryClient } from '@/utils/constants';
+import useStudentWithYearbookPoses from '@/components/admin/forms/StudentYearbookPoseForm/useStudentWithYearbookPoses';
 
 interface StudentYearbookPoseFormProps {
   id: string;
@@ -26,6 +27,7 @@ export default function StudentYearbookPoseForm({ id }: StudentYearbookPoseFormP
     queryClient.invalidateQueries({ queryKey: ['useSeniorsWithYearbookPoses'] });
     queryClient.invalidateQueries({ queryKey: [id, 'useStudentWithYearbookPoses'] });
 
+    toast('Yearbook pose updated', { type: 'success' });
     closeModal();
   };
 
