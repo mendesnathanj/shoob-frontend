@@ -10,7 +10,7 @@ export function useEnrolledSeniors(schoolId: number) {
         .stats({ total: 'count' })
         .all()
         .then((res) => res.meta.stats.total.count)
-    ))
+    ), { refetchOnMount: false, refetchOnReconnect: false, refetchOnWindowFocus: false })
   );
 }
 
@@ -23,7 +23,7 @@ export function usePhotographedSeniors(schoolId: number) {
         .stats({ total: 'count' })
         .all()
         .then((res) => res.meta.stats.total.count)
-    ))
+    ), { refetchOnMount: false, refetchOnReconnect: false, refetchOnWindowFocus: false })
   );
 }
 
@@ -36,7 +36,7 @@ export function useYearbookPoseData(schoolId: number) {
         .stats({ total: 'count' })
         .all()
         .then((res) => res.meta.stats.total.count)
-    ))
+    ), { refetchOnMount: false, refetchOnReconnect: false, refetchOnWindowFocus: false })
   );
 }
 
@@ -49,7 +49,7 @@ export function useAppointmentData(schoolId: number) {
         .stats({ total: 'count' })
         .all()
         .then((res) => res.meta.stats.total.count)
-    ))
+    ), { refetchOnMount: false, refetchOnReconnect: false, refetchOnWindowFocus: false })
   );
 }
 

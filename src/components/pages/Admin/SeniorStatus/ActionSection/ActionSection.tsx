@@ -19,11 +19,7 @@ export default function ActionSection({ schoolId }: ActionSectionProps) {
       <div className="flex gap-8">
         <div className="flex justify-center items-end lg:mr-8">
           <div>
-            <ViewYearbookPreviewButton
-              isRequestingPreview={isRequestingPreview}
-              setIsRequestingPreview={setIsRequestingPreview}
-              schoolId={schoolId}
-            />
+            <ViewYearbookPreviewButton />
           </div>
         </div>
         <div className="flex justify-center items-end">
