@@ -10,6 +10,7 @@ export default {
   },
   root: () => '/' as const,
   seniorStatus: () => '/senior-status' as const,
+  seniorYearbookPreview: () => '/senior-status/yearbook-preview' as const,
   yearbookAdminJobs: {
     edit: (id: number | string) => `/yearbook-admin-jobs/${id}/edit` as const,
     home: () => '/yearbook-admin-jobs' as const,

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Section from '@/components/common/Section';
 import { useAuth } from '@/hooks/useAuth';
 import DownloadYearbookCsvButton from './DownloadYearbookCsvButton';
-import CreateYearbookPreviewButton from './CreateYearbookPreviewButton';
 import SchoolSelect from './SchoolSelect';
 import ViewYearbookPreviewButton from './ViewYearbookPreviewButton';
 
@@ -25,11 +24,6 @@ export default function ActionSection({ schoolId }: ActionSectionProps) {
               setIsRequestingPreview={setIsRequestingPreview}
               schoolId={schoolId}
             />
-          </div>
-        </div>
-        <div className="flex justify-start items-end">
-          <div>
-            <CreateYearbookPreviewButton schoolId={schoolId} setIsRequestingPreview={setIsRequestingPreview} />
           </div>
         </div>
         <div className="flex justify-center items-end">

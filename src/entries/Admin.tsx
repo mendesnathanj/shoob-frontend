@@ -19,6 +19,7 @@ import FailedAccessCodeAttemptsHome
   from '@/components/pages/Admin/FailedAccessCodeAttempts/FailedAccessCodeAttemptsHome';
 import { queryClient } from '@/utils/constants';
 import ModalProvider from '@/providers/ModalProvider';
+import SeniorYearbookPreview from '@/components/pages/Admin/SeniorYearbookPreview';
 
 export default function Admin() {
   const isAdminSubdomain = window.location.hostname.split('.').includes('admin');
@@ -43,6 +44,7 @@ export default function Admin() {
                 <Route path={routes.admin.products.new()} element={<ProductsNew />} />
                 <Route path={routes.admin.products.edit(':id')} element={<ProductsEdit />} />
               </Route>
+              <Route path={routes.admin.seniorYearbookPreview()} element={<SeniorYearbookPreview />} />
               <Route path={routes.admin.seniorStatus()} element={<SeniorStatus />} />
               <Route path={routes.admin.yearbookAdminJobs.home()}>
                 <Route index element={<YearbookAdminJobsHome />} />

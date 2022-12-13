@@ -2,13 +2,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
 import Link from '@/components/ui/Link';
 import Button from '@/components/ui/Button';
-import Tooltip from '@/components/ui/Tooltip';
 import usePrevious from '@/hooks/usePrevious';
 import {
-  useComponentProps,
   useToastNotification,
   useYearbookPreview,
 } from '@/hooks/pages/admin/SeniorStatus/ActionSection/useViewYearbookPreviewButton';
+import routes from '@/routes';
 
 interface ViewYearbookPreviewButtonProps {
   isRequestingPreview: boolean;
@@ -24,20 +23,16 @@ export default function ViewYearbookPreviewButton({
   const { data: yearbookPreview } = useYearbookPreview(schoolId);
   const previousUrl = usePrevious(yearbookPreview?.previewUrl);
   useToastNotification(yearbookPreview, previousUrl, isRequestingPreview, setIsRequestingPreview);
-  const props = useComponentProps(yearbookPreview, isRequestingPreview);
 
   return (
-    <Tooltip {...props.Tooltip} offset={12}>
-      <Link
-        external
-        openInNewTab
-        variant="plain"
-        to={yearbookPreview?.previewUrl || ''}
-      >
-        <Button startIcon={<FontAwesomeIcon icon={faFilePdf} />} {...props.Button}>
-          View Yearbook Preview
-        </Button>
-      </Link>
-    </Tooltip>
+    <Link
+      openInNewTab
+      variant="plain"
+      to={routes.admin.seniorYearbookPreview()}
+    >
+      <Button startIcon={<FontAwesomeIcon icon={faFilePdf} />} variant="primary">
+        View Yearbook Preview
+      </Button>
+    </Link>
   );
 }
