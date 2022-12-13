@@ -19,6 +19,7 @@ import FailedAccessCodeAttemptsHome
   from '@/components/pages/Admin/FailedAccessCodeAttempts/FailedAccessCodeAttemptsHome';
 import { queryClient } from '@/utils/constants';
 import ModalWrapper from '@/components/common/ModalWrapper';
+import SeniorYearbookPreview from '@/components/pages/Admin/SeniorYearbookPreview';
 
 export default function Admin() {
   const isAdminSubdomain = window.location.hostname.split('.').includes('admin');
