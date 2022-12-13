@@ -20,8 +20,10 @@ class Student extends ApplicationRecord {
   // Extra attributes
   @Attr() hasDefaultYearbookPose: boolean;
   @Attr() hasSelectedYearbookPose: boolean;
+  @Attr() seniorYearbookPoseId: string;
   @Attr() seniorYearbookPoseUrl: string;
   @BelongsTo() school: School;
+  @HasMany() seniorImages: SeniorImage[];
   @HasMany() studentImages: StudentImage[];
   @HasMany() orderPackages: OrderPackage[];
   fullName(): string {

@@ -18,8 +18,7 @@ import SeniorStatus from '@/components/pages/Admin/SeniorStatus';
 import FailedAccessCodeAttemptsHome
   from '@/components/pages/Admin/FailedAccessCodeAttempts/FailedAccessCodeAttemptsHome';
 import { queryClient } from '@/utils/constants';
-import ModalProvider from '@/providers/ModalProvider';
-import SeniorYearbookPreview from '@/components/pages/Admin/SeniorYearbookPreview';
+import ModalWrapper from '@/components/common/ModalWrapper';
 
 export default function Admin() {
   const isAdminSubdomain = window.location.hostname.split('.').includes('admin');
@@ -30,30 +29,29 @@ export default function Admin() {
       <ToastContainer theme="light" />
       <Router basename={basename}>
         <AuthProvider>
-          <ModalProvider>
-            <ScrollToTop />
-            <Routes>
-              <Route path="/">
-                <Route index element={<Home />} />
-              </Route>
-              <Route path={routes.admin.failedAccessCodeAttempts.home()}>
-                <Route index element={<FailedAccessCodeAttemptsHome />} />
-              </Route>
-              <Route path={routes.admin.products.home()}>
-                <Route index element={<ProductsHome />} />
-                <Route path={routes.admin.products.new()} element={<ProductsNew />} />
-                <Route path={routes.admin.products.edit(':id')} element={<ProductsEdit />} />
-              </Route>
-              <Route path={routes.admin.seniorYearbookPreview()} element={<SeniorYearbookPreview />} />
-              <Route path={routes.admin.seniorStatus()} element={<SeniorStatus />} />
-              <Route path={routes.admin.yearbookAdminJobs.home()}>
-                <Route index element={<YearbookAdminJobsHome />} />
-                <Route path={routes.admin.yearbookAdminJobs.new()} element={<YearbookAdminJobsNew />} />
-                <Route path={routes.admin.yearbookAdminJobs.edit(':id')} element={<YearbookAdminJobEdit />} />
-                <Route path={routes.admin.yearbookAdminJobs.show(':id')} element={<YearbookAdminJobShow />} />
-              </Route>
-            </Routes>
-          </ModalProvider>
+          <ModalWrapper />
+          <ScrollToTop />
+          <Routes>
+            <Route path="/">
+              <Route index element={<Home />} />
+            </Route>
+            <Route path={routes.admin.failedAccessCodeAttempts.home()}>
+              <Route index element={<FailedAccessCodeAttemptsHome />} />
+            </Route>
+            <Route path={routes.admin.products.home()}>
+              <Route index element={<ProductsHome />} />
+              <Route path={routes.admin.products.new()} element={<ProductsNew />} />
+              <Route path={routes.admin.products.edit(':id')} element={<ProductsEdit />} />
+            </Route>
+            <Route path={routes.admin.seniorYearbookPreview()} element={<SeniorYearbookPreview />} />
+            <Route path={routes.admin.seniorStatus()} element={<SeniorStatus />} />
+            <Route path={routes.admin.yearbookAdminJobs.home()}>
+              <Route index element={<YearbookAdminJobsHome />} />
+              <Route path={routes.admin.yearbookAdminJobs.new()} element={<YearbookAdminJobsNew />} />
+              <Route path={routes.admin.yearbookAdminJobs.edit(':id')} element={<YearbookAdminJobEdit />} />
+              <Route path={routes.admin.yearbookAdminJobs.show(':id')} element={<YearbookAdminJobShow />} />
+            </Route>
+          </Routes>
         </AuthProvider>
       </Router>
       <ReactQueryDevtools initialIsOpen={false} />

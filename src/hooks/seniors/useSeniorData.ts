@@ -1,5 +1,11 @@
-import { useQuery } from 'react-query';
+import { QueryKey, useQuery, UseQueryOptions } from 'react-query';
 import { Student } from '@/models/v2';
+
+const REFETCH_SETTINGS: Omit<UseQueryOptions<number, unknown, number, QueryKey>, 'queryKey' | 'queryFn'> = {
+  refetchOnMount: false,
+  refetchOnReconnect: false,
+  refetchOnWindowFocus: false,
+};
 
 export function useEnrolledSeniors(schoolId: number) {
   return (
