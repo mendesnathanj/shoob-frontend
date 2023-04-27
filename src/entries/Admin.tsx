@@ -20,6 +20,7 @@ import FailedAccessCodeAttemptsHome
 import { queryClient } from '@/utils/constants';
 import ModalWrapper from '@/components/common/ModalWrapper';
 import SeniorYearbookPreview from '@/components/pages/Admin/SeniorYearbookPreview';
+import Nav from '@/components/admin/nav/Nav';
 
 export default function Admin() {
   const isAdminSubdomain = window.location.hostname.split('.').includes('admin');
@@ -29,6 +30,7 @@ export default function Admin() {
     <QueryClientProvider client={queryClient}>
       <ToastContainer theme="light" />
       <Router basename={basename}>
+        <Nav />
         <AuthProvider>
           <ModalWrapper />
           <ScrollToTop />
