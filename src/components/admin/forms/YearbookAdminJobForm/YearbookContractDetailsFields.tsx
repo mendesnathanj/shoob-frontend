@@ -28,6 +28,7 @@ export default function YearbookContractDetailFields() {
             <div className="flex justify-center items-end pb-2 col-span-1">
               <button
                 onClick={async () => {
+                  // @ts-ignore
                   if (item.isPersisted) {
                     const temp = new YearbookContractDetail(item);
                     temp.isPersisted = true;
@@ -68,6 +69,17 @@ export default function YearbookContractDetailFields() {
                 { label: 'Yes', value: true },
                 { label: 'No', value: false },
               ]}
+            />
+            <Input
+              containerProps={{ className: 'col-span-3' }}
+              label="Quantity"
+              name={getNestedName('quantity', i)}
+              type="number"
+            />
+            <Input.Currency
+              containerProps={{ className: 'col-span-3' }}
+              label="Shipping"
+              name={getNestedName('shipping', i)}
             />
             <Input
               containerProps={{ className: 'col-span-3' }}
