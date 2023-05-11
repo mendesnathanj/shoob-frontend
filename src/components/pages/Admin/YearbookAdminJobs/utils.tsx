@@ -2,7 +2,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { capitalize } from 'lodash';
 import { useMemo } from 'react';
 import { useQuery } from 'react-query';
-import { YearbookAdminJob } from '@/models/v2';
+import { YearbookAdminJob, YearbookContractDetail } from '@/models/v2';
 import routes from '@/routes';
 import Link from '@/components/ui/Link';
 
@@ -64,10 +64,16 @@ export function useYearbookAdminJobTableColumns() {
 }
 
 export function useYearbookAdminJob(id: string) {
-  return useQuery(['yearbookAdminJob', id], () => (
-    YearbookAdminJob
-      .includes([{ school: ['district', 'schoolType'] }, 'yearbookContractDetails'])
-      .find(id)
-      .then((res) => res.data)
-  ));
+  return useQuery(['yearbookAdminJob', id], () => {
+    const yearbookContractDetailScope = YearbookContractDetail
+      .selectExtra(['quantitySoldOnWebsite']);
+
+    return (
+      YearbookAdminJob
+        .includes([{ school: ['district', 'schoolType'] }, 'yearbookContractDetails'])
+        .merge({ yearbookContractDetails: yearbookContractDetailScope })
+        .find(id)
+        .then((res) => res.data)
+    );
+  });
 }

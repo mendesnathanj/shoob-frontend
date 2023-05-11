@@ -19,6 +19,7 @@ class YearbookAdminJob extends ApplicationRecord {
   @Attr() numberofpages: number;
   @Attr() pixamisetupdate: string;
   @Attr() presaleDeadline: string = '12/31/2022';
+  @Attr() previousYearCredit: number;
   @Attr() salesdeadline: string = '04/21/2023';
   @Attr() schoolId: number;
   @Attr() submittedFinalYearbook?: string;

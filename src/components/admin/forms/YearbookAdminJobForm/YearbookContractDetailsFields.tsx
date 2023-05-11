@@ -70,12 +70,6 @@ export default function YearbookContractDetailFields() {
                 { label: 'No', value: false },
               ]}
             />
-            <Input
-              containerProps={{ className: 'col-span-3' }}
-              label="Quantity"
-              name={getNestedName('quantity', i)}
-              type="number"
-            />
             <Input.Currency
               containerProps={{ className: 'col-span-3' }}
               label="Shipping"

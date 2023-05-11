@@ -74,6 +74,7 @@ export default function YearbookAdminJobShow() {
               <Item label="Number of Pages:" value={yearbookAdminJob.numberofpages} />
               <Item label="Presale Deadline:" value={formattedDate(yearbookAdminJob.presaleDeadline)} />
               <Item label="Final Sale Deadline:" value={formattedDate(yearbookAdminJob.salesdeadline)} />
+              <Item label="Previous Year Credit:" value={currency(yearbookAdminJob.previousYearCredit).format()} />
               <Item className="col-span-2" label="Notes:" value={yearbookAdminJob.notes} />
             </Section>
             {yearbookAdminJob.yearbookContractDetails.map((contractDetail) => (
@@ -82,10 +83,12 @@ export default function YearbookAdminJobShow() {
                 key={contractDetail.id}
                 title={`${capitalize(contractDetail.bindingType.replace('_', ' '))} Info`}
               >
+                <Item label="Quantity Sold on Website:" value={contractDetail.quantitySoldOnWebsite} />
                 <Item label="Price Per Book:" value={currency(contractDetail.pricePerBook).format()} />
                 <Item label="Pre-Sale Price:" value={currency(contractDetail.presalePrice).format()} />
                 <Item label="Final-Sale Price:" value={currency(contractDetail.finalSalePrice).format()} />
                 <Item label="Hard Copy Proof:" value={contractDetail.hardCopyProof ? 'Yes' : 'No'} />
+                <Item label="Shipping:" value={currency(contractDetail.shipping).format()} />
                 <Item label="Number of Extras:" value={contractDetail.numOfExtras} />
               </Section>
             ))}

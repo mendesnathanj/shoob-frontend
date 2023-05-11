@@ -14,6 +14,7 @@ class YearbookContractDetail extends ApplicationRecord {
   @Attr() quantity: number;
   @Attr() shipping: number;
   @Attr() yearbookAdminJobId: number;
+  @Attr() quantitySoldOnWebsite?: number;
   @BelongsTo() yearbookAdminJob: YearbookAdminJob;
 }
 
