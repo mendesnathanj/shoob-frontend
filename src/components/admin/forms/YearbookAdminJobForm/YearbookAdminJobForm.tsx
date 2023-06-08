@@ -93,6 +93,8 @@ export default function YearbookAdminJobForm({ id }: YearbookAdminJobFormProps) 
             {id && <Input.Currency label="Previous Year Credit" name="previousYearCredit" />}
             <Input.Date label="Presale Deadline" name="presaleDeadline" />
             <Input.Date label="Final Sale Deadline" name="salesdeadline" />
+            <Input label="Funding Source" name="fundingSource" />
+            <Input.Checkbox label="Require PO" labelProps={{ className: 'items-center' }} name="requirePo" />
             <Input.Textarea
               containerProps={{ className: 'col-span-3' }}
               label="Notes"

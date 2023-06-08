@@ -13,6 +13,7 @@ class YearbookAdminJob extends ApplicationRecord {
   @Attr() customSetup: boolean;
   @Attr() dateflyersposterssenttoprint?: string;
   @Attr() flowClassPictures?: string;
+  @Attr() fundingSource: string;
   @Attr() hardCopyProof: boolean;
   @Attr() lastday: string;
   @Attr() notes: string;
@@ -20,6 +21,7 @@ class YearbookAdminJob extends ApplicationRecord {
   @Attr() pixamisetupdate: string;
   @Attr() presaleDeadline: string = '12/31/2022';
   @Attr() previousYearCredit: number;
+  @Attr() requirePo: boolean;
   @Attr() salesdeadline: string = '04/21/2023';
   @Attr() schoolId: number;
   @Attr() submittedFinalYearbook?: string;
