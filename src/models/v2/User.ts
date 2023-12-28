@@ -16,6 +16,7 @@ type Roles = 'ADMIN' |
 class User extends ApplicationRecord {
   static jsonapiType = 'users';
   @Attr() admin: boolean;
+  @Attr() employee: boolean;
   @Attr() role: Roles;
   @Attr() schoolId: number;
   @BelongsTo() school: School;

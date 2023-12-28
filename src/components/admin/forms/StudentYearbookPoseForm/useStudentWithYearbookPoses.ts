@@ -6,7 +6,7 @@ interface useStudentWithYearbookPosesProps {
 }
 
 export default function useStudentWithYearbookPoses({ id }: useStudentWithYearbookPosesProps) {
-  const studentImageScope = StudentImage.where({ folder: { prefix: 'senior' }, isCurrentYear: true });
+  const studentImageScope = StudentImage.where({ folder: { prefix: 'senior' }, isCurrentSeniorYear: true });
   const poseScope = Pose.where({ type: 'SeniorImage' }).selectExtra(['imageUrl']).order('id');
 
   return useQuery([id, 'useStudentWithYearbookPoses'], () => (

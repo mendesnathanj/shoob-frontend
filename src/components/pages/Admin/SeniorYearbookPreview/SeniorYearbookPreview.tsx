@@ -1,16 +1,22 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import { useAuth } from '@/hooks/useAuth';
 import { YearbookPreview } from '@/models/v2';
 import routes from '@/routes';
+import useQueryString from '@/hooks/useQueryString';
 
 let count = 0;
 
 export default function SeniorYearbookPreview() {
+  const { schoolId: schoolIdParam } = useQueryString();
   const { user } = useAuth();
   const linkRef = useRef<HTMLAnchorElement>(null);
   const [isPosting, setIsPosting] = useState(true);
+
+  const schoolId = useMemo(() => (
+    user?.isAdmin() && schoolIdParam ? schoolIdParam : user?.schoolId
+  ), [user?.isAdmin(), schoolIdParam]);
 
   useEffect(() => {
     if (!user) return;
@@ -18,7 +24,7 @@ export default function SeniorYearbookPreview() {
 
     count++;
     axios
-      .post(routes.external.generateYearbookPreview, { school_id: user?.schoolId, scope: 'enrolled' })
+      .post(routes.external.generateYearbookPreview, { school_id: schoolId, scope: 'enrolled' })
       .then(() => {
         setTimeout(() => {
           setIsPosting(false);
@@ -26,12 +32,12 @@ export default function SeniorYearbookPreview() {
       });
   }, []);
 
-  const { data } = useQuery(['seniorYearbookPreview', user?.schoolId], () => {
+  const { data } = useQuery(['seniorYearbookPreview', schoolId], () => {
     if (isPosting) return;
 
     return (
       YearbookPreview
-        .where({ schoolId: user?.schoolId })
+        .where({ schoolId })
         .first()
         .then((res) => res.data)
     );

@@ -8,7 +8,7 @@ import Link from '@/components/ui/Link';
 
 type useYearbookAdminJobsHomeProps = {
   schoolName: string;
-  year: string;
+  year?: string | number;
 };
 
 export function useYearbookAdminJobsHome({ schoolName, year }: useYearbookAdminJobsHomeProps) {
@@ -24,7 +24,7 @@ export function useYearbookAdminJobsHome({ schoolName, year }: useYearbookAdminJ
       })
       .all()
       .then((res) => res.data)
-  ));
+  ), { enabled: !!year });
 
   return { data, isLoading };
 }

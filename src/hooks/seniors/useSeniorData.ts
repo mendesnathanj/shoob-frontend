@@ -11,7 +11,7 @@ export function useEnrolledSeniors(schoolId: number) {
   return (
     useQuery<number>(['useEnrolledSeniors', schoolId], () => (
       Student
-        .where({ enrolled: true, grade: 12, schoolId })
+        .where({ enrolledSeniors: true, grade: 12, schoolId })
         .per(0)
         .stats({ total: 'count' })
         .all()
@@ -69,7 +69,7 @@ export function useSeniorsWithYearbookPoses(
   schoolId: number,
   page: number,
   pageSize: number,
-  where: object = { enrolled: true },
+  where: object = { enrolledSeniors: true },
 ) {
   return useQuery(['useSeniorsWithYearbookPoses', page, schoolId, where], () => (
     Student

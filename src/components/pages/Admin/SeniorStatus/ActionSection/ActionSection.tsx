@@ -13,13 +13,15 @@ export default function ActionSection({ schoolId }: ActionSectionProps) {
   const { user } = useAuth();
   const [isRequestingPreview, setIsRequestingPreview] = useState(false);
 
+  if (!user) return null;
+
   return (
     <Section title="Actions" contentClass="flex justify-between flex-wrap">
       {user && user.isAdmin() ? <SchoolSelect schoolId={schoolId} /> : <span />}
       <div className="flex gap-8">
         <div className="flex justify-center items-end lg:mr-8">
           <div>
-            <ViewYearbookPreviewButton />
+            <ViewYearbookPreviewButton schoolId={schoolId} />
           </div>
         </div>
         <div className="flex justify-center items-end">

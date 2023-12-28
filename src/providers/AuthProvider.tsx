@@ -7,7 +7,7 @@ export default function AuthProvider({ children }: React.PropsWithChildren<any>)
   const { user, setUser } = useAuth();
   const { data, isLoading } = useQuery('currentUser', () => (
     User.where({ me: true }).first().then((res) => res.data)
-  ));
+  ), { staleTime: Infinity, refetchOnMount: false, refetchOnReconnect: false, refetchOnWindowFocus: false, retry: false });
 
   useEffect(() => {
     if (isLoading) return;

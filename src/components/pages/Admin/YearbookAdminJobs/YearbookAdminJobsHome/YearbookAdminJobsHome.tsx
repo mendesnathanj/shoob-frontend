@@ -7,12 +7,22 @@ import Filters from './Filters';
 import Button from '@/components/ui/Button';
 import Link from '@/components/ui/Link';
 import routes from '@/routes';
+import { useQuery } from 'react-query';
+import { YearbookAdminJob } from '@/models/v2';
 
 export default function YearbookAdminJobsHome() {
   const [searchParams] = useSearchParams();
+
+  const { data: years = [] } = useQuery('yearbookAdminJobHomeFilters', () => (
+    YearbookAdminJob
+      .selectExtra(['years'])
+      .first()
+      .then((res) => (res.data?.years || []))
+  ));
+
   const { data, isLoading } = useYearbookAdminJobsHome({
     schoolName: searchParams.get('school') || '',
-    year: searchParams.get('year') || '2022',
+    year: searchParams.get('year') || years[0],
   });
   const columns = useYearbookAdminJobTableColumns();
 

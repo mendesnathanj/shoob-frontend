@@ -29,7 +29,7 @@ export default function SeniorTable({ isAdmin, schoolId }: SeniorTableProps) {
       case 'with_pose':
         return 'seniors_with_yearbook_pose';
       default:
-        return 'enrolled';
+        return 'enrolled_seniors';
     }
   }, [query.get('scope')]);
 

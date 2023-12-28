@@ -4,12 +4,12 @@ import Link from '@/components/ui/Link';
 import Button from '@/components/ui/Button';
 import routes from '@/routes';
 
-export default function ViewYearbookPreviewButton() {
+export default function ViewYearbookPreviewButton({ schoolId }: { schoolId: number }) {
   return (
     <Link
       openInNewTab
       variant="plain"
-      to={routes.admin.seniorYearbookPreview()}
+      to={`${routes.admin.seniorYearbookPreview()}?schoolId=${schoolId}`}
     >
       <Button startIcon={<FontAwesomeIcon icon={faFilePdf} />} variant="primary">
         View Yearbook Preview
