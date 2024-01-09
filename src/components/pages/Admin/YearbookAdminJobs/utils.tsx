@@ -5,6 +5,7 @@ import { useQuery } from 'react-query';
 import { YearbookAdminJob, YearbookContractDetail } from '@/models/v2';
 import routes from '@/routes';
 import Link from '@/components/ui/Link';
+import DeleteButton from './DeleteButton';
 
 type useYearbookAdminJobsHomeProps = {
   schoolName: string;
@@ -60,6 +61,13 @@ export function useYearbookAdminJobTableColumns() {
       header: 'Confirmation Status',
       id: 'confirmationStatus'
     },
+    {
+      accessorKey: 'delete',
+      cell: (props) => (
+        <DeleteButton id={props.row.original.id as string} />
+      ),
+      header: 'Delete',
+    }
   ]), []);
 }
 
