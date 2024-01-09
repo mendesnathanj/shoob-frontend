@@ -4,12 +4,13 @@ import { useMutation, useQueryClient } from "react-query";
 
 interface DeleteButtonProps {
   id: string;
+  onSuccess?: () => void;
 }
 
-export default function DeleteButton({ id }: DeleteButtonProps) {
+export default function DeleteButton({ id, onSuccess }: DeleteButtonProps) {
   const queryClient = useQueryClient();
 
-  const { isLoading, mutate, mutateAsync, isSuccess } = useMutation({
+  const { isLoading, mutateAsync } = useMutation({
     mutationFn: () => (
       YearbookAdminJob.find(id).then((res) => {
         if (!res.data) return;
@@ -23,7 +24,7 @@ export default function DeleteButton({ id }: DeleteButtonProps) {
   const handleClick = async () => {
     await mutateAsync();
 
-    queryClient.invalidateQueries({ queryKey: ['yearbookAdminJobsHome'] });
+    onSuccess();
   };
 
   return (

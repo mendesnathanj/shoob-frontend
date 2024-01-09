@@ -1,4 +1,4 @@
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import cn from 'classnames';
 import currency from 'currency.js';
 import { capitalize, formattedDate, formattedDateTime } from '@/utils/functions';
@@ -8,6 +8,8 @@ import Button from '@/components/ui/Button';
 import Link from '@/components/ui/Link';
 import Page from '@/components/ui/Page';
 import { useYearbookAdminJob } from './utils';
+import DeleteButton from './DeleteButton';
+import { toast } from 'react-toastify';
 
 function Item({ className = '', label, value }: { className?: string, label: string, value?: string | number }) {
   return (
@@ -21,6 +23,13 @@ function Item({ className = '', label, value }: { className?: string, label: str
 export default function YearbookAdminJobShow() {
   const { id } = useParams<{ id: string }>();
   const { data: yearbookAdminJob, isLoading } = useYearbookAdminJob(id as string);
+  const navigate = useNavigate();
+
+  const handleDelete = () => {
+    toast.success('Successfully removed job');
+
+    navigate(routes.admin.yearbookAdminJobs.home());
+  };
 
   return (
     <Page maxWidth="xl" isLoading={isLoading}>
@@ -30,11 +39,14 @@ export default function YearbookAdminJobShow() {
         <div className="grid grid-cols-12 gap-x-5">
           <div className="grid gap-y-14 gap-x-2 col-span-9">
             <Section title="Actions">
-              <Link to={routes.admin.yearbookAdminJobs.edit(yearbookAdminJob.id)} variant="plain">
-                <Button outlined variant="primary">
-                  Edit
-                </Button>
-              </Link>
+              <div className="flex gap-x-12">
+                <Link to={routes.admin.yearbookAdminJobs.edit(yearbookAdminJob.id)} variant="plain">
+                  <Button outlined variant="primary">
+                    Edit
+                  </Button>
+                </Link>
+                <DeleteButton id={yearbookAdminJob.id} onSuccess={handleDelete} />
+              </div>
             </Section>
             <Section title="School Information" contentClass="grid grid-cols-5 gap-y-4">
               <Item label="Scode" value={yearbookAdminJob.school.scode} />

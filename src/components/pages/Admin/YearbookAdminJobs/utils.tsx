@@ -1,7 +1,7 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { capitalize } from 'lodash';
 import { useMemo } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
 import { YearbookAdminJob, YearbookContractDetail } from '@/models/v2';
 import routes from '@/routes';
 import Link from '@/components/ui/Link';
@@ -31,6 +31,8 @@ export function useYearbookAdminJobsHome({ schoolName, year }: useYearbookAdminJ
 }
 
 export function useYearbookAdminJobTableColumns() {
+  const queryClient = useQueryClient();
+
   return useMemo<ColumnDef<YearbookAdminJob>[]>(() => ([
     {
       cell: (props) => (
@@ -64,7 +66,7 @@ export function useYearbookAdminJobTableColumns() {
     {
       accessorKey: 'delete',
       cell: (props) => (
-        <DeleteButton id={props.row.original.id as string} />
+        <DeleteButton id={props.row.original.id as string} onSuccess={() => queryClient.invalidateQueries({ queryKey: ['yearbookAdminJobsHome'] })} />
       ),
       header: 'Delete',
     }
